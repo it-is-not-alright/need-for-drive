@@ -1,0 +1,122 @@
+@use '../variables.scss';
+
+$transition-duration: 0.3s;
+
+#menu {
+  z-index: 1;
+  display: flex;
+  position: absolute;
+
+  @media (min-width: variables.$tablet-width) {
+    position: relative;
+  }
+
+  div.menu__sidebar {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: transparent;
+    width: 64px;
+    padding-top: 16px;
+    button.lang-btn {
+      display: none;
+    }
+
+    @media (min-width: variables.$tablet-width) {
+      background-color: variables.$color-5;
+      width: 86px;
+      padding-top: 32px;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      button.lang-btn {
+        display: block;
+      }
+    }
+
+    @media (min-width: variables.$desktop-width) {
+      width: 64px;
+    }
+  }
+
+  div.menu__container {
+    position: absolute;
+    display: flex;
+    height: 100vh;
+    transition: background-color $transition-duration;
+
+    width: 100vw;
+    margin-left: 0%;
+    button.lang-btn {
+      display: block;
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+    }
+
+    @media (min-width: variables.$tablet-width) {
+      width: calc(100vw - 100%);
+      margin-left: 100%;
+      button.lang-btn {
+        display: none;
+      }
+    }
+
+    div.menu__container__content {
+      background-color: variables.$color-5;
+      overflow: hidden;
+      transition: width $transition-duration;
+      position: relative;
+    }
+  }
+
+  &.collapsed {
+    div.menu__sidebar > button.menu-btn > i:before {
+      content: url(./menu_btn/icons/menu-mobile.svg);
+      width: 30px;
+      height: 30px;
+      @media (min-width: variables.$tablet-width) {
+        content: url(./menu_btn/icons/menu-desktop.svg);
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    div.menu__container {
+      animation: hide_menu $transition-duration forwards;
+      background-color: transparent;
+      div.menu__container__content {
+        width: 0%;
+      }
+    }
+  }
+
+  &.expanded {
+    div.menu__sidebar > button.menu-btn > i:before {
+      content: url(./menu_btn/icons/cross.svg);
+      width: 32px;
+      height: 32px;
+    }
+
+    div.menu__container {
+      visibility: visible;
+      background-color: variables.$color-5-op;
+      div.menu__container__content {
+        width: 100%;
+        @media (min-width: variables.$desktop-width) {
+          width: max(calc(50%), 600px);
+        }
+      }
+    }
+  }
+}
+
+@keyframes hide_menu {
+  99% {
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+  }
+}

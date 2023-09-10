@@ -1,0 +1,58 @@
+@use '../variables.scss';
+
+#slider {
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(180deg, #00000000 0%, #000000 100%),
+    url('../../images/slider/1.png');
+
+  & > button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    &:hover {
+      background-color: variables.$color-1-op;
+    }
+    path {
+      stroke: variables.$color-4;
+    }
+    width: 10%;
+  }
+
+  #slider__content {
+    flex-grow: 1;
+    position: relative;
+    #slider__content__info {
+      position: absolute;
+      top: 30%;
+      transform: translate(0, -50%);
+      margin: 10%;
+      h1 {
+        font-weight: 500;
+        font-size: 40px;
+        margin-bottom: 0.2em;
+      }
+      p {
+        font-weight: 300;
+        font-size: 24px;
+      }
+      button {
+        margin-top: 2em;
+      }
+    }
+    #slider__content__dots {
+      display: flex;
+      gap: 8px;
+      position: absolute;
+      bottom: 3em;
+      left: 50%;
+      transform: translateX(-50%);
+      svg > circle {
+        fill: variables.$color-4;
+      }
+      svg.selected > circle {
+        fill: variables.$color-1;
+      }
+    }
+  }
+}

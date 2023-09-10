@@ -1,0 +1,31 @@
+@use '../variables.scss';
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5em;
+
+  @media (min-width: variables.$tablet-width) {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  div.header__logo > p {
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  div.header__location {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    p {
+      font-size: 14px;
+    }
+    svg > path {
+      stroke: variables.$color-3;
+    }
+  }
+}

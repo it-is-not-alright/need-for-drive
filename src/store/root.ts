@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import carsReducer from './cars/carsSlice';
 
 const store = configureStore({

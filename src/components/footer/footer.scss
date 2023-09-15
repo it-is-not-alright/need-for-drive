@@ -14,14 +14,14 @@ footer {
     background-color: transparent;
   }
 
-  p.footer_p_license {
+  #footer__p-license {
     color: variables.$color-4;
     @media (min-width: variables.$tablet-width) {
       color: variables.$color-3;
     }
   }
 
-  p.footer_p_phone {
+  #footer__p-phone {
     color: variables.$color-1;
     @media (min-width: variables.$tablet-width) {
       color: variables.$color-2;

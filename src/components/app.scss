@@ -8,8 +8,8 @@
 html,
 body {
   min-height: 100vh;
-  overflow-x: hidden;
   margin: 0;
+  overflow-x: clip;
 }
 
 #root {
@@ -17,15 +17,8 @@ body {
   display: flex;
 }
 
-button.icon-btn {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  padding: 0;
-}
-
-button {
-  cursor: pointer;
+main {
+  width: 100%;
 }
 
 p {
@@ -48,33 +41,46 @@ p {
   color: white;
 }
 
-button.button-custom {
-  border: none;
-  outline: none;
-  font-weight: 500;
-  font-size: 18px;
-  transition: filter 0.2s;
-  &:hover {
-    filter: brightness(90%);
+button {
+  cursor: pointer;
+
+  &.btn-icon {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
   }
-  &:active {
-    filter: brightness(80%);
+
+  &.btn-custom {
+    border: none;
+    outline: none;
+    font-weight: 500;
+    font-size: 18px;
+    transition: filter variables.$transition-duration;
+    &:hover {
+      filter: brightness(90%);
+    }
+    &:active {
+      filter: brightness(80%);
+    }
+  }
+
+  &.btn-large {
+    @extend .btn-custom;
+    border-radius: 8px;
+    color: white;
+    background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+    background-blend-mode: darken;
+    padding: 1em 4em;
+  }
+
+  &.btn-medium {
+    @extend .btn-custom;
+    color: variables.$color-4;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+    padding: 0.8em 2em;
   }
 }
 
-button.button-large {
-  @extend .button-custom;
-  border-radius: 8px;
-  color: white;
-  background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
-  background-blend-mode: darken;
-  padding: 1em 4em;
-}
 
-button.button-medium {
-  @extend .button-custom;
-  color: variables.$color-4;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
-  padding: 0.8em 2em;
-}

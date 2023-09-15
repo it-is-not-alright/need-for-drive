@@ -4,54 +4,71 @@
   background-size: cover;
   background-position: center;
   background-image: linear-gradient(180deg, #00000000 0%, #000000 100%),
-    url('../../images/slider/1.png');
+    url('../../assets/images/1.png');
 
-  & > button {
+  button.slidebar-btn {
     border: none;
     outline: none;
     background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    transition: variables.$transition-duration;
     &:hover {
       background-color: variables.$color-1-op;
     }
-    path {
-      stroke: variables.$color-4;
-    }
-    width: 10%;
   }
 
   #slider__content {
     flex-grow: 1;
+    margin: 0 10%;
     position: relative;
+
     #slider__content__info {
       position: absolute;
-      top: 30%;
-      transform: translate(0, -50%);
-      margin: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+      @media (min-width: variables.$desktop-width) {
+        top: 25%;
+        transform: none;
+      }
+
       h1 {
         font-weight: 500;
-        font-size: 40px;
+        margin-top: 0;
         margin-bottom: 0.2em;
+        font-size: 32px;
+        @media (min-width: variables.$desktop-width) {
+          font-size: 40px;
+        }
       }
+
       p {
         font-weight: 300;
-        font-size: 24px;
+        font-size: 22px;
+        @media (min-width: variables.$desktop-width) {
+          font-size: 24px;
+        }
       }
+
       button {
         margin-top: 2em;
       }
     }
+
     #slider__content__dots {
-      display: flex;
-      gap: 8px;
       position: absolute;
-      bottom: 3em;
+      bottom: 2em;
       left: 50%;
       transform: translateX(-50%);
-      svg > circle {
+      display: flex;
+      gap: 8px;
+      .icon {
         fill: variables.$color-4;
-      }
-      svg.selected > circle {
-        fill: variables.$color-1;
+        &.selected {
+          fill: variables.$color-1;
+        }
       }
     }
   }

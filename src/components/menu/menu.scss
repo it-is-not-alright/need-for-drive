@@ -3,22 +3,20 @@
 $transition-duration: 0.3s;
 
 #menu {
-  z-index: 1;
+  z-index: 2;
   display: flex;
-  position: absolute;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 
-  @media (min-width: variables.$tablet-width) {
-    position: relative;
-  }
-
-  div.menu__sidebar {
+  #menu__sidebar {
     z-index: 2;
     display: flex;
     align-items: center;
     flex-direction: column;
 
     background-color: transparent;
-    width: 64px;
+    width: 0;
     padding-top: 16px;
     button.lang-btn {
       display: none;
@@ -35,15 +33,22 @@ $transition-duration: 0.3s;
       }
     }
 
-    @media (min-width: variables.$desktop-width) {
+    @media (min-width: variables.$desktop-mini-width) {
       width: 64px;
+    }
+
+    #menu-btn {
+      margin-left: 4em;
+      @media (min-width: variables.$tablet-width) {
+        margin-left: 0;
+      }
     }
   }
 
-  div.menu__container {
+  #menu__container {
     position: absolute;
-    display: flex;
     height: 100vh;
+    display: flex;
     transition: background-color $transition-duration;
 
     width: 100vw;
@@ -63,7 +68,7 @@ $transition-duration: 0.3s;
       }
     }
 
-    div.menu__container__content {
+    #menu__container__content {
       background-color: variables.$color-5;
       overflow: hidden;
       transition: width $transition-duration;
@@ -72,39 +77,36 @@ $transition-duration: 0.3s;
   }
 
   &.collapsed {
-    div.menu__sidebar > button.menu-btn > i:before {
-      content: url(./menu_btn/icons/menu-mobile.svg);
-      width: 30px;
-      height: 30px;
+    #menu-btn > svg.icon {
+      height: 32px;
+      width: 35px;
       @media (min-width: variables.$tablet-width) {
-        content: url(./menu_btn/icons/menu-desktop.svg);
-        width: 32px;
-        height: 32px;
+        width: 48px;
+      }
+      @media (min-width: variables.$desktop-mini-width) {
+        width: 40px;
       }
     }
-
-    div.menu__container {
+    #menu__container {
       animation: hide_menu $transition-duration forwards;
       background-color: transparent;
-      div.menu__container__content {
+      #menu__container__content {
         width: 0%;
       }
     }
   }
 
   &.expanded {
-    div.menu__sidebar > button.menu-btn > i:before {
-      content: url(./menu_btn/icons/cross.svg);
+    #menu-btn > svg.icon {
       width: 32px;
       height: 32px;
     }
-
-    div.menu__container {
+    #menu__container {
       visibility: visible;
       background-color: variables.$color-5-op;
-      div.menu__container__content {
+      #menu__container__content {
         width: 100%;
-        @media (min-width: variables.$desktop-width) {
+        @media (min-width: variables.$desktop-mini-width) {
           width: max(calc(50%), 600px);
         }
       }

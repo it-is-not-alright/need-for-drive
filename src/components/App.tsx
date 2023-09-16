@@ -3,7 +3,7 @@ import '../assets/fonts/styles/roboto.scss';
 
 import React from 'react';
 
-import Header from './Header_/Header';
+import Header from './Header/Header';
 import Menu from './Menu/Menu';
 import MainPage from './pages/MainPage/MainPage';
 

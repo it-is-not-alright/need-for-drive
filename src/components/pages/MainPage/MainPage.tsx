@@ -2,7 +2,7 @@ import './main-page.scss';
 
 import React, { ReactElement } from 'react';
 
-import Footer from '../../Footer_/Footer';
+import Footer from '../../Footer/Footer';
 import Slider from '../../Slider/Slider';
 
 type MainPageProps = {

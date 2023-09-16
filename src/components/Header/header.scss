@@ -3,25 +3,26 @@
 header {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 0.5em;
+  align-items: flex-end;
   height: fit-content;
 
   @media (min-width: variables.$tablet-width) {
-    justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
   }
 
   #header__logo > p {
-    font-size: 30px;
     font-weight: 700;
+    font-size: 30px;
   }
 
   #header__location {
     display: flex;
-    align-items: center;
     gap: 0.5em;
+    align-items: center;
+
     p {
       font-size: 14px;
     }

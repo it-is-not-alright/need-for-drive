@@ -3,19 +3,20 @@
 footer {
   display: flex;
   flex-direction: column-reverse;
-  align-items: flex-end;
   gap: 0.5em;
+  align-items: flex-end;
   background-color: variables.$color-5;
 
   @media (min-width: variables.$tablet-width) {
-    justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     background-color: transparent;
   }
 
   #footer__p-license {
     color: variables.$color-4;
+
     @media (min-width: variables.$tablet-width) {
       color: variables.$color-3;
     }
@@ -23,6 +24,7 @@ footer {
 
   #footer__p-phone {
     color: variables.$color-1;
+
     @media (min-width: variables.$tablet-width) {
       color: variables.$color-2;
     }

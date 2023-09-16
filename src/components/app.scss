@@ -13,8 +13,8 @@ body {
 }
 
 #root {
-  height: inherit;
   display: flex;
+  height: inherit;
 }
 
 main {
@@ -45,21 +45,23 @@ button {
   cursor: pointer;
 
   &.btn-icon {
+    padding: 0;
     background-color: transparent;
     border: none;
     outline: none;
-    padding: 0;
   }
 
   &.btn-custom {
-    border: none;
-    outline: none;
     font-weight: 500;
     font-size: 18px;
+    border: none;
+    outline: none;
     transition: filter variables.$transition-duration;
+
     &:hover {
       filter: brightness(90%);
     }
+
     &:active {
       filter: brightness(80%);
     }
@@ -67,20 +69,20 @@ button {
 
   &.btn-large {
     @extend .btn-custom;
-    border-radius: 8px;
+
+    padding: 1em 4em;
     color: white;
     background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
     background-blend-mode: darken;
-    padding: 1em 4em;
+    border-radius: 8px;
   }
 
   &.btn-medium {
     @extend .btn-custom;
-    color: variables.$color-4;
-    border-radius: 4px;
-    background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+
     padding: 0.8em 2em;
+    color: variables.$color-4;
+    background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+    border-radius: 4px;
   }
 }
-
-

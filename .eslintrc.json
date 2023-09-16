@@ -16,7 +16,6 @@
   "rules": {
     "no-console": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "simple-import-sort/imports": "error",
     "import/extensions": [
       "error",
       "ignorePackages",

@@ -1,12 +1,27 @@
 @use '../variables.scss';
 
 #slider {
-  background-image: linear-gradient(180deg, #0000 0%, #000 100%),
-    url('../../assets/images/1.png');
-  background-position: center;
-  background-size: cover;
+  background-color: variables.$color-5;
+  position: relative;
+
+  div.slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.5s;
+
+    &.active {
+      opacity: 1;
+    }
+  }
 
   button.slidebar-btn {
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,7 +76,7 @@
       }
     }
 
-    #slider__content__dots {
+    #slider__content__nav-dots {
       position: absolute;
       bottom: 2em;
       left: 50%;
@@ -72,7 +87,7 @@
       .icon {
         fill: variables.$color-4;
 
-        &.selected {
+        &.active {
           fill: variables.$color-1;
         }
       }

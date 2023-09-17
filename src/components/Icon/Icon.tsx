@@ -11,9 +11,13 @@ type IconProps = {
   className?: string;
 };
 
-export default function Icon({ name, width, height, className }: IconProps) {
+function Icon({ name, width, height, className }: IconProps) {
+  let classes: string = 'icon';
+  if (className) {
+    classes += ` ${className}`;
+  }
   return (
-    <svg className={`icon ${className}`} width={width} height={height}>
+    <svg width={width} height={height} className={classes}>
       <use href={`${Sprite}#${name}`} />
     </svg>
   );
@@ -24,3 +28,5 @@ Icon.defaultProps = {
   height: undefined,
   className: undefined,
 };
+
+export default Icon;

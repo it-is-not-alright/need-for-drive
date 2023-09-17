@@ -37,6 +37,10 @@ p {
   color: variables.$color-3;
 }
 
+.light-text {
+  color: variables.$color-4;
+}
+
 .white-text {
   color: white;
 }
@@ -82,7 +86,22 @@ button {
 
     padding: 0.8em 2em;
     color: variables.$color-4;
-    background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
     border-radius: 4px;
+
+    &.green {
+      background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+    }
+
+    &.blue {
+      background: linear-gradient(90deg, #132949 0%, #0C7B67 100%);
+    }
+
+    &.orange {
+      background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
+    }
+
+    &.purple {
+      background: linear-gradient(90deg, #281349 0%, #720C7B 100%);
+    }
   }
 }

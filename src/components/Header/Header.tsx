@@ -1,4 +1,4 @@
-import './header.scss';
+import './style.scss';
 
 import React from 'react';
 

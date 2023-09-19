@@ -1,4 +1,4 @@
-import './slider.scss';
+import './style.scss';
 
 import React, { ReactElement, CSSProperties, useState } from 'react';
 

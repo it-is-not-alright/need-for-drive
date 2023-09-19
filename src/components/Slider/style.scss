@@ -1,8 +1,8 @@
 @use '../variables.scss';
 
 #slider {
-  background-color: variables.$color-5;
   position: relative;
+  background-color: variables.$color-5;
 
   div.slider-image {
     position: absolute;
@@ -23,8 +23,8 @@
   button.slidebar-btn {
     z-index: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 10%;
     background-color: transparent;
     border: none;

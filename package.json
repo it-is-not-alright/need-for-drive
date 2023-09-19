@@ -6,12 +6,15 @@
     "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "eslint": "npx eslint ./src --fix",
+    "prepare": "npx husky install",
     "prettier": "prettier --write '**/*.{js,ts,tsx,json,md,html,scss}'",
     "start": "webpack serve --mode development",
-    "stylelint": "npx stylelint '**/*.scss' --fix"
+    "stylelint": "npx stylelint ./src --fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
@@ -44,8 +47,8 @@
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
     "stylelint": "^15.10.3",
-    "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-config-standard": "^34.0.0",
+    "stylelint-config-rational-order": "^0.0.4",
+    "stylelint-config-standard-scss": "^11.0.0",
     "stylelint-order": "^6.0.3",
     "stylelint-prettier": "^4.0.2",
     "stylelint-scss": "^5.2.1",

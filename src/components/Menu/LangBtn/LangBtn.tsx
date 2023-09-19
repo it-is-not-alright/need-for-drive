@@ -1,4 +1,4 @@
-import './lang-btn.scss';
+import './style.scss';
 
 import React, { useState } from 'react';
 

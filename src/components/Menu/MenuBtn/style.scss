@@ -1,0 +1,32 @@
+@use '../../variables.scss';
+
+#icon-menu-mobile {
+  width: 35px;
+  height: 32px;
+  display: none;
+  $max: calc(variables.$tablet-width - 1px);
+  @media (max-width: $max) {
+    display: block;
+  }
+}
+
+#icon-menu-tablet {
+  width: 48px;
+  height: 32px;
+  display: none;
+  $min: variables.$tablet-width;
+  $max: calc(variables.$desktop-mini-width - 1px);
+  @media (min-width: $min) and (max-width: $max) {
+    display: block;
+  }
+}
+
+#icon-menu-desktop {
+  width: 40px;
+  height: 32px;
+  display: none;
+  $min: variables.$desktop-mini-width;
+  @media (min-width: $min) {
+    display: block;
+  }
+}

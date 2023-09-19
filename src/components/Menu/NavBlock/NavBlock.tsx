@@ -1,4 +1,4 @@
-import './nav-block.scss';
+import './style.scss';
 
 import React from 'react';
 

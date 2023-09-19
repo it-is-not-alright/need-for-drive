@@ -1,13 +1,10 @@
-import './main-page.scss';
+import './style.scss';
 
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import Footer from '../../Footer/Footer';
 import Slider from '../../Slider/Slider';
-
-type MainPageProps = {
-  header: ReactElement;
-};
+import MainPageProps from './types';
 
 export default function MainPage({ header }: MainPageProps) {
   return (

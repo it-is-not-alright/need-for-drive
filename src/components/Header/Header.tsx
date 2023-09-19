@@ -4,7 +4,7 @@ import React from 'react';
 
 import Icon from '../Icon/Icon';
 
-export default function Header() {
+function Header() {
   return (
     <header>
       <div id="header__logo">
@@ -17,3 +17,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default Header;

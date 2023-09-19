@@ -1,0 +1,18 @@
+@use '../../variables.scss';
+
+#slider__content__nav-dots {
+  position: absolute;
+  bottom: 2em;
+  left: 50%;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+
+  .icon {
+    fill: variables.$color-4;
+
+    &.active {
+      fill: variables.$color-1;
+    }
+  }
+}

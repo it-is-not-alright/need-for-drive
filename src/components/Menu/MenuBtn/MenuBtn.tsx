@@ -7,7 +7,7 @@ import IconList from '../../IconList/IconList';
 import MenuStates from '../types';
 import MenuBtnProps from './types';
 
-export default function MenuBtn({ menuState, onClick }: MenuBtnProps) {
+function MenuBtn({ menuState, onClick }: MenuBtnProps) {
   return (
     <button id="menu-btn" className="btn-icon" onClick={onClick} type="button">
       {menuState === MenuStates.Expanded ? (
@@ -18,3 +18,5 @@ export default function MenuBtn({ menuState, onClick }: MenuBtnProps) {
     </button>
   );
 }
+
+export default MenuBtn;

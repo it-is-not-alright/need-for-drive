@@ -2,7 +2,7 @@ import './style.scss';
 
 import React, { useState } from 'react';
 
-export default function LangBtn() {
+function LangBtn() {
   const [lang, setLang] = useState<string>('Eng');
 
   function handleOnClick(): void {
@@ -19,3 +19,5 @@ export default function LangBtn() {
     </button>
   );
 }
+
+export default LangBtn;

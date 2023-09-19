@@ -1,19 +1,23 @@
 import './style.scss';
 
 import React, { useState } from 'react';
-import classNames from 'classnames';
 
 import Icon from '../Icon/Icon';
-import Slide, { getSlides } from './Slide';
+import { getSlides } from './Slide';
+import ISlide from './types';
 import useInterval from '../../hooks/useInterval';
 import { defaultDelay, longDelay } from './constants';
+import SliderImages from './SliderImages/SliderImages';
+import NavDots from './NavDots/NavDots';
 
 function Slider() {
-  const slides: Slide[] = getSlides();
+  let pauseInterval: number;
+  const slides: ISlide[] = getSlides();
+  const [isPause, setIsPause] = useState<boolean>(false);
   const [delay, setDelay] = useState<number>(defaultDelay);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  function goBackward() {
+  function goBackward(): void {
     if (activeIndex === 0) {
       setActiveIndex(slides.length - 1);
     } else {
@@ -21,7 +25,7 @@ function Slider() {
     }
   }
 
-  function goForward() {
+  function goForward(): void {
     if (activeIndex === slides.length - 1) {
       setActiveIndex(0);
     } else {
@@ -29,37 +33,43 @@ function Slider() {
     }
   }
 
-  useInterval(() => {
-    goForward();
-    if (delay === longDelay) {
-      setDelay(defaultDelay);
-    }
-  }, delay);
+  useInterval(
+    () => {
+      goForward();
+      if (delay === longDelay) {
+        setDelay(defaultDelay);
+      }
+    },
+    isPause ? null : delay,
+  );
 
-  function handleBackwardBtnOnClick() {
-    setDelay(longDelay);
+  function pause(): void {
+    setIsPause(true);
+    window.clearInterval(pauseInterval);
+    pauseInterval = window.setInterval(() => {
+      setIsPause(false);
+      window.clearInterval(pauseInterval);
+    }, longDelay);
+  }
+
+  function handleBackwardBtnOnClick(): void {
+    pause();
     goBackward();
   }
 
-  function handleForwardBtnOnClick() {
-    setDelay(longDelay);
+  function handleForwardBtnOnClick(): void {
+    pause();
     goForward();
   }
 
+  const handleNavDotOnClick = (slideIndex: number): void => {
+    pause();
+    setActiveIndex(slideIndex);
+  };
+
   return (
     <div id="slider">
-      {slides.map((slide) => {
-        return (
-          <div
-            className={classNames('slider-image', {
-              active: slide.id === activeIndex,
-            })}
-            style={{ backgroundImage: `url(${slide.imageURL})` }}
-            key={slide.id}
-          />
-        );
-      })}
-      <div className="slider-shadow" />
+      <SliderImages slides={slides} activeIndex={activeIndex} />
       <button
         className="slider-btn"
         type="button"
@@ -78,19 +88,11 @@ function Slider() {
             Подробнее
           </button>
         </div>
-        <div id="slider__content__nav-dots">
-          {slides.map((slide) => {
-            return (
-              <Icon
-                name="dot"
-                width={8}
-                height={8}
-                className={classNames({ active: slide.id === activeIndex })}
-                key={slide.id}
-              />
-            );
-          })}
-        </div>
+        <NavDots
+          slides={slides}
+          activeIndex={activeIndex}
+          onClick={handleNavDotOnClick}
+        />
       </div>
       <button
         className="slider-btn"

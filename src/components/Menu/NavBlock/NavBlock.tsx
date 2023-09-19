@@ -4,7 +4,7 @@ import React from 'react';
 
 import Icon from '../../Icon/Icon';
 
-export default function NavBlock() {
+function NavBlock() {
   return (
     <div id="nav-block">
       <p className="white-text">ПАРКОВКА</p>
@@ -25,3 +25,5 @@ export default function NavBlock() {
     </div>
   );
 }
+
+export default NavBlock;

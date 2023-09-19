@@ -6,7 +6,7 @@ import Footer from '../../Footer/Footer';
 import Slider from '../../Slider/Slider';
 import MainPageProps from './types';
 
-export default function MainPage({ header }: MainPageProps) {
+function MainPage({ header }: MainPageProps) {
   return (
     <div id="main-page">
       <div id="main-page__content">
@@ -28,3 +28,5 @@ export default function MainPage({ header }: MainPageProps) {
     </div>
   );
 }
+
+export default MainPage;

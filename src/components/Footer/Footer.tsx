@@ -2,7 +2,7 @@ import './style.scss';
 
 import React from 'react';
 
-export default function Footer() {
+function Footer() {
   return (
     <footer>
       <p id="footer__p-license">© 2016-2019 «Need for drive»</p>
@@ -10,3 +10,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default Footer;

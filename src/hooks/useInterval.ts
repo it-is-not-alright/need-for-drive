@@ -12,9 +12,7 @@ function useInterval(callback: () => void, delay: number) {
     intervalRef.current = window.setInterval(() => {
       callbackRef.current();
     }, delay);
-    return () => {
-      window.clearInterval(intervalRef.current);
-    };
+    return () => window.clearInterval(intervalRef.current);
   }, [delay]);
 
   return intervalRef;

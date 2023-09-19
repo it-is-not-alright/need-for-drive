@@ -1,14 +1,14 @@
 import './style.scss';
 
-import React, { ReactElement, CSSProperties, useState } from 'react';
+import React, { useState } from 'react';
+import classNames from 'classnames';
 
 import Icon from '../Icon/Icon';
 import Slide, { getSlides } from './Slide';
 import useInterval from '../../hooks/useInterval';
+import { defaultDelay, longDelay } from './constants';
 
 function Slider() {
-  const defaultDelay: number = 3000;
-  const longDelay: number = 10000;
   const slides: Slide[] = getSlides();
   const [delay, setDelay] = useState<number>(defaultDelay);
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -46,39 +46,22 @@ function Slider() {
     goForward();
   }
 
-  function getImages(): ReactElement[] {
-    const gradient: string = 'linear-gradient(180deg, #0000 0%, #000 100%)';
-    return slides.map((slide) => {
-      const style: CSSProperties = {
-        backgroundImage: `${gradient}, url(${slide.imageURL})`,
-      };
-      const className: string = `slider-image ${
-        slide.id === activeIndex ? 'active' : ''
-      }`;
-      return <div className={className} style={style} key={slide.id} />;
-    });
-  }
-
-  function getNavDots(): ReactElement[] {
-    return slides.map((slide) => {
-      const className: string = slide.id === activeIndex ? 'active' : '';
-      return (
-        <Icon
-          name="dot"
-          width={8}
-          height={8}
-          className={className}
-          key={slide.id}
-        />
-      );
-    });
-  }
-
   return (
     <div id="slider">
-      {getImages()}
+      {slides.map((slide) => {
+        return (
+          <div
+            className={classNames('slider-image', {
+              active: slide.id === activeIndex,
+            })}
+            style={{ backgroundImage: `url(${slide.imageURL})` }}
+            key={slide.id}
+          />
+        );
+      })}
+      <div className="slider-shadow" />
       <button
-        className="slidebar-btn"
+        className="slider-btn"
         type="button"
         onClick={handleBackwardBtnOnClick}
       >
@@ -95,10 +78,22 @@ function Slider() {
             Подробнее
           </button>
         </div>
-        <div id="slider__content__nav-dots">{getNavDots()}</div>
+        <div id="slider__content__nav-dots">
+          {slides.map((slide) => {
+            return (
+              <Icon
+                name="dot"
+                width={8}
+                height={8}
+                className={classNames({ active: slide.id === activeIndex })}
+                key={slide.id}
+              />
+            );
+          })}
+        </div>
       </div>
       <button
-        className="slidebar-btn"
+        className="slider-btn"
         type="button"
         onClick={handleForwardBtnOnClick}
       >

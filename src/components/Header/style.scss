@@ -1,0 +1,30 @@
+@use '../variables.scss';
+
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: flex-end;
+  height: fit-content;
+
+  @media (min-width: variables.$tablet-width) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #header__logo > p {
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  #header__location {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+
+    p {
+      font-size: 14px;
+    }
+  }
+}

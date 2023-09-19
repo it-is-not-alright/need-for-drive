@@ -1,0 +1,88 @@
+@use '../variables.scss';
+
+* {
+  font-family: Roboto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: clip;
+}
+
+#root {
+  display: flex;
+  height: inherit;
+}
+
+main {
+  width: 100%;
+}
+
+p {
+  margin: 0;
+}
+
+.dark-text {
+  color: variables.$color-2;
+}
+
+.green-text {
+  color: variables.$color-1;
+}
+
+.gray-text {
+  color: variables.$color-3;
+}
+
+.white-text {
+  color: white;
+}
+
+button {
+  cursor: pointer;
+
+  &.btn-icon {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+
+  &.btn-custom {
+    font-weight: 500;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    transition: filter variables.$transition-duration;
+
+    &:hover {
+      filter: brightness(90%);
+    }
+
+    &:active {
+      filter: brightness(80%);
+    }
+  }
+
+  &.btn-large {
+    @extend .btn-custom;
+
+    padding: 1em 4em;
+    color: white;
+    background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+    background-blend-mode: darken;
+    border-radius: 8px;
+  }
+
+  &.btn-medium {
+    @extend .btn-custom;
+
+    padding: 0.8em 2em;
+    color: variables.$color-4;
+    background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+    border-radius: 4px;
+  }
+}

@@ -1,0 +1,53 @@
+@use '../../variables.scss';
+
+#nav-block {
+  position: absolute;
+  top: 4em;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 1em;
+  padding-left: 1.5em;
+
+  @media (min-width: variables.$tablet-width) {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 22px;
+    cursor: pointer;
+    transition: color variables.$transition-duration;
+    user-select: none;
+
+    @media (min-width: variables.$tablet-width) {
+      font-size: 28px;
+    }
+
+    @media (min-width: variables.$desktop-mini-width) {
+      font-size: 32px;
+    }
+
+    &:hover {
+      color: variables.$color-1;
+    }
+  }
+
+  #nav-block__btn-block {
+    position: absolute;
+    top: 100%;
+    display: flex;
+    gap: 1.5em;
+    margin-top: 2em;
+
+    .icon {
+      transition: fill variables.$transition-duration;
+      fill: variables.$color-4;
+
+      &:hover {
+        fill: variables.$color-1;
+      }
+    }
+  }
+}

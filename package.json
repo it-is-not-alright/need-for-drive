@@ -6,10 +6,11 @@
     "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "eslint": "npx eslint ./src --fix",
+    "prepare": "npx husky install",
     "prettier": "prettier --write '**/*.{js,ts,tsx,json,md,html,scss}'",
     "start": "webpack serve --mode development",
-    "stylelint": "npx stylelint '**/*.scss' --fix",
-    "eslint": "npx eslint \"**/*.{js,ts,tsx}\" --fix"
+    "stylelint": "npx stylelint ./src --fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -40,15 +41,13 @@
     "file-loader": "^6.2.0",
     "gh-pages": "^6.0.0",
     "html-webpack-plugin": "^5.5.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^14.0.1",
     "node-sass": "^9.0.0",
     "prettier": "^3.0.3",
     "sass": "^1.66.1",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
     "stylelint": "^15.10.3",
-    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-rational-order": "^0.0.4",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-order": "^6.0.3",
     "stylelint-prettier": "^4.0.2",
@@ -57,18 +56,5 @@
     "webpack": "^5.73.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged --relative"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "npx eslint --fix"
-    ],
-    "*.{scss}": [
-      "npx stylelint --fix"
-    ]
   }
 }

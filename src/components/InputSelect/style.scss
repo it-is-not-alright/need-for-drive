@@ -1,0 +1,99 @@
+@use '../variables.scss';
+
+div.input-select {
+  position: relative;
+  color: variables.$color-5;
+  font-weight: 300;
+
+  div.input-select__input-shell {
+    display: flex;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: variables.$color-3;
+
+    input {
+      width: 100%;
+      padding: 0.1em 0 0.1em 0.6em;
+      color: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      text-overflow: ellipsis;
+      border: 0;
+      outline: none;
+
+      &::placeholder {
+        color: variables.$color-3;
+      }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      padding: 0 0.6em;
+      font-size: inherit;
+      background-color: transparent;
+      border: none;
+      outline: none;
+
+      .icon {
+        width: 0.6em;
+        height: 0.6em;
+        fill: variables.$color-5;
+      }
+    }
+  }
+
+  div.input-select__select-shell {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    width: 100%;
+    background-color: white;
+    
+    div.input-select__select {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4em;
+      max-height: 7em;
+      padding: 0.5em;
+      overflow-y: auto;
+      border-width: 0 1px 1px;
+      border-style: solid;
+      border-color: variables.$color-4;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+       
+      &::-webkit-scrollbar-thumb {
+        background-color: #AAA;
+        background-clip: padding-box;
+        border-width: 1px;
+        border-style: solid;
+        border-color: transparent;
+        border-radius: 1em;
+      }
+      
+      button.input-select__select-item {
+        padding: 0;
+        font-weight: inherit;
+        font-size: inherit;
+        text-align: left;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        transition: color 0.1s;
+
+        &:hover {
+          color: variables.$color-1;
+        }
+      }
+    }
+  }
+
+  &.focused {
+    div.input-select__select-shell {
+      display: block;
+    }
+  }
+}

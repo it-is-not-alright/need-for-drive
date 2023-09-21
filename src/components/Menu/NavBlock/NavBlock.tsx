@@ -6,7 +6,7 @@ import Icon from '../../Icon/Icon';
 
 function NavBlock() {
   return (
-    <div id="nav-block">
+    <div id="nav-block" className="fw-500">
       <p className="white-text">ПАРКОВКА</p>
       <p className="white-text">СТРАХОВКА</p>
       <p className="white-text">БЕНЗИН</p>

@@ -79,8 +79,8 @@ function Slider() {
       </button>
       <div id="slider__content">
         <div id="slider__content__info">
-          <h1 className="white-text">{slides[activeIndex].title}</h1>
-          <p className="light-text">{slides[activeIndex].description}</p>
+          <h1 className="white-text fw-500">{slides[activeIndex].title}</h1>
+          <p className="light-text fw-300">{slides[activeIndex].description}</p>
           <button
             className={`btn-medium ${slides[activeIndex].colorTheme}`}
             type="button"

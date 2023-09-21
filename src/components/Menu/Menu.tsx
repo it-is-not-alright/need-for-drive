@@ -13,8 +13,10 @@ function Menu() {
   const handleMenuBtnOnClick = () => {
     if (state === MenuStates.Collapsed) {
       setState(MenuStates.Expanded);
+      document.documentElement.style.overflowY = 'hidden';
     } else {
       setState(MenuStates.Collapsed);
+      document.documentElement.style.overflowY = 'auto';
     }
   };
 

@@ -3,7 +3,7 @@
 #main-page {
   display: grid;
   grid-template-columns: 1fr;
-  height: 100%;
+  min-height: inherit;
 
   @media (min-width: variables.$desktop-mini-width) {
     grid-template-columns: minmax(600px, 1fr) 1fr;
@@ -45,7 +45,6 @@
 
       h1 {
         margin: 0;
-        font-weight: 700;
         font-size: 32px;
 
         @media (min-width: variables.$tablet-width) {
@@ -63,7 +62,7 @@
         }
       }
 
-      button {
+      a {
         @media (width <= calc(variables.$tablet-width - 1px)) {
           width: calc(100% + 2em);
           margin: -1em;

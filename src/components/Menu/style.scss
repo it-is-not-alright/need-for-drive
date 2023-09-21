@@ -3,11 +3,16 @@
 $transition-duration: 0.3s;
 
 #menu {
-  position: sticky;
+  position: absolute;
   top: 0;
   z-index: 2;
   display: flex;
-  height: 100vh;
+  height: 100dvh;
+  background-color: variables.$color-5;
+
+  @media (min-width: variables.$tablet-width) {
+    position: sticky;
+  }
 
   #menu__sidebar {
     z-index: 3;
@@ -16,7 +21,6 @@ $transition-duration: 0.3s;
     align-items: center;
     width: 0;
     padding-top: 16px;
-    background-color: transparent;
 
     button.lang-btn {
       display: none;
@@ -27,7 +31,6 @@ $transition-duration: 0.3s;
       width: 86px;
       padding-top: 32px;
       padding-bottom: 16px;
-      background-color: variables.$color-5;
 
       button.lang-btn {
         display: block;
@@ -51,7 +54,7 @@ $transition-duration: 0.3s;
     position: absolute;
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: inherit;
     margin-left: 0%;
     transition: background-color $transition-duration;
 

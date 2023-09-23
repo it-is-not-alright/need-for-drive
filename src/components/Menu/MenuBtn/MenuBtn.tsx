@@ -5,7 +5,7 @@ import React from 'react';
 import Icon from '../../Icon/Icon';
 import IconList from '../../IconList/IconList';
 import MenuStates from '../types';
-import MenuBtnProps from './types';
+import { MenuBtnProps } from './types';
 
 function MenuBtn({ menuState, onClick }: MenuBtnProps) {
   return (

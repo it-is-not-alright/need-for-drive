@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Icon from '../../Icon/Icon';
-import NavDotsProps from './types';
+import { NavDotsProps } from './types';
 
 function NavDots({ slides, activeIndex, onClick }: NavDotsProps) {
   return (

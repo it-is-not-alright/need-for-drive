@@ -4,7 +4,7 @@ import React from 'react';
 
 import Footer from '../../Footer/Footer';
 import Slider from '../../Slider/Slider';
-import MainPageProps from './types';
+import { MainPageProps } from './types';
 
 function MainPage({ header }: MainPageProps) {
   return (

@@ -3,7 +3,7 @@ import './style.scss';
 import React from 'react';
 import classNames from 'classnames';
 
-import SliderImagesProps from './types';
+import { SliderImagesProps } from './types';
 
 function SliderImages({ slides, activeIndex }: SliderImagesProps) {
   return (

@@ -3,8 +3,8 @@ import './style.scss';
 import React, { useState } from 'react';
 
 import Icon from '../Icon/Icon';
-import { getSlides } from './Slide';
-import ISlide from './types';
+import getSlides from './getSlides';
+import { ISlide } from './types';
 import useInterval from '../../hooks/useInterval';
 import { defaultDelay, longDelay } from './constants';
 import SliderImages from './SliderImages/SliderImages';

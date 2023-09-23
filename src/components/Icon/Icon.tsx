@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Sprite from '../../assets/sprite.svg';
-import IconProps from './types';
+import { IconProps } from './types';
 
 function Icon({ name, width, height, className }: IconProps) {
   const classes: string = classNames('icon', { [className]: className });

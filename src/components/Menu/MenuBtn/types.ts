@@ -2,9 +2,7 @@ import { MouseEventHandler } from 'react';
 
 import MenuStates from '../types';
 
-type MenuBtnProps = {
+export type MenuBtnProps = {
   menuState: MenuStates;
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
-
-export default MenuBtnProps;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import Footer from '../../Footer/Footer';
 import Slider from '../../Slider/Slider';
-import MainPageProps from './types';
+import { MainPageProps } from './types';
 
 function MainPage({ header }: MainPageProps) {
   return (

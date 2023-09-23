@@ -1,5 +1,3 @@
-type IconListProps = {
+export type IconListProps = {
   names: string[];
 };
-
-export default IconListProps;

@@ -1,8 +1,6 @@
-import ISlide from '../types';
+import { ISlide } from '../types';
 
-type SliderImagesProps = {
+export type SliderImagesProps = {
   slides: ISlide[];
   activeIndex: number;
 };
-
-export default SliderImagesProps;

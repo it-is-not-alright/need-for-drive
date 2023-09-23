@@ -21,6 +21,7 @@ $transition-duration: 0.3s;
     align-items: center;
     width: 0;
     padding-top: 16px;
+    transition: width $transition-duration;
 
     button.lang-btn {
       display: none;

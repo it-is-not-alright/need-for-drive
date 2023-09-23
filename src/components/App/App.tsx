@@ -17,7 +17,7 @@ function App() {
         <HashRouter>
           <Routes>
             <Route path="/" element={<MainPage header={<Header />} />} />
-            <Route path="order" element={<OrderPage header={<Header />} />} />
+            <Route path="/order" element={<OrderPage header={<Header />} />} />
           </Routes>
         </HashRouter>
       </main>

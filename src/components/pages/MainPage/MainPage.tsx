@@ -19,7 +19,7 @@ function MainPage({ header }: MainPageProps) {
             <span className="green-text">Need for drive</span>
           </h1>
           <p className="gray-text">Поминутная аренда авто твоего города</p>
-          <Link className="btn-large" to="order">
+          <Link className="btn-large" to="/order">
             Забронировать
           </Link>
         </div>

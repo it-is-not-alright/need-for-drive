@@ -9,7 +9,7 @@ function Breadcrumbs({ items, activeIndex }: BreadcrumbsProps) {
   return (
     <div className="breadcrumbs">
       {items.map((item, index) => {
-        let color;
+        let color: string;
         if (index < activeIndex) {
           color = 'dark';
         } else if (index === activeIndex) {
@@ -19,16 +19,9 @@ function Breadcrumbs({ items, activeIndex }: BreadcrumbsProps) {
         }
         return (
           <Fragment key={item}>
-            <p className={`${color}-text fw-700`} key={`${item}-p`}>
-              {item}
-            </p>
+            <p className={`${color}-text fw-700`}>{item}</p>
             {index !== items.length - 1 ? (
-              <Icon
-                name="breadcrumbs-arrow"
-                width={6}
-                height={8}
-                key={`${item}-arrow`}
-              />
+              <Icon name="breadcrumbs-arrow" width={6} height={8} />
             ) : null}
           </Fragment>
         );

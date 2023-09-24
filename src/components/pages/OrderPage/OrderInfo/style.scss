@@ -1,0 +1,36 @@
+@use '../../../variables.scss';
+
+#order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 1em;
+
+  @media (min-width: variables.$tablet-width) {
+    padding: 2em;
+  }
+
+  @media (min-width: variables.$desktop-mini-width) {
+    padding: 2em 4em 0 2em;
+  }
+
+  #order-info__option {
+    display: flex;
+    gap: 1em;
+    align-items: flex-end;
+
+    div.line-dotted {
+      flex-grow: 1;
+      margin-bottom: 0.25em;
+      border-top: 1.5px dotted variables.$color-3;
+    }
+
+    p.gray-text {
+      text-align: right;
+    }
+  }
+
+  button.btn-large {
+    width: 100%;
+  }
+}

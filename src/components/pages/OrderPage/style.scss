@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: auto minmax(auto, 1376px) auto;
   grid-template-rows: auto auto auto auto 1fr;
-  height: inherit;
+  min-height: inherit;
 
   header {
     grid-column: 2;

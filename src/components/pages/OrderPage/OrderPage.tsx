@@ -2,10 +2,10 @@ import './style.scss';
 
 import React, { useState } from 'react';
 
-import { OrderPageProps } from './types';
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
-import LocationStage from './stages/LocationStage/LocationStage';
 import OrderInfo from './OrderInfo/OrderInfo';
+import LocationStage from './stages/LocationStage/LocationStage';
+import { OrderPageProps } from './types';
 
 function OrderPage({ header }: OrderPageProps) {
   const [city, setCity] = useState<string>('');

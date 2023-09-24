@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 
 import LangBtn from './LangBtn/LangBtn';
 import MenuBtn from './MenuBtn/MenuBtn';
-import MenuStates from './types';
 import NavBlock from './NavBlock/NavBlock';
+import MenuStates from './types';
 
 function Menu() {
   const [state, setState] = useState<MenuStates>(MenuStates.Collapsed);

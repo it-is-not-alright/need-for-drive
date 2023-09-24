@@ -2,24 +2,13 @@ import './style.scss';
 
 import React, { useState } from 'react';
 
-import OrderPageProps from './types';
+import { OrderPageProps } from './types';
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
-import InputSelect from '../../InputSelect/InputSelect';
-import MapImage from '../../../assets/images/map/img-0.png';
+import LocationStage from './stages/LocationStage/LocationStage';
 
 function OrderPage({ header }: OrderPageProps) {
   const [city, setCity] = useState<string>('');
   const [point, setPoint] = useState<string>('');
-  const cities = [
-    'Ульяновск',
-    'Уфа',
-    'Уральск',
-    'Увельский',
-    'Москва',
-    'Казань',
-    'Самара',
-  ];
-  const points = ['Нариманова 42'];
 
   return (
     <div id="order-page">
@@ -31,30 +20,12 @@ function OrderPage({ header }: OrderPageProps) {
       />
       <div className="line-horizontal" />
       <div id="order-page__content">
-        <div id="order-page__content__choice">
-          <div id="order-page__content__choice__inputs">
-            <p className="dark-text fw-300 ta-right">Город</p>
-            <InputSelect
-              placeholder="Начните вводить город ..."
-              value={city}
-              setValue={setCity}
-              items={cities}
-              id="city-input"
-            />
-            <p className="dark-text fw-300 ta-right">Пункт выдачи</p>
-            <InputSelect
-              placeholder="Начните вводить пункт ..."
-              value={point}
-              setValue={setPoint}
-              items={points}
-              id="point-input"
-            />
-          </div>
-          <p className="dark-text fw-300">Выбрать на карте:</p>
-          <div id="order-page__content__choice__map">
-            <img src={MapImage} alt="map" />
-          </div>
-        </div>
+        <LocationStage
+          city={city}
+          setCity={setCity}
+          point={point}
+          setPoint={setPoint}
+        />
         <div className="line-vertical" />
         <div id="order-page__content__check">
           <p className="dark-text fw-500 ta-right fs-3">Ваш заказ:</p>

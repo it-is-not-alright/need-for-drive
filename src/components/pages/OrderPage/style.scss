@@ -43,38 +43,6 @@
       grid-template-rows: auto;
     }
 
-    #order-page__content__choice {
-      padding: 1em 1em 0;
-
-      @media (min-width: variables.$tablet-width) {
-        padding: 2em 2em 0;
-      }
-
-      @media (min-width: variables.$desktop-mini-width) {
-        padding: 2em 4em 0;
-      }
-
-      #order-page__content__choice__inputs {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 1em;
-        margin-bottom: 3em;
-  
-        div.input-select {
-          max-width: 20em;
-        }
-      }
-
-      #order-page__content__choice__map {
-        width: 100%;
-        margin-top: 1em;
-
-        img {
-          max-width: 100%;
-        }
-      }
-    }
-
     div.line-vertical {
       border-left: 1px solid variables.$color-4;
     }

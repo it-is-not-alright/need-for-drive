@@ -1,6 +1,8 @@
 @use '../variables.scss';
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   font-family: Roboto;
   -webkit-tap-highlight-color: transparent;
@@ -132,7 +134,8 @@ a {
   }
 }
 
-a, button {
+a,
+button {
   &.btn-large {
     @extend %btn-custom;
 

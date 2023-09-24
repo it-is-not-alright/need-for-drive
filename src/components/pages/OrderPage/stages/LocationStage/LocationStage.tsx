@@ -2,10 +2,10 @@ import './style.scss';
 
 import React from 'react';
 
-import { LocationStageProps } from './types';
-import InputSelect from '../../../../InputSelect/InputSelect';
 import MapImage from '../../../../../assets/images/map/img-0.png';
+import InputSelect from '../../../../InputSelect/InputSelect';
 import { cities, points } from './constans';
+import { LocationStageProps } from './types';
 
 function LocationStage({ city, setCity, point, setPoint }: LocationStageProps) {
   return (

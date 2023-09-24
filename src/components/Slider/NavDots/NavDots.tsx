@@ -1,7 +1,7 @@
 import './style.scss';
 
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
 
 import Icon from '../../Icon/Icon';
 import { NavDotsProps } from './types';

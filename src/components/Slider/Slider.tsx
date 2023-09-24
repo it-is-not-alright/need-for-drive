@@ -2,13 +2,13 @@ import './style.scss';
 
 import React, { useState } from 'react';
 
-import Icon from '../Icon/Icon';
-import getSlides from './getSlides';
-import { ISlide } from './types';
 import useInterval from '../../hooks/useInterval';
+import Icon from '../Icon/Icon';
 import { defaultDelay, longDelay } from './constants';
-import SliderImages from './SliderImages/SliderImages';
+import getSlides from './getSlides';
 import NavDots from './NavDots/NavDots';
+import SliderImages from './SliderImages/SliderImages';
+import { ISlide } from './types';
 
 function Slider() {
   let pauseInterval: number;

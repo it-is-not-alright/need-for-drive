@@ -1,10 +1,10 @@
 import './style.scss';
 
-import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
+import React, { useEffect, useState } from 'react';
 
-import InputSelectProps from './types';
 import Icon from '../Icon/Icon';
+import InputSelectProps from './types';
 
 function InputSelect({
   placeholder,

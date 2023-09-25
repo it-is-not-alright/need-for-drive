@@ -1,10 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import carsReducer from './cars/carsSlice';
+import selectedCityReducer from './slices/selectedCitySlice';
+import selectedColorReducer from './slices/selectedColorSlice';
+import selectedModelReducer from './slices/selectedModelSlice';
+import selectedPointReducer from './slices/selectedPointSlice';
 
 const store = configureStore({
   reducer: {
-    cars: carsReducer,
+    selectedCity: selectedCityReducer,
+    selectedColor: selectedColorReducer,
+    selectedModel: selectedModelReducer,
+    selectedPoint: selectedPointReducer,
   },
 });
 

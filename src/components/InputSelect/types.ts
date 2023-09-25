@@ -1,7 +1,7 @@
 type InputSelectProps = {
   placeholder: string;
   value: string | null;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (newValue: string) => void;
   items: string[];
   id: string;
 };

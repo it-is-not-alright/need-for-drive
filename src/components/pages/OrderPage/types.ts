@@ -5,7 +5,6 @@ export type OrderPageProps = {
 };
 
 export type Stage = {
-  index: number;
   name: string;
   btnLabel: string;
 };

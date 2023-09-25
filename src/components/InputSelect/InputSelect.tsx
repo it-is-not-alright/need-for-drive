@@ -9,7 +9,7 @@ import InputSelectProps from './types';
 function InputSelect({
   placeholder,
   value,
-  setValue,
+  onChange,
   items,
   id,
 }: InputSelectProps) {
@@ -27,13 +27,13 @@ function InputSelect({
   }, [value]);
 
   function handleClearBtnOnClick(): void {
-    setValue('');
+    onChange('');
   }
 
   function handleInputOnChange(
     event: React.ChangeEvent<HTMLInputElement>,
   ): void {
-    setValue(event.target.value);
+    onChange(event.target.value);
   }
 
   function handleInputOnFocus(): void {
@@ -56,7 +56,7 @@ function InputSelect({
   }
 
   function handleSelectItemOnClick(item: string): void {
-    setValue(item);
+    onChange(item);
     setFocused(false);
   }
 

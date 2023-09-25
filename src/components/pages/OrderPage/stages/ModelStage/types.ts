@@ -1,3 +1,3 @@
-export type LocationStageProps = {
+export type ModelStageProps = {
   updateAvailableStageIndex: () => void;
 };

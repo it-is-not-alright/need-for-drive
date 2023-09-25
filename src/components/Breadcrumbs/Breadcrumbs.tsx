@@ -5,13 +5,22 @@ import React, { Fragment, ReactElement } from 'react';
 import Icon from '../Icon/Icon';
 import BreadcrumbsProps from './types';
 
-function Breadcrumbs({ items, activeIndex }: BreadcrumbsProps) {
+function Breadcrumbs({
+  items,
+  activeIndex,
+  availableIndex,
+  onIndexChange,
+}: BreadcrumbsProps) {
   function renderItem(item: string, index: number): ReactElement {
-    if (index < activeIndex) {
-      return <button type="button">{item}</button>;
-    }
     if (index === activeIndex) {
       return <p className="green-text fw-700">{item}</p>;
+    }
+    if (index <= availableIndex) {
+      return (
+        <button type="button" onClick={() => onIndexChange(index)}>
+          {item}
+        </button>
+      );
     }
     return <p className="gray-text fw-700">{item}</p>;
   }

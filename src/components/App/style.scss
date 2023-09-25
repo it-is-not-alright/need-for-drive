@@ -37,8 +37,28 @@ p {
   color: variables.$color-3;
 }
 
+.light-text {
+  color: variables.$color-4;
+}
+
 .white-text {
   color: white;
+}
+
+%btn-custom {
+  font-weight: 500;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  transition: filter variables.$transition-duration;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+
+  &:active {
+    filter: brightness(80%);
+  }
 }
 
 button {
@@ -51,24 +71,8 @@ button {
     outline: none;
   }
 
-  &.btn-custom {
-    font-weight: 500;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    transition: filter variables.$transition-duration;
-
-    &:hover {
-      filter: brightness(90%);
-    }
-
-    &:active {
-      filter: brightness(80%);
-    }
-  }
-
   &.btn-large {
-    @extend .btn-custom;
+    @extend %btn-custom;
 
     padding: 1em 4em;
     color: white;
@@ -78,11 +82,26 @@ button {
   }
 
   &.btn-medium {
-    @extend .btn-custom;
+    @extend %btn-custom;
 
     padding: 0.8em 2em;
     color: variables.$color-4;
-    background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
     border-radius: 4px;
+
+    &.green {
+      background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+    }
+
+    &.blue {
+      background: linear-gradient(90deg, #132949 0%, #0c7b67 100%);
+    }
+
+    &.orange {
+      background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+    }
+
+    &.purple {
+      background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
+    }
   }
 }

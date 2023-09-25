@@ -7,7 +7,7 @@ import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
 import MainPage from '../pages/MainPage/MainPage';
 
-export default function App() {
+function App() {
   return (
     <>
       <Menu />
@@ -17,3 +17,5 @@ export default function App() {
     </>
   );
 }
+
+export default App;

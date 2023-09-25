@@ -1,0 +1,26 @@
+%filling-div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+div.slider-shadow {
+  @extend %filling-div;
+
+  background: linear-gradient(180deg, #0000 0%, #000 100%);
+}
+
+div.slider-image {
+  @extend %filling-div;
+
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  &.active {
+    opacity: 1;
+  }
+}

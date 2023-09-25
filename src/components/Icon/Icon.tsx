@@ -4,9 +4,9 @@ import React from 'react';
 import classNames from 'classnames';
 
 import Sprite from '../../assets/sprite.svg';
-import IconProps from './types';
+import { IconProps } from './types';
 
-export default function Icon({ name, width, height, className }: IconProps) {
+function Icon({ name, width, height, className }: IconProps) {
   const classes: string = classNames('icon', { [className]: className });
   return (
     <svg className={classes} width={width} height={height}>
@@ -14,3 +14,5 @@ export default function Icon({ name, width, height, className }: IconProps) {
     </svg>
   );
 }
+
+export default Icon;

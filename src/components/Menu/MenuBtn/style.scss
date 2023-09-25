@@ -4,6 +4,7 @@
   display: none;
   width: 35px;
   height: 32px;
+
   $max: calc(variables.$tablet-width - 1px);
 
   @media (max-width: $max) {
@@ -15,6 +16,7 @@
   display: none;
   width: 48px;
   height: 32px;
+
   $min: variables.$tablet-width;
   $max: calc(variables.$desktop-mini-width - 1px);
 
@@ -27,6 +29,7 @@
   display: none;
   width: 40px;
   height: 32px;
+
   $min: variables.$desktop-mini-width;
 
   @media (min-width: $min) {

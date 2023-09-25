@@ -7,7 +7,7 @@ import MenuBtn from './MenuBtn/MenuBtn';
 import MenuStates from './types';
 import NavBlock from './NavBlock/NavBlock';
 
-export default function Menu() {
+function Menu() {
   const [state, setState] = useState<MenuStates>(MenuStates.Collapsed);
 
   const handleMenuBtnOnClick = () => {
@@ -33,3 +33,5 @@ export default function Menu() {
     </div>
   );
 }
+
+export default Menu;

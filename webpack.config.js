@@ -36,7 +36,7 @@ module.exports = {
         use: ['ts-loader'],
       },
       {
-        test: /\.(svg)$/,
+        test: /\.(svg|png)$/,
         use: ['file-loader'],
       },
     ],

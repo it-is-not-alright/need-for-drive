@@ -120,8 +120,10 @@ $transition-duration: 0.3s;
       #menu__container__content {
         width: 100%;
 
-        @media (min-width: variables.$desktop-mini-width) {
-          width: max(calc(50%), 600px);
+        &.limited {
+          @media (min-width: variables.$desktop-mini-width) {
+            width: max(calc(50%), 600px);
+          }
         }
       }
     }

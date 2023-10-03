@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import carsReducer from './cars/carsSlice';
+import { cityReducer } from './city/citySlice';
+import { pointReducer } from './point/pointSlice';
 
 const store = configureStore({
   reducer: {
-    cars: carsReducer,
+    city: cityReducer,
+    point: pointReducer,
   },
 });
 

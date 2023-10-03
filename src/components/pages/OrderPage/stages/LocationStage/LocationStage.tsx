@@ -1,13 +1,30 @@
 import './style.scss';
 
-import React from 'react';
+import { AnyAction } from '@reduxjs/toolkit';
+import React, { Dispatch } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import MapImage from '../../../../../assets/images/map/img-0.png';
+import { setCity } from '../../../../../store/city/citySlice';
+import citySelector from '../../../../../store/city/selectors';
+import { setPoint } from '../../../../../store/point/pointSlice';
+import pointSelector from '../../../../../store/point/selectors';
 import InputSelect from '../../../../InputSelect/InputSelect';
 import { cities, points } from './constans';
-import { LocationStageProps } from './types';
 
-function LocationStage({ city, setCity, point, setPoint }: LocationStageProps) {
+function LocationStage() {
+  const dispatch: Dispatch<AnyAction> = useDispatch();
+  const city: string = useSelector(citySelector);
+  const point: string = useSelector(pointSelector);
+
+  const cityInputOnChange = (newValue: string): void => {
+    dispatch(setCity(newValue));
+  };
+
+  const pointInputOnChange = (newValue: string): void => {
+    dispatch(setPoint(newValue));
+  };
+
   return (
     <div id="location-stage">
       <div id="location-stage__input-container">
@@ -15,7 +32,7 @@ function LocationStage({ city, setCity, point, setPoint }: LocationStageProps) {
         <InputSelect
           placeholder="Начните вводить город ..."
           value={city}
-          setValue={setCity}
+          onChange={cityInputOnChange}
           items={cities}
           id="city-input"
         />
@@ -23,7 +40,7 @@ function LocationStage({ city, setCity, point, setPoint }: LocationStageProps) {
         <InputSelect
           placeholder="Начните вводить пункт ..."
           value={point}
-          setValue={setPoint}
+          onChange={pointInputOnChange}
           items={points}
           id="point-input"
         />

@@ -1,7 +1,7 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Icon from '../Icon/Icon';
 import InputSelectProps from './types';
@@ -9,31 +9,28 @@ import InputSelectProps from './types';
 function InputSelect({
   placeholder,
   value,
-  setValue,
+  onChange,
   items,
   id,
 }: InputSelectProps) {
   const [focused, setFocused] = useState<boolean>(false);
   const [overlap, setOverlap] = useState<string[]>(items);
 
-  useEffect(() => {
-    function isMatches(item: string): boolean {
-      if (item.toLowerCase().startsWith(value.toLowerCase())) {
-        return true;
-      }
-      return false;
-    }
-    setOverlap(items.filter(isMatches));
-  }, [value]);
-
   function handleClearBtnOnClick(): void {
-    setValue('');
+    onChange('');
+    setOverlap(items);
   }
 
   function handleInputOnChange(
     event: React.ChangeEvent<HTMLInputElement>,
   ): void {
-    setValue(event.target.value);
+    const newValue: string = event.target.value;
+    onChange(newValue);
+    setOverlap(
+      items.filter((item) => {
+        return item.toLowerCase().startsWith(newValue.toLowerCase());
+      }),
+    );
   }
 
   function handleInputOnFocus(): void {
@@ -56,7 +53,7 @@ function InputSelect({
   }
 
   function handleSelectItemOnClick(item: string): void {
-    setValue(item);
+    onChange(item);
     setFocused(false);
   }
 
@@ -77,20 +74,22 @@ function InputSelect({
         ) : null}
       </div>
       <div className="input-select__select-shell">
-        <div className="input-select__select">
-          {overlap.map((item) => {
-            return (
-              <button
-                key={item}
-                className="input-select__select-item"
-                onClick={() => handleSelectItemOnClick(item)}
-                type="button"
-              >
-                {item}
-              </button>
-            );
-          })}
-        </div>
+        {overlap.length > 0 ? (
+          <div className="input-select__select">
+            {overlap.map((item) => {
+              return (
+                <button
+                  key={item}
+                  className="input-select__select-item"
+                  onClick={() => handleSelectItemOnClick(item)}
+                  type="button"
+                >
+                  {item}
+                </button>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     </div>
   );

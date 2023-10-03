@@ -1,5 +1,6 @@
 import './style.scss';
 
+import classNames from 'classnames';
 import React, { Fragment } from 'react';
 
 import Icon from '../Icon/Icon';
@@ -9,17 +10,14 @@ function Breadcrumbs({ items, activeIndex }: BreadcrumbsProps) {
   return (
     <div className="breadcrumbs">
       {items.map((item, index) => {
-        let color: string;
-        if (index < activeIndex) {
-          color = 'dark';
-        } else if (index === activeIndex) {
-          color = 'green';
-        } else {
-          color = 'gray';
-        }
+        const classes = classNames('fw-700', {
+          'dark-text': index < activeIndex,
+          'green-text': index === activeIndex,
+          'gray-text': index > activeIndex,
+        });
         return (
           <Fragment key={item}>
-            <p className={`${color}-text fw-700`}>{item}</p>
+            <p className={classes}>{item}</p>
             {index !== items.length - 1 ? (
               <Icon name="breadcrumbs-arrow" width={6} height={8} />
             ) : null}

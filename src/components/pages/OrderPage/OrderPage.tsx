@@ -2,7 +2,8 @@ import './style.scss';
 
 import React from 'react';
 
-import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '~/components/Breadcrumbs/Breadcrumbs';
+
 import stages from './constants';
 import OrderInfo from './OrderInfo/OrderInfo';
 import LocationStage from './stages/LocationStage/LocationStage';

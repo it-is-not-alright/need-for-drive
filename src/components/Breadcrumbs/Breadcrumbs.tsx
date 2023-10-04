@@ -3,7 +3,8 @@ import './style.scss';
 import classNames from 'classnames';
 import React, { Fragment } from 'react';
 
-import Icon from '../Icon/Icon';
+import Icon from '~/components/Icon/Icon';
+
 import BreadcrumbsProps from './types';
 
 function Breadcrumbs({ items, activeIndex }: BreadcrumbsProps) {
@@ -18,9 +19,9 @@ function Breadcrumbs({ items, activeIndex }: BreadcrumbsProps) {
         return (
           <Fragment key={item}>
             <p className={classes}>{item}</p>
-            {index !== items.length - 1 ? (
+            {index !== items.length - 1 && (
               <Icon name="breadcrumbs-arrow" width={6} height={8} />
-            ) : null}
+            )}
           </Fragment>
         );
       })}

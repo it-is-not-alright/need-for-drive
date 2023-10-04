@@ -1,6 +1,7 @@
 import React, { Component, ErrorInfo } from 'react';
 
-import ErrorPage from '../../pages/ErrorPage/ErrorPage';
+import ErrorPage from '~/components/pages/ErrorPage/ErrorPage';
+
 import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {

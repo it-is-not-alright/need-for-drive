@@ -15,7 +15,6 @@ function Menu() {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(location.pathname === '/');
     setIsLimited(location.pathname === '/');
   }, [location]);
 

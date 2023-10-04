@@ -4,18 +4,23 @@ import { AnyAction } from '@reduxjs/toolkit';
 import React, { Dispatch } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import MapImage from '../../../../../assets/images/map/img-0.png';
-import { setCity } from '../../../../../store/city/citySlice';
-import citySelector from '../../../../../store/city/selectors';
-import { setPoint } from '../../../../../store/point/pointSlice';
-import pointSelector from '../../../../../store/point/selectors';
-import InputSelect from '../../../../InputSelect/InputSelect';
+import MapImage from '~/assets/images/map/img-0.png';
+import InputSelect from '~/components/InputSelect/InputSelect';
+import { setCity } from '~/store/city/citySlice';
+import citySelector from '~/store/city/selectors';
+import { setPoint } from '~/store/point/pointSlice';
+import pointSelector from '~/store/point/selectors';
+import { RootState } from '~/store/root';
+
 import { cities, points } from './constans';
 
 function LocationStage() {
+  const mapState = (state: RootState) => ({
+    city: citySelector(state),
+    point: pointSelector(state),
+  });
+  const { city, point } = useSelector(mapState);
   const dispatch: Dispatch<AnyAction> = useDispatch();
-  const city: string = useSelector(citySelector);
-  const point: string = useSelector(pointSelector);
 
   const cityInputOnChange = (newValue: string): void => {
     dispatch(setCity(newValue));

@@ -3,7 +3,8 @@ import './style.scss';
 import classNames from 'classnames';
 import React from 'react';
 
-import Sprite from '../../assets/sprite.svg';
+import Sprite from '~/assets/sprite.svg';
+
 import { IconProps } from './types';
 
 function Icon({ name, width, height, className }: IconProps) {

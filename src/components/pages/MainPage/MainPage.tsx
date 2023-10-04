@@ -3,8 +3,9 @@ import './style.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Footer from '../../Footer/Footer';
-import Slider from '../../Slider/Slider';
+import Footer from '~/components/Footer/Footer';
+import Slider from '~/components/Slider/Slider';
+
 import { MainPageProps } from './types';
 
 function MainPage({ header }: MainPageProps) {

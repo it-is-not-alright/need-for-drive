@@ -2,7 +2,8 @@ import './style.scss';
 
 import React from 'react';
 
-import Sprite from '../../assets/sprite.svg';
+import Sprite from '~/assets/sprite.svg';
+
 import { IconListProps } from './types';
 
 function IconList({ names }: IconListProps) {

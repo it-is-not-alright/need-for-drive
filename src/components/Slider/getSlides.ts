@@ -1,4 +1,4 @@
-import { slides, images } from './constants';
+import { images, slides } from './constants';
 
 const getSlides = () =>
   slides.map((slide) => ({

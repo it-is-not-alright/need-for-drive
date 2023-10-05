@@ -1,11 +1,18 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "./build",
     "target": "es5",
     "module": "es6",
     "jsx": "react",
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "paths": {
+      "~/assets/*": ["src/assets/*"],
+      "~/hooks/*": ["src/hooks/*"],
+      "~/store/*": ["src/store/*"],
+      "~/components/*": ["src/components/*"]
+    }
   }
 }

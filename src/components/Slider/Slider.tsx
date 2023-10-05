@@ -2,13 +2,13 @@ import './style.scss';
 
 import React, { useState } from 'react';
 
-import Icon from '../Icon/Icon';
-import getSlides from './getSlides';
-import { ISlide } from './types';
 import useInterval from '../../hooks/useInterval';
+import Icon from '../Icon/Icon';
 import { defaultDelay, longDelay } from './constants';
-import SliderImages from './SliderImages/SliderImages';
+import getSlides from './getSlides';
 import NavDots from './NavDots/NavDots';
+import SliderImages from './SliderImages/SliderImages';
+import { ISlide } from './types';
 
 function Slider() {
   let pauseInterval: number;
@@ -79,8 +79,8 @@ function Slider() {
       </button>
       <div id="slider__content">
         <div id="slider__content__info">
-          <h1 className="white-text">{slides[activeIndex].title}</h1>
-          <p className="light-text">{slides[activeIndex].description}</p>
+          <h1 className="white-text fw-500">{slides[activeIndex].title}</h1>
+          <p className="light-text fw-300">{slides[activeIndex].description}</p>
           <button
             className={`btn-medium ${slides[activeIndex].colorTheme}`}
             type="button"

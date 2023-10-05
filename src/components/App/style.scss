@@ -1,27 +1,32 @@
-@use '../variables.scss';
+@use '~/components/variables.scss';
 
-* {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   font-family: Roboto;
   -webkit-tap-highlight-color: transparent;
 }
 
 html,
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   overflow-x: clip;
 }
 
 #root {
   display: flex;
-  height: inherit;
+  min-height: inherit;
 }
 
 main {
   width: 100%;
+  min-height: inherit;
 }
 
-p {
+p,
+h1 {
   margin: 0;
 }
 
@@ -43,6 +48,30 @@ p {
 
 .white-text {
   color: white;
+}
+
+.fw-300 {
+  font-weight: 300;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.ta-right {
+  text-align: right;
+}
+
+.fs-2 {
+  font-size: 1.2em;
+}
+
+.fs-3 {
+  font-size: 1.4em;
 }
 
 %btn-custom {
@@ -71,16 +100,6 @@ button {
     outline: none;
   }
 
-  &.btn-large {
-    @extend %btn-custom;
-
-    padding: 1em 4em;
-    color: white;
-    background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
-    background-blend-mode: darken;
-    border-radius: 8px;
-  }
-
   &.btn-medium {
     @extend %btn-custom;
 
@@ -103,5 +122,28 @@ button {
     &.purple {
       background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
     }
+  }
+}
+
+a {
+  text-decoration: none;
+
+  &.btn-large {
+    display: block;
+    width: fit-content;
+    text-align: center;
+  }
+}
+
+a,
+button {
+  &.btn-large {
+    @extend %btn-custom;
+
+    padding: 1em 4em;
+    color: white;
+    background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+    background-blend-mode: darken;
+    border-radius: 8px;
   }
 }

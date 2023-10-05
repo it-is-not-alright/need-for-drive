@@ -2,11 +2,11 @@ import './style.scss';
 
 import React from 'react';
 
-import Icon from '../../Icon/Icon';
+import Icon from '~/components/Icon/Icon';
 
 function NavBlock() {
   return (
-    <div id="nav-block">
+    <div id="nav-block" className="fw-500">
       <p className="white-text">ПАРКОВКА</p>
       <p className="white-text">СТРАХОВКА</p>
       <p className="white-text">БЕНЗИН</p>

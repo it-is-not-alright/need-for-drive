@@ -1,9 +1,11 @@
 import './style.scss';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import Footer from '../../Footer/Footer';
-import Slider from '../../Slider/Slider';
+import Footer from '~/components/Footer/Footer';
+import Slider from '~/components/Slider/Slider';
+
 import { MainPageProps } from './types';
 
 function MainPage({ header }: MainPageProps) {
@@ -12,15 +14,15 @@ function MainPage({ header }: MainPageProps) {
       <div id="main-page__content">
         {header}
         <div id="main-page__content__info">
-          <h1>
+          <h1 className="fw-700">
             <span className="dark-text">Каршеринг</span>
             <br />
             <span className="green-text">Need for drive</span>
           </h1>
           <p className="gray-text">Поминутная аренда авто твоего города</p>
-          <button className="btn-large" type="button">
+          <Link className="btn-large" to="/order">
             Забронировать
-          </button>
+          </Link>
         </div>
         <Footer />
       </div>

@@ -146,4 +146,8 @@ button {
     background-blend-mode: darken;
     border-radius: 8px;
   }
+
+  &:disabled {
+    cursor: default;
+  }
 }

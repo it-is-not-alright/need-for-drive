@@ -15,8 +15,12 @@ div.breadcrumbs {
     outline: none;
     transition: color variables variables.$transition-duration;
 
-    &:hover {
+    &:hover, &.active {
       color: variables.$color-1;
+    }
+
+    &:disabled {
+      color: variables.$color-3;
     }
   }
 }

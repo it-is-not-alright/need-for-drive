@@ -2,7 +2,7 @@ import './style.scss';
 
 import React from 'react';
 
-import Icon from '../../Icon/Icon';
+import Icon from '~/components/Icon/Icon';
 
 function NavBlock() {
   return (

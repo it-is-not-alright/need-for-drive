@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: string = '';
+const initialState = '';
 
-const selectedModelSlice = createSlice({
-  name: 'selectedModel',
+export const modelSlice = createSlice({
+  name: 'model',
   initialState,
   reducers: {
     set: (_state, action: PayloadAction<string>) => {
@@ -12,6 +12,5 @@ const selectedModelSlice = createSlice({
   },
 });
 
-export const { set } = selectedModelSlice.actions;
-
-export default selectedModelSlice.reducer;
+export const setModel = modelSlice.actions.set;
+export const modelReducer = modelSlice.reducer;

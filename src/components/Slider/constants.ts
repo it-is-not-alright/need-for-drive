@@ -1,7 +1,8 @@
-import image0 from '../../assets/images/slider/img-0.png';
-import image1 from '../../assets/images/slider/img-1.png';
-import image2 from '../../assets/images/slider/img-2.png';
-import image3 from '../../assets/images/slider/img-3.png';
+import image0 from '~/assets/images/slider/img-0.png';
+import image1 from '~/assets/images/slider/img-1.png';
+import image2 from '~/assets/images/slider/img-2.png';
+import image3 from '~/assets/images/slider/img-3.png';
+
 import { ISlide } from './types';
 
 export const defaultDelay: number = 3000;

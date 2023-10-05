@@ -1,25 +1,28 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import useSelectedColor from '../../../../../hooks/useSelectedColor';
-import { setSelectedColor } from '../../../../../store/actions';
+import { setColor } from '~/store/color/colorSlice';
+import colorSelector from '~/store/color/selectors';
+
 import { AdditionalStageProps } from './types';
 
 function AdditionallyStage({
   updateAvailableStageIndex,
 }: AdditionalStageProps) {
   const dispatch = useDispatch();
+  const color = useSelector(colorSelector);
+
   function handleInputOnChange(
     event: React.ChangeEvent<HTMLInputElement>,
   ): void {
-    dispatch(setSelectedColor(event.target.value));
+    dispatch(setColor(event.target.value));
     updateAvailableStageIndex();
   }
 
   return (
     <>
       <p>Color</p>
-      <input value={useSelectedColor()} onChange={handleInputOnChange} />
+      <input value={color} onChange={handleInputOnChange} />
     </>
   );
 }

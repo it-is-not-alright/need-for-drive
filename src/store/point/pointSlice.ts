@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: string = '';
+const initialState = '';
 
-const selectedColorSlice = createSlice({
-  name: 'selectedColor',
+export const pointSlice = createSlice({
+  name: 'point',
   initialState,
   reducers: {
     set: (_state, action: PayloadAction<string>) => {
@@ -12,6 +12,5 @@ const selectedColorSlice = createSlice({
   },
 });
 
-export const { set } = selectedColorSlice.actions;
-
-export default selectedColorSlice.reducer;
+export const setPoint = pointSlice.actions.set;
+export const pointReducer = pointSlice.reducer;

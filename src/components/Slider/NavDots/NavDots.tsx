@@ -3,7 +3,8 @@ import './style.scss';
 import classNames from 'classnames';
 import React from 'react';
 
-import Icon from '../../Icon/Icon';
+import Icon from '~/components/Icon/Icon';
+
 import { NavDotsProps } from './types';
 
 function NavDots({ slides, activeIndex, onClick }: NavDotsProps) {

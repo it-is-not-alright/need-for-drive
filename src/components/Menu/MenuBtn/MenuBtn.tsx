@@ -2,8 +2,9 @@ import './style.scss';
 
 import React from 'react';
 
-import Icon from '../../Icon/Icon';
-import IconList from '../../IconList/IconList';
+import Icon from '~/components/Icon/Icon';
+import IconList from '~/components/IconList/IconList';
+
 import MenuStates from '../types';
 import { MenuBtnProps } from './types';
 

@@ -31,9 +31,9 @@ function Breadcrumbs({
         return (
           <Fragment key={item}>
             {renderItem(item, index)}
-            {index !== items.length - 1 ? (
+            {index !== items.length - 1 && (
               <Icon name="breadcrumbs-arrow" width={6} height={8} />
-            ) : null}
+            )}
           </Fragment>
         );
       })}

@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: string = '';
+const initialState = '';
 
-const selectedCitySlice = createSlice({
-  name: 'selectedCity',
+export const citySlice = createSlice({
+  name: 'city',
   initialState,
   reducers: {
     set: (_state, action: PayloadAction<string>) => {
@@ -12,6 +12,5 @@ const selectedCitySlice = createSlice({
   },
 });
 
-export const { set } = selectedCitySlice.actions;
-
-export default selectedCitySlice.reducer;
+export const setCity = citySlice.actions.set;
+export const cityReducer = citySlice.reducer;

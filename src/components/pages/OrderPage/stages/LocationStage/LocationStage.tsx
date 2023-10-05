@@ -2,37 +2,42 @@ import './style.scss';
 
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import MapImage from '../../../../../assets/images/map/img-0.png';
-import useSelectedCity from '../../../../../hooks/useSelectedCity';
-import useSelectedPoint from '../../../../../hooks/useSelectedPoint';
-import {
-  setSelectedCity,
-  setSelectedColor,
-  setSelectedModel,
-  setSelectedPoint,
-} from '../../../../../store/actions';
-import InputSelect from '../../../../InputSelect/InputSelect';
+import MapImage from '~/assets/images/map/img-0.png';
+import InputSelect from '~/components/InputSelect/InputSelect';
+import { setCity } from '~/store/city/citySlice';
+import citySelector from '~/store/city/selectors';
+import { setColor } from '~/store/color/colorSlice';
+import { setModel } from '~/store/model/modelSlice';
+import { setPoint } from '~/store/point/pointSlice';
+import pointSelector from '~/store/point/selectors';
+import { RootState } from '~/store/root';
+
 import { cities, points } from './constans';
 import { LocationStageProps } from './types';
 
 function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
+  const mapState = (state: RootState) => ({
+    city: citySelector(state),
+    point: pointSelector(state),
+  });
+  const { city, point } = useSelector(mapState);
   const dispatch: Dispatch<AnyAction> = useDispatch();
 
   function clear(): void {
-    dispatch(setSelectedModel(''));
-    dispatch(setSelectedColor(''));
+    dispatch(setModel(''));
+    dispatch(setColor(''));
     updateAvailableStageIndex();
   }
 
   const cityOnChange = (newValue: string): void => {
-    dispatch(setSelectedCity(newValue));
+    dispatch(setCity(newValue));
     clear();
   };
 
   const pointOnChange = (newValue: string): void => {
-    dispatch(setSelectedPoint(newValue));
+    dispatch(setPoint(newValue));
     clear();
   };
 
@@ -42,7 +47,7 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
         <p className="dark-text fw-300 ta-right">Город</p>
         <InputSelect
           placeholder="Начните вводить город ..."
-          value={useSelectedCity()}
+          value={city}
           onChange={cityOnChange}
           items={cities}
           id="city-input"
@@ -50,7 +55,7 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
         <p className="dark-text fw-300 ta-right">Пункт выдачи</p>
         <InputSelect
           placeholder="Начните вводить пункт ..."
-          value={useSelectedPoint()}
+          value={point}
           onChange={pointOnChange}
           items={points}
           id="point-input"

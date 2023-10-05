@@ -1,9 +1,10 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import Icon from '../Icon/Icon';
+import Icon from '~/components/Icon/Icon';
+
 import InputSelectProps from './types';
 
 function InputSelect({
@@ -16,24 +17,21 @@ function InputSelect({
   const [focused, setFocused] = useState<boolean>(false);
   const [overlap, setOverlap] = useState<string[]>(items);
 
-  useEffect(() => {
-    function isMatches(item: string): boolean {
-      if (item.toLowerCase().startsWith(value.toLowerCase())) {
-        return true;
-      }
-      return false;
-    }
-    setOverlap(items.filter(isMatches));
-  }, [value]);
-
   function handleClearBtnOnClick(): void {
     onChange('');
+    setOverlap(items);
   }
 
   function handleInputOnChange(
     event: React.ChangeEvent<HTMLInputElement>,
   ): void {
-    onChange(event.target.value);
+    const newValue: string = event.target.value;
+    onChange(newValue);
+    setOverlap(
+      items.filter((item) => {
+        return item.toLowerCase().startsWith(newValue.toLowerCase());
+      }),
+    );
   }
 
   function handleInputOnFocus(): void {
@@ -77,20 +75,22 @@ function InputSelect({
         ) : null}
       </div>
       <div className="input-select__select-shell">
-        <div className="input-select__select">
-          {overlap.map((item) => {
-            return (
-              <button
-                key={item}
-                className="input-select__select-item"
-                onClick={() => handleSelectItemOnClick(item)}
-                type="button"
-              >
-                {item}
-              </button>
-            );
-          })}
-        </div>
+        {overlap.length > 0 ? (
+          <div className="input-select__select">
+            {overlap.map((item) => {
+              return (
+                <button
+                  key={item}
+                  className="input-select__select-item"
+                  onClick={() => handleSelectItemOnClick(item)}
+                  type="button"
+                >
+                  {item}
+                </button>
+              );
+            })}
+          </div>
+        ) : null}
       </div>
     </div>
   );

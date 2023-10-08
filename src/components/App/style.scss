@@ -145,6 +145,10 @@ button {
     background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
     background-blend-mode: darken;
     border-radius: 8px;
+
+    &:disabled {
+      background: variables.$color-4;
+    }
   }
 
   &:disabled {

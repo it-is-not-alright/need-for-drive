@@ -2,19 +2,21 @@ import './style.scss';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { createSelector } from 'reselect';
 
 import citySelector from '~/store/city/selectors';
 import pointSelector from '~/store/point/selectors';
-import { RootState } from '~/store/root';
 
 import { OrderInfoProps } from './types';
 
 function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
-  const mapState = (state: RootState) => ({
-    city: citySelector(state),
-    point: pointSelector(state),
-  });
-  const { city, point } = useSelector(mapState);
+  const mapSelector = createSelector(
+    [citySelector, pointSelector],
+    (city, point) => {
+      return { city, point };
+    },
+  );
+  const { city, point } = useSelector(mapSelector);
 
   return (
     <div id="order-info">
@@ -26,7 +28,7 @@ function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
           <p className="gray-text">
             <span>{city ? `${city.name},` : 'Не выбрано,'}</span>
             <br />
-            <span>{point ? point.name : 'Не выбрано'}</span>
+            <span>{point ? point.address : 'Не выбрано'}</span>
           </p>
         </div>
       </div>
@@ -34,7 +36,12 @@ function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
         <span className="fw-500">Цена: </span>
         <span>от 8 000 до 12 000 ₽</span>
       </p>
-      <button className="btn-large" type="button" onClick={btnOnClick}>
+      <button
+        className="btn-large"
+        type="button"
+        onClick={btnOnClick}
+        disabled={point === null}
+      >
         {btnLabel}
       </button>
     </div>

@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react';
-
-import useThrowError from '~/hooks/useThrowError';
-
+import { ICity } from './city/types';
 import { cityUrl, pointUrl } from './constants';
-import { City, Point, RequestResult } from './types';
+import { IPoint } from './point/types';
+import { RequestResult } from './types';
 
 async function get<T>(url: string): Promise<T> {
   const init: RequestInit = {
@@ -14,25 +12,26 @@ async function get<T>(url: string): Promise<T> {
   return result as Promise<T>;
 }
 
-function getArray<T>(url: string): T[] {
-  const [array, setArray] = useState<T[]>([]);
-  const throwError = useThrowError();
-
-  useEffect(() => {
-    get<RequestResult<T>>(url)
-      .then((requestResult) => setArray(requestResult.data))
-      .catch((error) => throwError(error));
-  }, []);
-
-  return array;
+async function getArray<T>(url: string): Promise<T[]> {
+  return (await get<RequestResult<T>>(url)).data;
 }
 
-function getCities(): City[] {
-  return getArray<City>(cityUrl);
+async function getCities(): Promise<ICity[]> {
+  const array: ICity[] = await getArray<ICity>(cityUrl);
+  return array.map((city: ICity) => {
+    const cityClone: ICity = structuredClone(city);
+    cityClone.label = city.name;
+    return cityClone;
+  });
 }
 
-function getPoints(): Point[] {
-  return getArray<Point>(pointUrl);
+async function getPoints(): Promise<IPoint[]> {
+  const array: IPoint[] = await getArray<IPoint>(pointUrl);
+  return array.map((point: IPoint) => {
+    const pointClone: IPoint = structuredClone(point);
+    pointClone.label = `${point.name}, ${point.address}`;
+    return pointClone;
+  });
 }
 
 export { getCities };

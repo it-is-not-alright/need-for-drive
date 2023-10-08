@@ -1,6 +1,6 @@
 import { RootState } from '../root';
-import { Point } from '../types';
+import { IPoint } from './types';
 
-const pointSelector = (state: RootState): Point | null => state.point;
+const pointSelector = (state: RootState): IPoint | null => state.point;
 
 export default pointSelector;

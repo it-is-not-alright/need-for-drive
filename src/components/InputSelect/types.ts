@@ -1,12 +1,9 @@
-export type InputSelectItem<T> = {
-  value: T;
-  label: string;
-};
+import { IEntity } from '~/store/types';
 
-export type InputSelectProps<T> = {
+export type InputSelectProps = {
   maxLength: number;
   placeholder: string;
-  items: InputSelectItem<T>[];
-  selectedItem: InputSelectItem<T> | null;
-  onSelect: (item: InputSelectItem<T> | null) => void;
+  items: IEntity[];
+  selectedItem: IEntity | null;
+  onSelect: (item: IEntity | null) => void;
 };

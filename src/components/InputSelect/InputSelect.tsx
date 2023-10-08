@@ -4,19 +4,20 @@ import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
 
 import Icon from '~/components/Icon/Icon';
+import { IEntity } from '~/store/types';
 
-import { InputSelectItem, InputSelectProps } from './types';
+import { InputSelectProps } from './types';
 
-function InputSelect<T>({
+function InputSelect({
   maxLength,
   placeholder,
   items,
   selectedItem,
   onSelect,
-}: InputSelectProps<T>) {
+}: InputSelectProps) {
   const [value, setValue] = useState<string>('');
   const [focused, setFocused] = useState<boolean>(false);
-  const [overlap, setOverlap] = useState<InputSelectItem<T>[]>([]);
+  const [overlap, setOverlap] = useState<IEntity[]>([]);
 
   useEffect(() => {
     if (value === '') {
@@ -50,7 +51,7 @@ function InputSelect<T>({
     }
     setValue(newValue);
     const newValueClear = newValue.trim().toLowerCase();
-    const newSelectedItem: InputSelectItem<T> = items.find(
+    const newSelectedItem: IEntity = items.find(
       (item) => item.label.toLowerCase() === newValueClear,
     );
     onSelect(newSelectedItem);
@@ -75,7 +76,7 @@ function InputSelect<T>({
     }
   }
 
-  function handleSelectItemOnClick(item: InputSelectItem<T>): void {
+  function handleSelectItemOnClick(item: IEntity): void {
     onSelect(item);
     setFocused(false);
   }
@@ -102,7 +103,7 @@ function InputSelect<T>({
             {overlap.map((item) => {
               return (
                 <button
-                  key={item.label}
+                  key={item.id}
                   className="input-select__select-item"
                   onClick={() => handleSelectItemOnClick(item)}
                   type="button"

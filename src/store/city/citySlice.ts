@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { City } from '../types';
+import { ICity } from './types';
 
-const initialState: City | null = null;
+const initialState: ICity | null = null;
 
 export const citySlice = createSlice({
   name: 'city',
   initialState,
   reducers: {
-    set: (_state, action: PayloadAction<City | null>) => {
+    set: (_state, action: PayloadAction<ICity | null>) => {
       return action.payload;
     },
   },

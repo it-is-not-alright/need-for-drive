@@ -3,13 +3,7 @@ export type RequestResult<T> = {
   data: T[];
 };
 
-export type ApiEntity = {
+export interface IEntity {
   id: number;
-  name: string;
-};
-
-export type City = ApiEntity;
-
-export type Point = ApiEntity & {
-  cityId: City;
-};
+  label: string;
+}

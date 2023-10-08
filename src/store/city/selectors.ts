@@ -1,6 +1,6 @@
 import { RootState } from '../root';
-import { City } from '../types';
+import { ICity } from './types';
 
-const citySelector = (state: RootState): City | null => state.city;
+const citySelector = (state: RootState): ICity | null => state.city;
 
 export default citySelector;

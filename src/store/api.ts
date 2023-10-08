@@ -19,18 +19,14 @@ async function getArray<T>(url: string): Promise<T[]> {
 async function getCities(): Promise<ICity[]> {
   const array: ICity[] = await getArray<ICity>(cityUrl);
   return array.map((city: ICity) => {
-    const cityClone: ICity = structuredClone(city);
-    cityClone.label = city.name;
-    return cityClone;
+    return { ...city, label: city.name };
   });
 }
 
 async function getPoints(): Promise<IPoint[]> {
   const array: IPoint[] = await getArray<IPoint>(pointUrl);
   return array.map((point: IPoint) => {
-    const pointClone: IPoint = structuredClone(point);
-    pointClone.label = `${point.name}, ${point.address}`;
-    return pointClone;
+    return { ...point, label: `${point.name}, ${point.address}` };
   });
 }
 

@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = '';
+import { Point } from '../types';
+
+const initialState: Point | null = null;
 
 export const pointSlice = createSlice({
   name: 'point',
   initialState,
   reducers: {
-    set: (_state, action: PayloadAction<string>) => {
+    set: (_state, action: PayloadAction<Point | null>) => {
       return action.payload;
     },
   },

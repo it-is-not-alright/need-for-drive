@@ -11,6 +11,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    // eslint-disable-next-line no-console
     console.error('ErrorBoundary caught an error: ', error, errorInfo);
     this.setState({ errorMessage: error.message });
   }

@@ -1,9 +1,12 @@
-type InputSelectProps = {
-  placeholder: string;
-  value: string | null;
-  onChange: (newValue: string) => void;
-  items: string[];
-  id: string;
+export type InputSelectItem<T> = {
+  value: T;
+  label: string;
 };
 
-export default InputSelectProps;
+export type InputSelectProps<T> = {
+  maxLength: number;
+  placeholder: string;
+  items: InputSelectItem<T>[];
+  selectedItem: InputSelectItem<T> | null;
+  onSelect: (item: InputSelectItem<T> | null) => void;
+};

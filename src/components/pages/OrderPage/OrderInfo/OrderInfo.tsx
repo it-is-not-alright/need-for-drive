@@ -1,10 +1,21 @@
 import './style.scss';
 
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+import citySelector from '~/store/city/selectors';
+import pointSelector from '~/store/point/selectors';
+import { RootState } from '~/store/root';
 
 import { OrderInfoProps } from './types';
 
 function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
+  const mapState = (state: RootState) => ({
+    city: citySelector(state),
+    point: pointSelector(state),
+  });
+  const { city, point } = useSelector(mapState);
+
   return (
     <div id="order-info">
       <p className="dark-text fw-500 ta-right fs-3">Ваш заказ:</p>
@@ -13,9 +24,9 @@ function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
           <p className="dark-text">Пункт выдачи</p>
           <div className="line-dotted" />
           <p className="gray-text">
-            <span>Ульяновск,</span>
+            <span>{city ? `${city.name},` : 'Не выбрано,'}</span>
             <br />
-            <span>Нариманова 42</span>
+            <span>{point ? point.name : 'Не выбрано'}</span>
           </p>
         </div>
       </div>

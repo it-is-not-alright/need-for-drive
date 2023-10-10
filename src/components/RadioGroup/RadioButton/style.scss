@@ -14,9 +14,6 @@ button.radio-button {
   transition: color variables.$transition-duration;
 
   div.radio-button-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 1em;
     height: 1em;
     border-width: 0.1em;

@@ -7,7 +7,6 @@ import { RadioButtonProps } from './types';
 
 function RadioButton({ label, isActive, onClick }: RadioButtonProps) {
   const classes = classNames('radio-button', { active: isActive });
-
   return (
     <button className={classes} type="button" onClick={onClick}>
       <div className="radio-button-icon" />

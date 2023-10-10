@@ -56,12 +56,12 @@
     }
 
     div.line-vertical {
-      border-left: 1px solid variables.$color-4;
+      border-left: 1px solid variables.$color-light;
     }
   }
 
   div.line-horizontal {
     grid-column: 1 / 4;
-    border-top: 1px solid variables.$color-4;
+    border-top: 1px solid variables.$color-light;
   }
 }

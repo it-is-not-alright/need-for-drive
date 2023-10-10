@@ -2,7 +2,7 @@
 
 #slider {
   position: relative;
-  background-color: variables.$color-5;
+  background-color: variables.$color-dark-gray;
 
   button.slider-btn {
     z-index: 1;
@@ -16,7 +16,7 @@
     transition: variables.$transition-duration;
 
     &:hover {
-      background-color: variables.$color-1-op;
+      background-color: variables.$color-green-tr;
     }
   }
 

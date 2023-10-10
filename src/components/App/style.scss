@@ -31,19 +31,19 @@ h1 {
 }
 
 .dark-text {
-  color: variables.$color-2;
+  color: variables.$color-dark;
 }
 
 .green-text {
-  color: variables.$color-1;
+  color: variables.$color-green;
 }
 
 .gray-text {
-  color: variables.$color-3;
+  color: variables.$color-gray;
 }
 
 .light-text {
-  color: variables.$color-4;
+  color: variables.$color-light;
 }
 
 .white-text {
@@ -104,7 +104,7 @@ button {
     @extend %btn-custom;
 
     padding: 0.8em 2em;
-    color: variables.$color-4;
+    color: variables.$color-light;
     border-radius: 4px;
 
     &.green {
@@ -147,7 +147,7 @@ button {
     border-radius: 8px;
 
     &:disabled {
-      background: variables.$color-4;
+      background: variables.$color-light;
     }
   }
 

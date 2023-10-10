@@ -4,7 +4,7 @@ button.lang-btn {
   width: 48px;
   height: 48px;
   padding: 0;
-  color: variables.$color-1;
+  color: variables.$color-green;
   font-weight: 700;
   font-size: 13px;
   background-color: transparent;
@@ -18,11 +18,11 @@ button.lang-btn {
   transition-property: border-color, color;
 
   &:hover {
-    color: variables.$color-4;
-    border-color: variables.$color-4;
+    color: variables.$color-light;
+    border-color: variables.$color-light;
   }
 
   &:active {
-    color: variables.$color-1;
+    color: variables.$color-green;
   }
 }

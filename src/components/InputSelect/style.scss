@@ -2,14 +2,14 @@
 
 div.input-select {
   position: relative;
-  color: variables.$color-5;
+  color: variables.$color-dark-gray;
   font-weight: 300;
 
   div.input-select__input-shell {
     display: flex;
     border-width: 0 0 1px;
     border-style: solid;
-    border-color: variables.$color-3;
+    border-color: variables.$color-gray;
 
     input {
       width: 100%;
@@ -22,7 +22,7 @@ div.input-select {
       outline: none;
 
       &::placeholder {
-        color: variables.$color-3;
+        color: variables.$color-gray;
       }
     }
 
@@ -38,7 +38,7 @@ div.input-select {
       .icon {
         width: 0.6em;
         height: 0.6em;
-        fill: variables.$color-5;
+        fill: variables.$color-dark-gray;
       }
     }
   }
@@ -59,7 +59,7 @@ div.input-select {
       overflow-y: auto;
       border-width: 0 1px 1px;
       border-style: solid;
-      border-color: variables.$color-4;
+      border-color: variables.$color-light;
 
       &::-webkit-scrollbar {
         width: 4px;
@@ -85,7 +85,7 @@ div.input-select {
         transition: color 0.1s;
 
         &:hover {
-          color: variables.$color-1;
+          color: variables.$color-green;
         }
       }
     }

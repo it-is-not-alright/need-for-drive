@@ -8,16 +8,16 @@ div.car-box {
   padding: 1em;
   border-width: 1px;
   border-style: solid;
-  border-color: variables.$color-4;
+  border-color: variables.$color-light;
   cursor: pointer;
   transition: border-color variables.$transition-duration;
 
   &:hover {
-    border-color: variables.$color-3;
+    border-color: variables.$color-gray;
   }
 
   &.active {
-    border-color: variables.$color-1;
+    border-color: variables.$color-green;
   }
 
   p {

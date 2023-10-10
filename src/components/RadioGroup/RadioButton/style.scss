@@ -5,7 +5,7 @@ button.radio-button {
   gap: 0.5em;
   align-items: center;
   padding: 0;
-  color: variables.$color-3;
+  color: variables.$color-gray;
   font-weight: 300;
   font-size: inherit;
   background-color: transparent;
@@ -21,18 +21,18 @@ button.radio-button {
     height: 1em;
     border-width: 0.1em;
     border-style: solid;
-    border-color: variables.$color-3;
+    border-color: variables.$color-gray;
     border-radius: 1em;
     transition-duration: variables.$transition-duration;
     transition-property: border-width, border-color;
   }
 
   &.active {
-    color: variables.$color-2;
+    color: variables.$color-dark;
 
     div.radio-button-icon {
       border-width: 0.3em;
-      border-color: variables.$color-1;
+      border-color: variables.$color-green;
     }
   }
 }

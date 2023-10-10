@@ -9,10 +9,10 @@
   transform: translateX(-50%);
 
   .icon {
-    fill: variables.$color-4;
+    fill: variables.$color-light;
 
     &.active {
-      fill: variables.$color-1;
+      fill: variables.$color-green;
     }
   }
 }

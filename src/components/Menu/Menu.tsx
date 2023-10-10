@@ -7,10 +7,10 @@ import { useLocation } from 'react-router';
 import LangBtn from './LangBtn/LangBtn';
 import MenuBtn from './MenuBtn/MenuBtn';
 import NavBlock from './NavBlock/NavBlock';
-import MenuStates from './types';
+import MenuState from './types';
 
 function Menu() {
-  const [state, setState] = useState<MenuStates>(MenuStates.Collapsed);
+  const [state, setState] = useState<MenuState>(MenuState.Collapsed);
   const [isLimited, setIsLimited] = useState<boolean>(false);
   const location = useLocation();
 
@@ -19,11 +19,11 @@ function Menu() {
   }, [location]);
 
   const handleMenuBtnOnClick = () => {
-    if (state === MenuStates.Collapsed) {
-      setState(MenuStates.Expanded);
+    if (state === MenuState.Collapsed) {
+      setState(MenuState.Expanded);
       document.documentElement.style.overflowY = 'hidden';
     } else {
-      setState(MenuStates.Collapsed);
+      setState(MenuState.Collapsed);
       document.documentElement.style.overflowY = 'auto';
     }
   };

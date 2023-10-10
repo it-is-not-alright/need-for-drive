@@ -1,0 +1,38 @@
+@use '~/components/variables.scss';
+
+button.radio-button {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  padding: 0;
+  color: variables.$color-3;
+  font-weight: 300;
+  font-size: inherit;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: color variables.$transition-duration;
+
+  div.radio-button-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1em;
+    height: 1em;
+    border-width: 0.1em;
+    border-style: solid;
+    border-color: variables.$color-3;
+    border-radius: 1em;
+    transition-duration: variables.$transition-duration;
+    transition-property: border-width, border-color;
+  }
+
+  &.active {
+    color: variables.$color-2;
+
+    div.radio-button-icon {
+      border-width: 0.3em;
+      border-color: variables.$color-1;
+    }
+  }
+}

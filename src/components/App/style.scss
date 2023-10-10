@@ -4,7 +4,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -140,7 +140,7 @@ button {
   &.btn-large {
     @extend %btn-custom;
 
-    padding: 1em 4em;
+    padding: 1em 3em;
     color: white;
     background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
     background-blend-mode: darken;

@@ -7,11 +7,11 @@
     "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "eslint": "npx eslint ./src --fix",
+    "eslintFix": "npx eslint ./src/**/*.{js,ts,tsx} --fix",
     "prepare": "npx husky install",
     "prettier": "prettier --write '**/*.{js,ts,tsx,json,md,html,scss}'",
     "start": "webpack serve --mode development",
-    "stylelint": "npx stylelint ./src --fix"
+    "stylelintFix": "npx stylelint ./src/**/*.scss --fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",

@@ -1,29 +1,25 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 
-import { setColor } from '~/store/color/colorSlice';
-import { setModel } from '~/store/model/modelSlice';
-import modelSelector from '~/store/model/selectors';
+import RadioGroup from '~/components/RadioGroup/RadioGroup';
+import { ICategory } from '~/store/category/types';
 
+import categories from './constants';
 import { ModelStageProps } from './types';
 
 function ModelStage({ updateAvailableStageIndex }: ModelStageProps) {
-  const dispatch = useDispatch();
-  const model = useSelector(modelSelector);
+  const [category, setCategory] = useState<ICategory>(categories[1]);
 
-  function handleInputOnChange(
-    event: React.ChangeEvent<HTMLInputElement>,
-  ): void {
-    dispatch(setModel(event.target.value));
-    dispatch(setColor(''));
+  const onCategoryChange = (newCategory: ICategory) => {
+    setCategory(newCategory);
     updateAvailableStageIndex();
-  }
+  };
 
   return (
-    <>
-      <p>Model</p>
-      <input value={model} onChange={handleInputOnChange} />
-    </>
+    <RadioGroup
+      items={categories}
+      onChange={onCategoryChange}
+      selectedItem={category}
+    />
   );
 }
 

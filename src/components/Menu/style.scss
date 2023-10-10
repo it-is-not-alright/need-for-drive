@@ -99,7 +99,7 @@ $transition-duration: 0.3s;
 
     #menu__container {
       background-color: transparent;
-      animation: hide_menu $transition-duration forwards;
+      animation: hide-menu $transition-duration forwards;
 
       #menu__container__content {
         width: 0%;
@@ -130,7 +130,7 @@ $transition-duration: 0.3s;
   }
 }
 
-@keyframes hide_menu {
+@keyframes hide-menu {
   99% {
     visibility: visible;
   }

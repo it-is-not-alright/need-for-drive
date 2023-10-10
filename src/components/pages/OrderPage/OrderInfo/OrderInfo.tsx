@@ -2,7 +2,9 @@ import './style.scss';
 
 import React from 'react';
 
-function OrderInfo() {
+import { OrderInfoProps } from './types';
+
+function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
   return (
     <div id="order-info">
       <p className="dark-text fw-500 ta-right fs-3">Ваш заказ:</p>
@@ -21,8 +23,8 @@ function OrderInfo() {
         <span className="fw-500">Цена: </span>
         <span>от 8 000 до 12 000 ₽</span>
       </p>
-      <button className="btn-large" type="button">
-        Выбрать модель
+      <button className="btn-large" type="button" onClick={btnOnClick}>
+        {btnLabel}
       </button>
     </div>
   );

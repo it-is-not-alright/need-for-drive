@@ -1,6 +1,26 @@
+@use '../variables.scss';
+
 div.breadcrumbs {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   align-items: center;
+
+  button {
+    padding: 0;
+    font-weight: 700;
+    font-size: inherit;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: color variables variables.$transition-duration;
+
+    &:hover, &.active {
+      color: variables.$color-1;
+    }
+
+    &:disabled {
+      color: variables.$color-3;
+    }
+  }
 }

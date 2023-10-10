@@ -7,7 +7,7 @@ import { useLocation } from 'react-router';
 import LangBtn from './LangBtn/LangBtn';
 import MenuBtn from './MenuBtn/MenuBtn';
 import NavBlock from './NavBlock/NavBlock';
-import MenuState from './types';
+import { MenuState } from './types';
 
 function Menu() {
   const [state, setState] = useState<MenuState>(MenuState.Collapsed);
@@ -18,7 +18,7 @@ function Menu() {
     setIsLimited(location.pathname === '/');
   }, [location]);
 
-  const handleMenuBtnOnClick = () => {
+  const handleMenuBtnClick = () => {
     if (state === MenuState.Collapsed) {
       setState(MenuState.Expanded);
       document.documentElement.style.overflowY = 'hidden';
@@ -31,7 +31,7 @@ function Menu() {
   return (
     <div id="menu" className={state}>
       <div id="menu__sidebar">
-        <MenuBtn menuState={state} onClick={handleMenuBtnOnClick} />
+        <MenuBtn menuState={state} onClick={handleMenuBtnClick} />
         <LangBtn />
       </div>
       <div id="menu__container">

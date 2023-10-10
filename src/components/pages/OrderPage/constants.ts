@@ -19,4 +19,4 @@ const stages: Stage[] = [
   },
 ];
 
-export default stages;
+export { stages };

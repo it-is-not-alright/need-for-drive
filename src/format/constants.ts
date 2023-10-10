@@ -1,0 +1,3 @@
+const currencySign = '₽';
+
+export { currencySign };

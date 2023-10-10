@@ -1,25 +1,44 @@
+import './style.scss';
+
 import React, { useState } from 'react';
 
 import RadioGroup from '~/components/RadioGroup/RadioGroup';
+import { ICar } from '~/store/car/types';
 import { ICategory } from '~/store/category/types';
 
-import categories from './constants';
+import CarBox from './CarBox/CarBox';
+import { cars, categories } from './constants';
 import { ModelStageProps } from './types';
 
-function ModelStage({ updateAvailableStageIndex }: ModelStageProps) {
+function ModelStage({ updateReachedStageIndex }: ModelStageProps) {
   const [category, setCategory] = useState<ICategory>(categories[1]);
+  const [selectedCar, setSelectedCar] = useState<ICar>(cars[0]);
 
   const onCategoryChange = (newCategory: ICategory) => {
     setCategory(newCategory);
-    updateAvailableStageIndex();
+    updateReachedStageIndex();
   };
 
   return (
-    <RadioGroup
-      items={categories}
-      onChange={onCategoryChange}
-      selectedItem={category}
-    />
+    <div id="model-stage">
+      <RadioGroup
+        items={categories}
+        onChange={onCategoryChange}
+        selectedItem={category}
+      />
+      <div id="car-grid">
+        {cars.map((car) => {
+          return (
+            <CarBox
+              key={car.id}
+              car={car}
+              isActive={car.id === selectedCar.id}
+              onClick={() => setSelectedCar(car)}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

@@ -36,15 +36,13 @@ function InputSelect({
     setValue(selectedItem ? selectedItem.label : '');
   }, [selectedItem]);
 
-  function handleClearBtnOnClick(): void {
+  function handleClearBtnClick(): void {
     setValue('');
     onSelect(null);
     setOverlap(items);
   }
 
-  function handleInputOnChange(
-    event: React.ChangeEvent<HTMLInputElement>,
-  ): void {
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>): void {
     const newValue: string = event.target.value;
     if (newValue.length > maxLength) {
       return;
@@ -57,11 +55,11 @@ function InputSelect({
     onSelect(newSelectedItem);
   }
 
-  function handleInputOnFocus(): void {
+  function handleInputFocus(): void {
     setFocused(true);
   }
 
-  function handleInputOnBlur(
+  function handleInputBlur(
     event: React.FocusEvent<HTMLInputElement, Element>,
   ): void {
     if (event.relatedTarget === null) {
@@ -76,7 +74,7 @@ function InputSelect({
     }
   }
 
-  function handleSelectItemOnClick(item: IEntity): void {
+  function handleSelectItemClick(item: IEntity): void {
     onSelect(item);
     setFocused(false);
   }
@@ -87,12 +85,12 @@ function InputSelect({
         <input
           placeholder={placeholder}
           value={value}
-          onChange={handleInputOnChange}
-          onFocus={handleInputOnFocus}
-          onBlur={(event) => handleInputOnBlur(event)}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+          onBlur={(event) => handleInputBlur(event)}
         />
         {value !== '' && (
-          <button type="button" onClick={handleClearBtnOnClick}>
+          <button type="button" onClick={handleClearBtnClick}>
             <Icon name="input-select-cross" />
           </button>
         )}
@@ -105,7 +103,7 @@ function InputSelect({
                 <button
                   key={item.id}
                   className="input-select__select-item"
-                  onClick={() => handleSelectItemOnClick(item)}
+                  onClick={() => handleSelectItemClick(item)}
                   type="button"
                 >
                   {item.label}

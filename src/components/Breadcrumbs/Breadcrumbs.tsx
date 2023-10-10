@@ -4,12 +4,12 @@ import classNames from 'classnames';
 import React, { Fragment } from 'react';
 
 import Icon from '../Icon/Icon';
-import BreadcrumbsProps from './types';
+import { BreadcrumbsProps } from './types';
 
 function Breadcrumbs({
   items,
-  activeIndex,
-  availableIndex,
+  currentIndex,
+  reachedIndex,
   onIndexChange,
 }: BreadcrumbsProps) {
   return (
@@ -20,8 +20,8 @@ function Breadcrumbs({
             <button
               type="button"
               onClick={() => onIndexChange(index)}
-              className={classNames({ active: index === activeIndex })}
-              disabled={index > availableIndex}
+              className={classNames({ active: index === currentIndex })}
+              disabled={index > reachedIndex}
             >
               {item}
             </button>

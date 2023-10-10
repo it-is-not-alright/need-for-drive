@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 function LangBtn() {
   const [lang, setLang] = useState<string>('Eng');
 
-  function handleOnClick(): void {
+  function handleClick(): void {
     if (lang === 'Eng') {
       setLang('Рус');
     } else {
@@ -14,7 +14,7 @@ function LangBtn() {
   }
 
   return (
-    <button className="lang-btn" type="button" onClick={handleOnClick}>
+    <button className="lang-btn" type="button" onClick={handleClick}>
       {lang}
     </button>
   );

@@ -1,7 +1,7 @@
-import { ISlide } from '../types';
+import { Slide } from '../types';
 
 export type NavDotsProps = {
-  slides: ISlide[];
+  slides: Slide[];
   activeIndex: number;
   onClick: (slideIndex: number) => void;
 };

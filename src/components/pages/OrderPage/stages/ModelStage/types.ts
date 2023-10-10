@@ -1,3 +1,5 @@
-export type ModelStageProps = {
-  updateAvailableStageIndex: () => void;
+type ModelStageProps = {
+  updateReachedStageIndex: () => void;
 };
+
+export { ModelStageProps };

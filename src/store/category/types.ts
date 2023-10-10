@@ -1,5 +1,7 @@
 import { IEntity } from '../types';
 
-export interface ICategory extends IEntity {
+interface ICategory extends IEntity {
   name: string;
 }
+
+export { ICategory };

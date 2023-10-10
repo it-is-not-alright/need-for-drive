@@ -1,6 +1,6 @@
-import { ISlide } from '../types';
+import { Slide } from '../types';
 
 export type SliderImagesProps = {
-  slides: ISlide[];
+  slides: Slide[];
   activeIndex: number;
 };

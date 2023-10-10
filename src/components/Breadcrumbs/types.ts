@@ -1,8 +1,8 @@
 type BreadcrumbsProps = {
   items: string[];
-  activeIndex: number;
-  availableIndex: number;
+  currentIndex: number;
+  reachedIndex: number;
   onIndexChange: (newIndex: number) => void;
 };
 
-export default BreadcrumbsProps;
+export { BreadcrumbsProps };

@@ -6,9 +6,7 @@ import colorSelector from '~/store/color/selectors';
 
 import { AdditionalStageProps } from './types';
 
-function AdditionallyStage({
-  updateAvailableStageIndex,
-}: AdditionalStageProps) {
+function AdditionallyStage({ updateReachedStageIndex }: AdditionalStageProps) {
   const dispatch = useDispatch();
   const color = useSelector(colorSelector);
 
@@ -16,7 +14,7 @@ function AdditionallyStage({
     event: React.ChangeEvent<HTMLInputElement>,
   ): void {
     dispatch(setColor(event.target.value));
-    updateAvailableStageIndex();
+    updateReachedStageIndex();
   }
 
   return (

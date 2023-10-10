@@ -9,18 +9,18 @@ import MapImage from '~/assets/images/map/img-0.png';
 import InputSelect from '~/components/InputSelect/InputSelect';
 import useThrowError from '~/hooks/useThrowError';
 import { getCities, getPoints } from '~/store/api';
+import { setCar } from '~/store/car/carSlice';
 import { setCity } from '~/store/city/citySlice';
 import citySelector from '~/store/city/selectors';
 import { ICity } from '~/store/city/types';
 import { setColor } from '~/store/color/colorSlice';
-import { setModel } from '~/store/model/modelSlice';
 import { setPoint } from '~/store/point/pointSlice';
 import pointSelector from '~/store/point/selectors';
 import { IPoint } from '~/store/point/types';
 
 import { LocationStageProps } from './types';
 
-function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
+function LocationStage({ updateReachedStageIndex }: LocationStageProps) {
   const mapSelector = createSelector(
     [citySelector, pointSelector],
     (city, point) => {
@@ -56,18 +56,18 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
   }, [city, points]);
 
   function clear(): void {
-    dispatch(setModel(''));
+    dispatch(setCar(''));
     dispatch(setColor(''));
-    updateAvailableStageIndex();
+    updateReachedStageIndex();
   }
 
-  const cityOnSelect = (newValue: ICity | null): void => {
+  const handleCitySelect = (newValue: ICity | null): void => {
     dispatch(setCity(newValue));
     dispatch(setPoint(null));
     clear();
   };
 
-  const pointOnSelect = (newValue: IPoint | null): void => {
+  const handlePointSelect = (newValue: IPoint | null): void => {
     dispatch(setPoint(newValue));
     clear();
   };
@@ -81,7 +81,7 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
           placeholder="Начните вводить город ..."
           items={cities}
           selectedItem={city}
-          onSelect={cityOnSelect}
+          onSelect={handleCitySelect}
         />
         <p className="dark-text fw-300 ta-right">Пункт выдачи</p>
         <InputSelect
@@ -89,7 +89,7 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
           placeholder="Начните вводить пункт ..."
           items={cityPoints}
           selectedItem={point}
-          onSelect={pointOnSelect}
+          onSelect={handlePointSelect}
         />
       </div>
       <p className="dark-text fw-300">Выбрать на карте:</p>

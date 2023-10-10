@@ -3,4 +3,4 @@ enum MenuState {
   Expanded = 'expanded',
 }
 
-export default MenuState;
+export { MenuState };

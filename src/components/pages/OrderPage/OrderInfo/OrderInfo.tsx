@@ -7,9 +7,15 @@ import { createSelector } from 'reselect';
 import citySelector from '~/store/city/selectors';
 import pointSelector from '~/store/point/selectors';
 
+import { placeholder } from './constants';
+import OrderInfoOption from './OrderInfoOption/OrderInfoOption';
 import { OrderInfoProps } from './types';
 
-function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
+function OrderInfo({
+  btnLabel,
+  btnOnClick,
+  reachedStageIndex,
+}: OrderInfoProps) {
   const mapSelector = createSelector(
     [citySelector, pointSelector],
     (city, point) => {
@@ -22,15 +28,15 @@ function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
     <div id="order-info">
       <p className="dark-text fw-500 ta-right fs-3">Ваш заказ:</p>
       <div id="order-info__options">
-        <div id="order-info__option" className="fw-300">
-          <p className="dark-text">Пункт выдачи</p>
-          <div className="line-dotted" />
-          <p className="gray-text">
-            <span>{city ? `${city.name},` : 'Не выбрано,'}</span>
-            <br />
-            <span>{point ? point.address : 'Не выбрано'}</span>
-          </p>
-        </div>
+        <OrderInfoOption
+          name="Пункт выдачи"
+          value={`${city?.name || placeholder},\n${
+            point?.address || placeholder
+          }`}
+        />
+        {reachedStageIndex > 0 && (
+          <OrderInfoOption name="Модель" value={placeholder} />
+        )}
       </div>
       <p className="dark-text fs-2">
         <span className="fw-500">Цена: </span>

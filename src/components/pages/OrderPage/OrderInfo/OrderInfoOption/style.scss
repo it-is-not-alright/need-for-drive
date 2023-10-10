@@ -1,0 +1,18 @@
+@use '~/components/variables.scss';
+
+div.order-info-option {
+  display: flex;
+  gap: 1em;
+  align-items: flex-end;
+  white-space: pre-line;
+
+  div.line-dotted {
+    flex-grow: 1;
+    margin-bottom: 0.25em;
+    border-top: 1.5px dotted variables.$color-3;
+  }
+
+  p.gray-text {
+    text-align: right;
+  }
+}

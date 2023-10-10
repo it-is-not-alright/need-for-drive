@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: string = '';
 
-export const modelSlice = createSlice({
-  name: 'model',
+export const carSlice = createSlice({
+  name: 'car',
   initialState,
   reducers: {
     set: (_state, action: PayloadAction<string>) => {
@@ -12,5 +12,5 @@ export const modelSlice = createSlice({
   },
 });
 
-export const setModel = modelSlice.actions.set;
-export const modelReducer = modelSlice.reducer;
+export const setCar = carSlice.actions.set;
+export const carReducer = carSlice.reducer;

@@ -1,47 +1,47 @@
 import './style.scss';
 
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import MapImage from '~/assets/images/map/img-0.png';
 import InputSelect from '~/components/InputSelect/InputSelect';
-import useThrowError from '~/hooks/useThrowError';
-import { getCities, getPoints } from '~/store/api';
-import { setCity } from '~/store/city/citySlice';
-import citySelector from '~/store/city/selectors';
-import { ICity } from '~/store/city/types';
-import { setColor } from '~/store/color/colorSlice';
-import { setModel } from '~/store/model/modelSlice';
-import { setPoint } from '~/store/point/pointSlice';
-import pointSelector from '~/store/point/selectors';
-import { IPoint } from '~/store/point/types';
+import { getCities } from '~/store/cities/citiesSlice';
+import citiesSelector from '~/store/cities/selectors';
+import {
+  setCity,
+  setColor,
+  setModel,
+  setPoint,
+} from '~/store/orderDetails/orderDetailsSlice';
+import orderDetailsSelector from '~/store/orderDetails/selectors';
+import { getPoints } from '~/store/points/pointsSlice';
+import pointsSelector from '~/store/points/selectors';
+import { AppDispatch } from '~/store/root';
+import { ICity, IPoint } from '~/store/types';
 
 import { LocationStageProps } from './types';
 
 function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
-  const mapSelector = createSelector(
-    [citySelector, pointSelector],
-    (city, point) => {
-      return { city, point };
-    },
-  );
-  const { city, point } = useSelector(mapSelector);
-  const [cities, setCities] = useState<ICity[]>([]);
-  const [points, setPoints] = useState<IPoint[]>([]);
+  const { city, point } = useSelector(orderDetailsSelector);
+  const { data: cities, errorMessage: citiesError } =
+    useSelector(citiesSelector);
+  const { data: points, errorMessage: pointsError } =
+    useSelector(pointsSelector);
   const [cityPoints, setCityPoints] = useState<IPoint[]>([]);
-  const throwError = useThrowError();
-  const dispatch: Dispatch<AnyAction> = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    getCities()
-      .then((requestResult) => setCities(requestResult))
-      .catch((error) => throwError(error));
-    getPoints()
-      .then((requestResult) => setPoints(requestResult))
-      .catch((error) => throwError(error));
+    dispatch(getCities());
+    dispatch(getPoints());
   }, []);
+
+  useEffect(() => {
+    if (citiesError === null && citiesError === null) {
+      return;
+    }
+    const errorMessage: string = 'Ошибка сервера';
+    throw new Error(errorMessage);
+  }, [citiesError, pointsError]);
 
   useEffect(() => {
     if (city === null) {

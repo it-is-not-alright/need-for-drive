@@ -10,7 +10,7 @@ const get = createAsyncThunk<IPoint[], void, { rejectValue: string }>(
     try {
       const array: IPoint[] = await getArray<IPoint>(pointUrl);
       return array.map((point: IPoint) => {
-        return { ...point, label: point.name };
+        return { ...point, label: `${point.name}, ${point.address}` };
       });
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

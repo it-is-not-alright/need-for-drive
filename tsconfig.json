@@ -9,6 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "paths": {
+      "~/api/*": ["src/api/*"],
       "~/assets/*": ["src/assets/*"],
       "~/hooks/*": ["src/hooks/*"],
       "~/store/*": ["src/store/*"],

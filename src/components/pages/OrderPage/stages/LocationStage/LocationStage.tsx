@@ -1,29 +1,55 @@
 import './style.scss';
 
-import { AnyAction, Dispatch } from '@reduxjs/toolkit';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MapImage from '~/assets/images/map/img-0.png';
 import InputSelect from '~/components/InputSelect/InputSelect';
-import { setCity } from '~/store/city/citySlice';
-import citySelector from '~/store/city/selectors';
-import { setColor } from '~/store/color/colorSlice';
-import { setModel } from '~/store/model/modelSlice';
-import { setPoint } from '~/store/point/pointSlice';
-import pointSelector from '~/store/point/selectors';
-import { RootState } from '~/store/root';
+import citiesSelector from '~/store/cities/selectors';
+import { getCities } from '~/store/cities/thunk';
+import {
+  setCity,
+  setColor,
+  setModel,
+  setPoint,
+} from '~/store/orderDetails/orderDetailsSlice';
+import orderDetailsSelector from '~/store/orderDetails/selectors';
+import pointsSelector from '~/store/points/selectors';
+import { getPoints } from '~/store/points/thunk';
+import { AppDispatch } from '~/store/root';
+import { ICity, IPoint } from '~/store/types';
 
-import { cities, points } from './constans';
 import { LocationStageProps } from './types';
 
 function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
-  const mapState = (state: RootState) => ({
-    city: citySelector(state),
-    point: pointSelector(state),
-  });
-  const { city, point } = useSelector(mapState);
-  const dispatch: Dispatch<AnyAction> = useDispatch();
+  const { city, point } = useSelector(orderDetailsSelector);
+  const { data: cities, errorMessage: citiesError } =
+    useSelector(citiesSelector);
+  const { data: points, errorMessage: pointsError } =
+    useSelector(pointsSelector);
+  const [cityPoints, setCityPoints] = useState<IPoint[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(getCities());
+    dispatch(getPoints());
+  }, []);
+
+  useEffect(() => {
+    if (citiesError === null && citiesError === null) {
+      return;
+    }
+    const errorMessage: string = 'Ошибка сервера';
+    throw new Error(errorMessage);
+  }, [citiesError, pointsError]);
+
+  function updateCityPoints(newCity: ICity) {
+    setCityPoints(
+      points.filter((item) => {
+        return item.cityId.id === newCity.id;
+      }),
+    );
+  }
 
   function clear(): void {
     dispatch(setModel(''));
@@ -31,13 +57,17 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
     updateAvailableStageIndex();
   }
 
-  const cityOnChange = (newValue: string): void => {
-    dispatch(setCity(newValue));
+  const cityOnSelect = (newCity: ICity | null): void => {
+    dispatch(setCity(newCity));
+    dispatch(setPoint(null));
+    if (newCity !== null) {
+      updateCityPoints(newCity);
+    }
     clear();
   };
 
-  const pointOnChange = (newValue: string): void => {
-    dispatch(setPoint(newValue));
+  const pointOnSelect = (newPoint: IPoint | null): void => {
+    dispatch(setPoint(newPoint));
     clear();
   };
 
@@ -46,19 +76,19 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
       <div id="location-stage__input-container">
         <p className="dark-text fw-300 ta-right">Город</p>
         <InputSelect
+          maxLength={150}
           placeholder="Начните вводить город ..."
-          value={city}
-          onChange={cityOnChange}
           items={cities}
-          id="city-input"
+          selectedItem={city}
+          onSelect={cityOnSelect}
         />
         <p className="dark-text fw-300 ta-right">Пункт выдачи</p>
         <InputSelect
+          maxLength={150}
           placeholder="Начните вводить пункт ..."
-          value={point}
-          onChange={pointOnChange}
-          items={points}
-          id="point-input"
+          items={cityPoints}
+          selectedItem={point}
+          onSelect={pointOnSelect}
         />
       </div>
       <p className="dark-text fw-300">Выбрать на карте:</p>

@@ -1,10 +1,15 @@
 import './style.scss';
 
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+import orderDetailsSelector from '~/store/orderDetails/selectors';
 
 import { OrderInfoProps } from './types';
 
 function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
+  const { city, point } = useSelector(orderDetailsSelector);
+
   return (
     <div id="order-info">
       <p className="dark-text fw-500 ta-right fs-3">Ваш заказ:</p>
@@ -13,9 +18,9 @@ function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
           <p className="dark-text">Пункт выдачи</p>
           <div className="line-dotted" />
           <p className="gray-text">
-            <span>Ульяновск,</span>
+            <span>{city ? `${city.name},` : 'Не выбрано,'}</span>
             <br />
-            <span>Нариманова 42</span>
+            <span>{point ? point.address : 'Не выбрано'}</span>
           </p>
         </div>
       </div>
@@ -23,7 +28,12 @@ function OrderInfo({ btnLabel, btnOnClick }: OrderInfoProps) {
         <span className="fw-500">Цена: </span>
         <span>от 8 000 до 12 000 ₽</span>
       </p>
-      <button className="btn-large" type="button" onClick={btnOnClick}>
+      <button
+        className="btn-large"
+        type="button"
+        onClick={btnOnClick}
+        disabled={point === null}
+      >
         {btnLabel}
       </button>
     </div>

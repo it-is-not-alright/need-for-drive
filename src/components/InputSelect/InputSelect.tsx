@@ -1,24 +1,44 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Icon from '~/components/Icon/Icon';
+import { IEntity } from '~/store/types';
 
-import InputSelectProps from './types';
+import { InputSelectProps } from './types';
 
 function InputSelect({
+  maxLength,
   placeholder,
-  value,
-  onChange,
   items,
-  id,
+  selectedItem,
+  onSelect,
 }: InputSelectProps) {
+  const [value, setValue] = useState<string>('');
   const [focused, setFocused] = useState<boolean>(false);
-  const [overlap, setOverlap] = useState<string[]>(items);
+  const [overlap, setOverlap] = useState<IEntity[]>([]);
+
+  useEffect(() => {
+    if (value === '') {
+      setOverlap(items);
+      return;
+    }
+    const newValueClear = value.trim().toLowerCase();
+    setOverlap(
+      items.filter((item) => {
+        return item.label.toLowerCase().startsWith(newValueClear);
+      }),
+    );
+  }, [value, items]);
+
+  useEffect(() => {
+    setValue(selectedItem ? selectedItem.label : '');
+  }, [selectedItem]);
 
   function handleClearBtnOnClick(): void {
-    onChange('');
+    setValue('');
+    onSelect(null);
     setOverlap(items);
   }
 
@@ -26,12 +46,17 @@ function InputSelect({
     event: React.ChangeEvent<HTMLInputElement>,
   ): void {
     const newValue: string = event.target.value;
-    onChange(newValue);
-    setOverlap(
-      items.filter((item) => {
-        return item.toLowerCase().startsWith(newValue.toLowerCase());
-      }),
+    if (newValue.length > maxLength) {
+      return;
+    }
+    setValue(newValue);
+    const newValueClear = newValue.trim().toLowerCase();
+    const newSelectedItem: IEntity | undefined = items.find(
+      (item) => item.label.toLowerCase() === newValueClear,
     );
+    if (newSelectedItem !== undefined) {
+      onSelect(newSelectedItem);
+    }
   }
 
   function handleInputOnFocus(): void {
@@ -53,13 +78,13 @@ function InputSelect({
     }
   }
 
-  function handleSelectItemOnClick(item: string): void {
-    onChange(item);
+  function handleSelectItemOnClick(item: IEntity): void {
+    onSelect(item);
     setFocused(false);
   }
 
   return (
-    <div className={classNames('input-select', { focused })} id={id}>
+    <div className={classNames('input-select', { focused })}>
       <div className="input-select__input-shell">
         <input
           placeholder={placeholder}
@@ -68,11 +93,11 @@ function InputSelect({
           onFocus={handleInputOnFocus}
           onBlur={(event) => handleInputOnBlur(event)}
         />
-        {value !== '' ? (
+        {value !== '' && (
           <button type="button" onClick={handleClearBtnOnClick}>
             <Icon name="input-select-cross" />
           </button>
-        ) : null}
+        )}
       </div>
       <div className="input-select__select-shell">
         {overlap.length > 0 ? (
@@ -80,12 +105,12 @@ function InputSelect({
             {overlap.map((item) => {
               return (
                 <button
-                  key={item}
+                  key={item.id}
                   className="input-select__select-item"
                   onClick={() => handleSelectItemOnClick(item)}
                   type="button"
                 >
-                  {item}
+                  {item.label}
                 </button>
               );
             })}

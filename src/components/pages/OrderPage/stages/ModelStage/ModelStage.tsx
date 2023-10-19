@@ -1,15 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setColor } from '~/store/color/colorSlice';
-import { setModel } from '~/store/model/modelSlice';
-import modelSelector from '~/store/model/selectors';
+import { setColor, setModel } from '~/store/orderDetails/orderDetailsSlice';
+import orderDetailsSelector from '~/store/orderDetails/selectors';
 
 import { ModelStageProps } from './types';
 
 function ModelStage({ updateAvailableStageIndex }: ModelStageProps) {
   const dispatch = useDispatch();
-  const model = useSelector(modelSelector);
+  const { model } = useSelector(orderDetailsSelector);
 
   function handleInputOnChange(
     event: React.ChangeEvent<HTMLInputElement>,

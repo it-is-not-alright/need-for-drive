@@ -1,9 +1,9 @@
-type InputSelectProps = {
-  placeholder: string;
-  value: string | null;
-  onChange: (newValue: string) => void;
-  items: string[];
-  id: string;
-};
+import { IEntity } from '~/store/types';
 
-export default InputSelectProps;
+export type InputSelectProps = {
+  maxLength: number;
+  placeholder: string;
+  items: IEntity[];
+  selectedItem: IEntity | null;
+  onSelect: (item: IEntity | null) => void;
+};

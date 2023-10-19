@@ -10,5 +10,4 @@ function formatPriceRange(priceMin: number, priceMax: number): string {
   return `${formatPrice(priceMin)} - ${formatPrice(priceMax)} ${currencySign}`;
 }
 
-export { formatPrice };
-export { formatPriceRange };
+export { formatPrice, formatPriceRange };

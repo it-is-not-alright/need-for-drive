@@ -1,4 +1,4 @@
-export const cities = [
+const cities = [
   'Ульяновск',
   'Уфа',
   'Уральск',
@@ -8,4 +8,6 @@ export const cities = [
   'Самара',
 ];
 
-export const points = ['Нариманова 42'];
+const points = ['Нариманова 42'];
+
+export { cities, points };

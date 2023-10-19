@@ -1,19 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { carReducer } from './car/carSlice';
-import { cityReducer } from './city/citySlice';
-import { colorReducer } from './color/colorSlice';
-import { pointReducer } from './point/pointSlice';
+import { citiesReducer } from './cities/citiesSlice';
+import { orderDetailsReducer } from './orderDetails/orderDetailsSlice';
+import { pointsReducer } from './points/pointsSlice';
 
 const store = configureStore({
   reducer: {
-    city: cityReducer,
-    color: colorReducer,
-    car: carReducer,
-    point: pointReducer,
+    orderDetails: orderDetailsReducer,
+    cities: citiesReducer,
+    points: pointsReducer,
   },
 });
 
 export default store;
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

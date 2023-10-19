@@ -49,10 +49,12 @@ function InputSelect({
     }
     setValue(newValue);
     const newValueClear = newValue.trim().toLowerCase();
-    const newSelectedItem: IEntity = items.find(
+    const newSelectedItem: IEntity | undefined = items.find(
       (item) => item.label.toLowerCase() === newValueClear,
     );
-    onSelect(newSelectedItem);
+    if (newSelectedItem !== undefined) {
+      onSelect(newSelectedItem);
+    }
   }
 
   function handleInputFocus(): void {

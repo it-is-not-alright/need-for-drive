@@ -1,6 +1,8 @@
 import { Slide } from '../types';
 
-export type SliderImagesProps = {
+type SliderImagesProps = {
   slides: Slide[];
   activeIndex: number;
 };
+
+export { SliderImagesProps };

@@ -2,10 +2,8 @@ import './style.scss';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
 
-import citySelector from '~/store/city/selectors';
-import pointSelector from '~/store/point/selectors';
+import orderDetailsSelector from '~/store/orderDetails/selectors';
 
 import { placeholder } from './constants';
 import OrderInfoOption from './OrderInfoOption/OrderInfoOption';
@@ -16,13 +14,7 @@ function OrderInfo({
   btnOnClick,
   reachedStageIndex,
 }: OrderInfoProps) {
-  const mapSelector = createSelector(
-    [citySelector, pointSelector],
-    (city, point) => {
-      return { city, point };
-    },
-  );
-  const { city, point } = useSelector(mapSelector);
+  const { city, point } = useSelector(orderDetailsSelector);
 
   return (
     <div id="order-info">

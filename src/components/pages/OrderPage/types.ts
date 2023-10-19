@@ -9,5 +9,4 @@ type Stage = {
   btnLabel: string;
 };
 
-export { OrderPageProps };
-export { Stage };
+export { OrderPageProps, Stage };

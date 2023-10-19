@@ -6,5 +6,4 @@ type ErrorBoundaryState = {
   errorMessage: string;
 };
 
-export { ErrorBoundaryProps };
-export { ErrorBoundaryState };
+export { ErrorBoundaryProps, ErrorBoundaryState };

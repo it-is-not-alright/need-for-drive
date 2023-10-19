@@ -40,6 +40,4 @@ const slides: Slide[] = [
   },
 ];
 
-export { defaultDelay };
-export { longDelay };
-export { slides };
+export { defaultDelay, longDelay, slides };

@@ -1,4 +1,4 @@
-import { ICar } from '~/store/car/types';
+import { ICar } from '~/store/types';
 
 type CarBoxProps = {
   car: ICar;

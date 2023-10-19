@@ -2,8 +2,7 @@ import image0 from '~/assets/images/cars/img-0.png';
 import image1 from '~/assets/images/cars/img-1.png';
 import image2 from '~/assets/images/cars/img-2.png';
 import image3 from '~/assets/images/cars/img-3.png';
-import { ICar } from '~/store/car/types';
-import { ICategory } from '~/store/category/types';
+import { ICar, ICategory } from '~/store/types';
 
 const categories: ICategory[] = [
   {
@@ -66,5 +65,4 @@ const cars: ICar[] = [
   },
 ];
 
-export { categories };
-export { cars };
+export { cars, categories };

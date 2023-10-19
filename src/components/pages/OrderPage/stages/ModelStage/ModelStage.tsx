@@ -3,8 +3,7 @@ import './style.scss';
 import React, { useState } from 'react';
 
 import RadioGroup from '~/components/RadioGroup/RadioGroup';
-import { ICar } from '~/store/car/types';
-import { ICategory } from '~/store/category/types';
+import { ICar, ICategory } from '~/store/types';
 
 import CarBox from './CarBox/CarBox';
 import { cars, categories } from './constants';

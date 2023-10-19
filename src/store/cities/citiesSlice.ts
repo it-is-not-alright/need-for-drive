@@ -1,26 +1,11 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { cityUrl } from '../constants';
-import getArray from '../getArray';
 import { ICity, RequestState } from '../types';
-
-const get = createAsyncThunk<ICity[], void, { rejectValue: string }>(
-  'cities/get',
-  async (_, thunkApi) => {
-    try {
-      const array: ICity[] = await getArray<ICity>(cityUrl);
-      return array.map((city: ICity) => {
-        return { ...city, label: city.name };
-      });
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  },
-);
+import { getCities } from './thunk';
 
 const initialState: RequestState<ICity[]> = {
   data: [],
-  status: null,
+  isLoading: true,
   errorMessage: null,
 };
 
@@ -29,23 +14,24 @@ export const citiesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(get.pending, (state) => {
-      state.data = [];
-      state.status = 'pending';
-      state.errorMessage = null;
+    builder.addCase(getCities.pending, (state) => {
+      state.isLoading = true;
     });
-    builder.addCase(get.fulfilled, (state, action: PayloadAction<ICity[]>) => {
-      state.data = action.payload;
-      state.status = 'pending';
-      state.errorMessage = null;
-    });
-    builder.addCase(get.rejected, (state, action: PayloadAction<string>) => {
-      state.data = [];
-      state.status = 'rejected';
-      state.errorMessage = action.payload;
-    });
+    builder.addCase(
+      getCities.fulfilled,
+      (state, action: PayloadAction<ICity[]>) => {
+        state.data = action.payload;
+        state.isLoading = false;
+      },
+    );
+    builder.addCase(
+      getCities.rejected,
+      (state, action: PayloadAction<string>) => {
+        state.isLoading = false;
+        state.errorMessage = action.payload;
+      },
+    );
   },
 });
 
 export const citiesReducer = citiesSlice.reducer;
-export const getCities = get;

@@ -5,7 +5,7 @@ export type RequestResult<T> = {
 
 export type RequestState<T> = {
   data: T;
-  status: string | null;
+  isLoading: boolean;
   errorMessage: string | null;
 };
 

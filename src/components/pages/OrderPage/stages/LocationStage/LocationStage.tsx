@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import MapImage from '~/assets/images/map/img-0.png';
 import InputSelect from '~/components/InputSelect/InputSelect';
-import { getCities } from '~/store/cities/citiesSlice';
 import citiesSelector from '~/store/cities/selectors';
+import { getCities } from '~/store/cities/thunk';
 import {
   setCity,
   setColor,
@@ -14,8 +14,8 @@ import {
   setPoint,
 } from '~/store/orderDetails/orderDetailsSlice';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
-import { getPoints } from '~/store/points/pointsSlice';
 import pointsSelector from '~/store/points/selectors';
+import { getPoints } from '~/store/points/thunk';
 import { AppDispatch } from '~/store/root';
 import { ICity, IPoint } from '~/store/types';
 
@@ -43,17 +43,13 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
     throw new Error(errorMessage);
   }, [citiesError, pointsError]);
 
-  useEffect(() => {
-    if (city === null) {
-      setCityPoints([]);
-      return;
-    }
+  function updateCityPoints(newCity: ICity) {
     setCityPoints(
       points.filter((item) => {
-        return item.cityId.id === city.id;
+        return item.cityId.id === newCity.id;
       }),
     );
-  }, [city, points]);
+  }
 
   function clear(): void {
     dispatch(setModel(''));
@@ -61,14 +57,17 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
     updateAvailableStageIndex();
   }
 
-  const cityOnSelect = (newValue: ICity | null): void => {
-    dispatch(setCity(newValue));
+  const cityOnSelect = (newCity: ICity | null): void => {
+    dispatch(setCity(newCity));
     dispatch(setPoint(null));
+    if (newCity !== null) {
+      updateCityPoints(newCity);
+    }
     clear();
   };
 
-  const pointOnSelect = (newValue: IPoint | null): void => {
-    dispatch(setPoint(newValue));
+  const pointOnSelect = (newPoint: IPoint | null): void => {
+    dispatch(setPoint(newPoint));
     clear();
   };
 

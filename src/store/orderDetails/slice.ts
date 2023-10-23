@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ICity, IPoint, OrderDetails } from '../types';
+import { defaultCategory } from '../constants';
+import { ICategory, ICity, IModel, IPoint, OrderDetails } from '../types';
 
 const initialState: OrderDetails = {
   city: null,
   point: null,
+  category: defaultCategory,
+  car: null,
   color: '',
-  model: '',
 };
 
 export const orderDetailsSlice = createSlice({
@@ -19,15 +21,18 @@ export const orderDetailsSlice = createSlice({
     setPoint: (state, action: PayloadAction<IPoint | null>) => {
       state.point = action.payload;
     },
+    setCategory: (state, action: PayloadAction<ICategory>) => {
+      state.category = action.payload;
+    },
+    setModel: (state, action: PayloadAction<IModel | null>) => {
+      state.car = action.payload;
+    },
     setColor: (state, action: PayloadAction<string>) => {
       state.color = action.payload;
-    },
-    setModel: (state, action: PayloadAction<string>) => {
-      state.model = action.payload;
     },
   },
 });
 
-export const { setCity, setPoint, setColor, setModel } =
+export const { setCity, setPoint, setCategory, setModel, setColor } =
   orderDetailsSlice.actions;
 export const orderDetailsReducer = orderDetailsSlice.reducer;

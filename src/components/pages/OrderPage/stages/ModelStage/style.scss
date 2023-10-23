@@ -1,7 +1,7 @@
 @use '~/components/variables.scss';
 
 #model-stage {
-  #car-grid {
+  #model-grid {
     display: grid;
     grid-template-columns: 1fr;
     margin-top: 2em;
@@ -17,5 +17,9 @@
     @media (width >= calc(variables.$desktop-width - 200px)) {
       grid-template-columns: 1fr 1fr;
     }
+  }
+
+  div.spinner-wrapper {
+    padding: 5em;
   }
 }

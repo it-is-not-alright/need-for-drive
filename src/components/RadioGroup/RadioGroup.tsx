@@ -13,7 +13,7 @@ function RadioGroup({ items, selectedItem, onChange }: RadioGroupProps) {
           <RadioButton
             label={item.label}
             key={item.id}
-            isActive={item.id === selectedItem.id}
+            isActive={selectedItem !== null && item.id === selectedItem.id}
             onClick={() => onChange(item)}
           />
         );

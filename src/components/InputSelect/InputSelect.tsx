@@ -20,6 +20,10 @@ function InputSelect({
   const [overlap, setOverlap] = useState<IEntity[]>([]);
 
   useEffect(() => {
+    setValue(selectedItem ? selectedItem.label : '');
+  }, [selectedItem]);
+
+  function refreshOverlap() {
     if (value === '') {
       setOverlap(items);
       return;
@@ -30,11 +34,11 @@ function InputSelect({
         return item.label.toLowerCase().startsWith(newValueClear);
       }),
     );
-  }, [value, items]);
+  }
 
   useEffect(() => {
-    setValue(selectedItem ? selectedItem.label : '');
-  }, [selectedItem]);
+    refreshOverlap();
+  }, [value, items]);
 
   function handleClearBtnClick(): void {
     setValue('');

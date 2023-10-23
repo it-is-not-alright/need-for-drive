@@ -65,6 +65,7 @@ function OrderPage({ header }: OrderPageProps) {
           btnLabel={stages[currentStageIndex].btnLabel}
           btnOnClick={handleNextBtnClick}
           reachedStageIndex={reachedStageIndex}
+          currentStageIndex={currentStageIndex}
         />
       </div>
     </div>

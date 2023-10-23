@@ -7,12 +7,13 @@ import MapImage from '~/assets/images/map/img-0.png';
 import InputSelect from '~/components/InputSelect/InputSelect';
 import citiesSelector from '~/store/cities/selectors';
 import { getCities } from '~/store/cities/thunk';
+import orderDetailsSelector from '~/store/orderDetails/selectors';
 import {
   setCity,
   setColor,
+  setModel,
   setPoint,
-} from '~/store/orderDetails/orderDetailsSlice';
-import orderDetailsSelector from '~/store/orderDetails/selectors';
+} from '~/store/orderDetails/slice';
 import pointsSelector from '~/store/points/selectors';
 import { getPoints } from '~/store/points/thunk';
 import { AppDispatch } from '~/store/root';
@@ -51,6 +52,7 @@ function LocationStage({ updateReachedStageIndex }: LocationStageProps) {
   }
 
   function clear(): void {
+    dispatch(setModel(null));
     dispatch(setColor(''));
     updateReachedStageIndex();
   }
@@ -66,6 +68,7 @@ function LocationStage({ updateReachedStageIndex }: LocationStageProps) {
 
   const handlePointSelect = (newPoint: IPoint | null): void => {
     dispatch(setPoint(newPoint));
+    updateCityPoints(city);
     clear();
   };
 

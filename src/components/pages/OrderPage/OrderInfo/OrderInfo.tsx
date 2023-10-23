@@ -13,8 +13,20 @@ function OrderInfo({
   btnLabel,
   btnOnClick,
   reachedStageIndex,
+  currentStageIndex,
 }: OrderInfoProps) {
-  const { city, point } = useSelector(orderDetailsSelector);
+  const { city, point, car } = useSelector(orderDetailsSelector);
+
+  function nextBtnIsDisabled(): boolean {
+    switch (currentStageIndex) {
+      case 0:
+        return point === null;
+      case 1:
+        return car == null;
+      default:
+        return false;
+    }
+  }
 
   return (
     <div id="order-info">
@@ -27,7 +39,7 @@ function OrderInfo({
           }`}
         />
         {reachedStageIndex > 0 && (
-          <OrderInfoOption name="Модель" value={placeholder} />
+          <OrderInfoOption name="Модель" value={car?.name || placeholder} />
         )}
       </div>
       <p className="dark-text fs-2">
@@ -38,7 +50,7 @@ function OrderInfo({
         className="btn-large"
         type="button"
         onClick={btnOnClick}
-        disabled={point === null}
+        disabled={nextBtnIsDisabled()}
       >
         {btnLabel}
       </button>

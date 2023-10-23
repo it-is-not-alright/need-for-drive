@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setColor } from '~/store/orderDetails/orderDetailsSlice';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
+import { setColor } from '~/store/orderDetails/slice';
 
 import { AdditionalStageProps } from './types';
 

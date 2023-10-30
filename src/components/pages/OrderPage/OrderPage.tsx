@@ -12,8 +12,8 @@ import ModelStage from './stages/ModelStage/ModelStage';
 import { OrderPageProps } from './types';
 
 function OrderPage({ header }: OrderPageProps) {
-  const [currentStageIndex, setCurrentStageIndex] = useState<number>(0);
-  const [reachedStageIndex, setReachedStageIndex] = useState<number>(0);
+  const [currentStageIndex, setCurrentStageIndex] = useState<number>(2);
+  const [reachedStageIndex, setReachedStageIndex] = useState<number>(2);
 
   function renderStage(): ReactElement {
     switch (currentStageIndex) {

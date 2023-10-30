@@ -4,6 +4,8 @@ import { defaultCategory } from '../constants';
 import { ICategory, ICity, IModel, IPoint, OrderDetails } from '../types';
 
 const initialState: OrderDetails = {
+  currentStage: 0,
+  reachedStage: 0,
   city: null,
   point: null,
   category: defaultCategory,
@@ -15,6 +17,12 @@ export const orderDetailsSlice = createSlice({
   name: 'orderDetails',
   initialState,
   reducers: {
+    setCurrentStage: (state, action: PayloadAction<number>) => {
+      state.currentStage = action.payload;
+    },
+    setReachedStage: (state, action: PayloadAction<number>) => {
+      state.reachedStage = action.payload;
+    },
     setCity: (state, action: PayloadAction<ICity | null>) => {
       state.city = action.payload;
     },
@@ -33,6 +41,13 @@ export const orderDetailsSlice = createSlice({
   },
 });
 
-export const { setCity, setPoint, setCategory, setModel, setColor } =
-  orderDetailsSlice.actions;
+export const {
+  setCurrentStage,
+  setReachedStage,
+  setCity,
+  setPoint,
+  setCategory,
+  setModel,
+  setColor,
+} = orderDetailsSlice.actions;
 export const orderDetailsReducer = orderDetailsSlice.reducer;

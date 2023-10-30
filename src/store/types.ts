@@ -41,6 +41,8 @@ interface IModel extends IEntity {
 }
 
 type OrderDetails = {
+  currentStage: number;
+  reachedStage: number;
   city: ICity | null;
   point: IPoint | null;
   category: ICategory | null;

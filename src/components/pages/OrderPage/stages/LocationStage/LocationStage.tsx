@@ -13,15 +13,14 @@ import {
   setColor,
   setModel,
   setPoint,
+  setReachedStage,
 } from '~/store/orderDetails/slice';
 import pointsSelector from '~/store/points/selectors';
 import { getPoints } from '~/store/points/thunk';
 import { AppDispatch } from '~/store/root';
 import { ICity, IPoint } from '~/store/types';
 
-import { LocationStageProps } from './types';
-
-function LocationStage({ updateReachedStageIndex }: LocationStageProps) {
+function LocationStage() {
   const { city, point } = useSelector(orderDetailsSelector);
   const { data: cities, errorMessage: citiesError } =
     useSelector(citiesSelector);
@@ -52,9 +51,9 @@ function LocationStage({ updateReachedStageIndex }: LocationStageProps) {
   }
 
   function clear(): void {
+    dispatch(setReachedStage(0));
     dispatch(setModel(null));
     dispatch(setColor(''));
-    updateReachedStageIndex();
   }
 
   const handleCitySelect = (newCity: ICity | null): void => {

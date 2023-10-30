@@ -1,6 +1,7 @@
 @use '~/components/variables.scss';
 
-button.radio-button {
+div.radio-button {
+  position: relative;
   display: flex;
   gap: 0.5em;
   align-items: center;
@@ -13,7 +14,8 @@ button.radio-button {
   outline: none;
   transition: color variables.$transition-duration;
 
-  div.radio-button-icon {
+  span.radio-button-checkmark::after {
+    display: block;
     width: 1em;
     height: 1em;
     border-width: 0.1em;
@@ -22,14 +24,20 @@ button.radio-button {
     border-radius: 1em;
     transition-duration: variables.$transition-duration;
     transition-property: border-width, border-color;
+    content: "";
   }
 
-  &.active {
-    color: variables.$color-dark;
+  input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+    opacity: 0;
+  }
 
-    div.radio-button-icon {
-      border-width: 0.3em;
-      border-color: variables.$color-green;
-    }
+  input:checked ~ span.radio-button-checkmark::after {
+    border-width: 0.3em;
+    border-color: variables.$color-green;
   }
 }

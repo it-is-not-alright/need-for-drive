@@ -1,17 +1,26 @@
 import './style.scss';
 
-import classNames from 'classnames';
 import React from 'react';
 
 import { RadioButtonProps } from './types';
 
-function RadioButton({ label, isActive, onClick }: RadioButtonProps) {
-  const classes = classNames('radio-button', { active: isActive });
+function RadioButton({
+  groupName,
+  label,
+  isChecked,
+  onChange,
+}: RadioButtonProps) {
   return (
-    <button className={classes} type="button" onClick={onClick}>
-      <div className="radio-button-icon" />
+    <div className="radio-button">
+      <input
+        type="radio"
+        name={groupName}
+        checked={isChecked}
+        onChange={onChange}
+      />
+      <span className="radio-button-checkmark" />
       {label}
-    </button>
+    </div>
   );
 }
 

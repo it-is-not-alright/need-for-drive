@@ -1,24 +1,23 @@
 import './style.scss';
 
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import orderDetailsSelector from '~/store/orderDetails/selectors';
+import { setCurrentStage, setReachedStage } from '~/store/orderDetails/slice';
+import { AppDispatch } from '~/store/root';
 
 import { placeholder } from './constants';
 import OrderInfoOption from './OrderInfoOption/OrderInfoOption';
 import { OrderInfoProps } from './types';
 
-function OrderInfo({
-  btnLabel,
-  btnOnClick,
-  reachedStageIndex,
-  currentStageIndex,
-}: OrderInfoProps) {
-  const { city, point, car } = useSelector(orderDetailsSelector);
+function OrderInfo({ btnLabel }: OrderInfoProps) {
+  const { city, point, car, currentStage, reachedStage } =
+    useSelector(orderDetailsSelector);
+  const dispatch = useDispatch<AppDispatch>();
 
   function nextBtnIsDisabled(): boolean {
-    switch (currentStageIndex) {
+    switch (currentStage) {
       case 0:
         return point === null;
       case 1:
@@ -27,6 +26,13 @@ function OrderInfo({
         return false;
     }
   }
+
+  const handleNextBtnClick = (): void => {
+    if (currentStage < 3) {
+      dispatch(setCurrentStage(currentStage + 1));
+      dispatch(setReachedStage(currentStage + 1));
+    }
+  };
 
   return (
     <div id="order-info">
@@ -38,7 +44,7 @@ function OrderInfo({
             point?.address || placeholder
           }`}
         />
-        {reachedStageIndex > 0 && (
+        {reachedStage > 0 && (
           <OrderInfoOption name="Модель" value={car?.name || placeholder} />
         )}
       </div>
@@ -49,7 +55,7 @@ function OrderInfo({
       <button
         className="btn-large"
         type="button"
-        onClick={btnOnClick}
+        onClick={handleNextBtnClick}
         disabled={nextBtnIsDisabled()}
       >
         {btnLabel}

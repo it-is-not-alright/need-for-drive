@@ -1,7 +1,8 @@
 type RadioButtonProps = {
+  groupName: string;
   label: string;
-  isActive: boolean;
-  onClick: () => void;
+  isChecked: boolean;
+  onChange: () => void;
 };
 
 export { RadioButtonProps };

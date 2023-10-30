@@ -11,14 +11,18 @@ import { defaultCategory } from '~/store/constants';
 import modelsSelector from '~/store/models/selectors';
 import { getModels } from '~/store/models/thunk';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
-import { setCategory, setColor, setModel } from '~/store/orderDetails/slice';
+import {
+  setCategory,
+  setColor,
+  setModel,
+  setReachedStage,
+} from '~/store/orderDetails/slice';
 import { AppDispatch } from '~/store/root';
 import { ICategory, IModel } from '~/store/types';
 
 import ModelBox from './ModelBox/ModelBox';
-import { ModelStageProps } from './types';
 
-function ModelStage({ updateReachedStageIndex }: ModelStageProps) {
+function ModelStage() {
   const { category, car } = useSelector(orderDetailsSelector);
   const {
     data: models,
@@ -65,14 +69,15 @@ function ModelStage({ updateReachedStageIndex }: ModelStageProps) {
   };
 
   const handleModelSelect = (newCar: IModel | null): void => {
+    dispatch(setReachedStage(1));
     dispatch(setModel(newCar));
-    updateReachedStageIndex();
     dispatch(setColor(''));
   };
 
   return (
     <div id="model-stage">
       <RadioGroup
+        name="category"
         items={categories}
         onChange={onCategoryChange}
         selectedItem={category}

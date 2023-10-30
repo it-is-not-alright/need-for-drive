@@ -14,20 +14,10 @@
     padding: 2em 4em 0 2em;
   }
 
-  #order-info__option {
+  #order-info__options {
     display: flex;
+    flex-direction: column;
     gap: 1em;
-    align-items: flex-end;
-
-    div.line-dotted {
-      flex-grow: 1;
-      margin-bottom: 0.25em;
-      border-top: 1.5px dotted variables.$color-3;
-    }
-
-    p.gray-text {
-      text-align: right;
-    }
   }
 
   button.btn-large {

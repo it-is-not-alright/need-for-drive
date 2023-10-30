@@ -1,5 +1,7 @@
 import { ReactElement } from 'react';
 
-export type MainPageProps = {
+type MainPageProps = {
   header: ReactElement;
 };
+
+export { MainPageProps };

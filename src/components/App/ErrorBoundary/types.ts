@@ -1,7 +1,9 @@
-export type ErrorBoundaryProps = {
+type ErrorBoundaryProps = {
   children: React.ReactNode;
 };
 
-export type ErrorBoundaryState = {
+type ErrorBoundaryState = {
   errorMessage: string;
 };
+
+export { ErrorBoundaryProps, ErrorBoundaryState };

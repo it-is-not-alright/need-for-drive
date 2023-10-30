@@ -1,28 +1,43 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import './style.scss';
 
-import { setColor, setModel } from '~/store/orderDetails/orderDetailsSlice';
-import orderDetailsSelector from '~/store/orderDetails/selectors';
+import React, { useState } from 'react';
 
+import RadioGroup from '~/components/RadioGroup/RadioGroup';
+import { ICar, ICategory } from '~/store/types';
+
+import CarBox from './CarBox/CarBox';
+import { cars, categories } from './constants';
 import { ModelStageProps } from './types';
 
-function ModelStage({ updateAvailableStageIndex }: ModelStageProps) {
-  const dispatch = useDispatch();
-  const { model } = useSelector(orderDetailsSelector);
+function ModelStage({ updateReachedStageIndex }: ModelStageProps) {
+  const [category, setCategory] = useState<ICategory>(categories[1]);
+  const [selectedCar, setSelectedCar] = useState<ICar>(cars[0]);
 
-  function handleInputOnChange(
-    event: React.ChangeEvent<HTMLInputElement>,
-  ): void {
-    dispatch(setModel(event.target.value));
-    dispatch(setColor(''));
-    updateAvailableStageIndex();
-  }
+  const onCategoryChange = (newCategory: ICategory) => {
+    setCategory(newCategory);
+    updateReachedStageIndex();
+  };
 
   return (
-    <>
-      <p>Model</p>
-      <input value={model} onChange={handleInputOnChange} />
-    </>
+    <div id="model-stage">
+      <RadioGroup
+        items={categories}
+        onChange={onCategoryChange}
+        selectedItem={category}
+      />
+      <div id="car-grid">
+        {cars.map((car) => {
+          return (
+            <CarBox
+              key={car.id}
+              car={car}
+              isActive={car.id === selectedCar.id}
+              onClick={() => setSelectedCar(car)}
+            />
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

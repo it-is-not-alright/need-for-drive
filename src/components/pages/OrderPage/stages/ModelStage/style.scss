@@ -1,0 +1,21 @@
+@use '~/components/variables.scss';
+
+#model-stage {
+  #car-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 2em;
+
+    @media (width >= calc(variables.$tablet-width + 100px)) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: variables.$desktop-mini-width) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (width >= calc(variables.$desktop-width - 200px)) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

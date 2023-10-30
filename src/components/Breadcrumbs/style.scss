@@ -1,4 +1,4 @@
-@use '../variables.scss';
+@use '~/components/variables.scss';
 
 div.breadcrumbs {
   display: flex;
@@ -17,11 +17,11 @@ div.breadcrumbs {
 
     &:hover,
     &.active {
-      color: variables.$color-1;
+      color: variables.$color-green;
     }
 
     &:disabled {
-      color: variables.$color-3;
+      color: variables.$color-gray;
     }
   }
 }

@@ -29,7 +29,7 @@
     }
 
     &:hover {
-      color: variables.$color-1;
+      color: variables.$color-green;
     }
   }
 
@@ -42,10 +42,10 @@
 
     .icon {
       transition: fill variables.$transition-duration;
-      fill: variables.$color-4;
+      fill: variables.$color-light;
 
       &:hover {
-        fill: variables.$color-1;
+        fill: variables.$color-green;
       }
     }
   }

@@ -14,7 +14,7 @@ function SliderImages({ slides, activeIndex }: SliderImagesProps) {
             className={classNames('slider-image', {
               active: slide.id === activeIndex,
             })}
-            style={{ backgroundImage: `url(${slide.imageURL})` }}
+            style={{ backgroundImage: `url(${slide.imageSource})` }}
             key={slide.id}
           />
         );

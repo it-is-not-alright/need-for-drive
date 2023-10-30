@@ -1,32 +1,58 @@
-export type RequestResult<T> = {
+type RequestResult<T> = {
   count: number;
   data: T[];
 };
 
-export type RequestState<T> = {
+type RequestState<T> = {
   data: T;
   isLoading: boolean;
   errorMessage: string | null;
 };
 
-export interface IEntity {
+interface IEntity {
   id: number;
   label: string;
 }
 
-export interface ICity extends IEntity {
+interface ICity extends IEntity {
   name: string;
 }
 
-export interface IPoint extends IEntity {
+interface IPoint extends IEntity {
   name: string;
   address: string;
   cityId: ICity;
 }
 
-export type OrderDetails = {
+interface IThumbnail {
+  path: string;
+}
+
+interface ICar extends IEntity {
+  name: string;
+  priceMin: number;
+  priceMax: number;
+  thumbnail: IThumbnail;
+}
+
+interface ICategory extends IEntity {
+  name: string;
+}
+
+type OrderDetails = {
   city: ICity | null;
   point: IPoint | null;
   color: string;
   model: string;
+};
+
+export {
+  ICar,
+  ICategory,
+  ICity,
+  IEntity,
+  IPoint,
+  OrderDetails,
+  RequestResult,
+  RequestState,
 };

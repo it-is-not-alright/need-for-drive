@@ -1,10 +1,12 @@
 import { ReactElement } from 'react';
 
-export type OrderPageProps = {
+type OrderPageProps = {
   header: ReactElement;
 };
 
-export type Stage = {
+type Stage = {
   name: string;
   btnLabel: string;
 };
+
+export { OrderPageProps, Stage };

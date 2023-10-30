@@ -1,11 +1,16 @@
-$color-1: #0ec261;
-$color-1-op: #0ec26133;
-$color-2: #121212;
-$color-3: #999;
-$color-4: #eee;
-$color-5: #151b1f;
-$color-5-op: #151b1fcf;
+// Colors
+$color-green: #0ec261;
+$color-green-tr: #0ec26133;
+$color-dark: #121212;
+$color-gray: #999;
+$color-light: #eee;
+$color-dark-gray: #151b1f;
+$color-dark-gray-tr: #151b1fcf;
+
+// Screen dimensions
 $desktop-width: 1440px;
 $desktop-mini-width: 1024px;
 $tablet-width: 600px;
+
+// Other
 $transition-duration: 0.2s;

@@ -4,32 +4,29 @@ import React, { useState } from 'react';
 
 import useInterval from '../../hooks/useInterval';
 import Icon from '../Icon/Icon';
-import { defaultDelay, longDelay } from './constants';
-import getSlides from './getSlides';
+import { defaultDelay, longDelay, slides } from './constants';
 import NavDots from './NavDots/NavDots';
 import SliderImages from './SliderImages/SliderImages';
-import { ISlide } from './types';
 
 function Slider() {
   let pauseInterval: number;
-  const slides: ISlide[] = getSlides();
   const [isPause, setIsPause] = useState<boolean>(false);
   const [delay, setDelay] = useState<number>(defaultDelay);
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   function goBackward(): void {
-    if (activeIndex === 0) {
-      setActiveIndex(slides.length - 1);
+    if (currentIndex === 0) {
+      setCurrentIndex(slides.length - 1);
     } else {
-      setActiveIndex(activeIndex - 1);
+      setCurrentIndex(currentIndex - 1);
     }
   }
 
   function goForward(): void {
-    if (activeIndex === slides.length - 1) {
-      setActiveIndex(0);
+    if (currentIndex === slides.length - 1) {
+      setCurrentIndex(0);
     } else {
-      setActiveIndex(activeIndex + 1);
+      setCurrentIndex(currentIndex + 1);
     }
   }
 
@@ -52,37 +49,39 @@ function Slider() {
     }, longDelay);
   }
 
-  function handleBackwardBtnOnClick(): void {
+  function handleBackwardBtnClick(): void {
     pause();
     goBackward();
   }
 
-  function handleForwardBtnOnClick(): void {
+  function handleForwardBtnClick(): void {
     pause();
     goForward();
   }
 
-  const handleNavDotOnClick = (slideIndex: number): void => {
+  const handleNavDotClick = (slideIndex: number): void => {
     pause();
-    setActiveIndex(slideIndex);
+    setCurrentIndex(slideIndex);
   };
 
   return (
     <div id="slider">
-      <SliderImages slides={slides} activeIndex={activeIndex} />
+      <SliderImages slides={slides} activeIndex={currentIndex} />
       <button
         className="slider-btn"
         type="button"
-        onClick={handleBackwardBtnOnClick}
+        onClick={handleBackwardBtnClick}
       >
         <Icon name="slider-left-arrow" width={10} height={20} />
       </button>
       <div id="slider__content">
         <div id="slider__content__info">
-          <h1 className="white-text fw-500">{slides[activeIndex].title}</h1>
-          <p className="light-text fw-300">{slides[activeIndex].description}</p>
+          <h1 className="white-text fw-500">{slides[currentIndex].title}</h1>
+          <p className="light-text fw-300">
+            {slides[currentIndex].description}
+          </p>
           <button
-            className={`btn-medium ${slides[activeIndex].colorTheme}`}
+            className={`btn-medium ${slides[currentIndex].colorTheme}`}
             type="button"
           >
             Подробнее
@@ -90,14 +89,14 @@ function Slider() {
         </div>
         <NavDots
           slides={slides}
-          activeIndex={activeIndex}
-          onClick={handleNavDotOnClick}
+          activeIndex={currentIndex}
+          onClick={handleNavDotClick}
         />
       </div>
       <button
         className="slider-btn"
         type="button"
-        onClick={handleForwardBtnOnClick}
+        onClick={handleForwardBtnClick}
       >
         <Icon name="slider-right-arrow" width={10} height={20} />
       </button>

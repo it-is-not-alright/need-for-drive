@@ -10,7 +10,6 @@ import { getCities } from '~/store/cities/thunk';
 import {
   setCity,
   setColor,
-  setModel,
   setPoint,
 } from '~/store/orderDetails/orderDetailsSlice';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
@@ -21,7 +20,7 @@ import { ICity, IPoint } from '~/store/types';
 
 import { LocationStageProps } from './types';
 
-function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
+function LocationStage({ updateReachedStageIndex }: LocationStageProps) {
   const { city, point } = useSelector(orderDetailsSelector);
   const { data: cities, errorMessage: citiesError } =
     useSelector(citiesSelector);
@@ -52,12 +51,11 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
   }
 
   function clear(): void {
-    dispatch(setModel(''));
     dispatch(setColor(''));
-    updateAvailableStageIndex();
+    updateReachedStageIndex();
   }
 
-  const cityOnSelect = (newCity: ICity | null): void => {
+  const handleCitySelect = (newCity: ICity | null): void => {
     dispatch(setCity(newCity));
     dispatch(setPoint(null));
     if (newCity !== null) {
@@ -66,7 +64,7 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
     clear();
   };
 
-  const pointOnSelect = (newPoint: IPoint | null): void => {
+  const handlePointSelect = (newPoint: IPoint | null): void => {
     dispatch(setPoint(newPoint));
     clear();
   };
@@ -80,7 +78,7 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
           placeholder="Начните вводить город ..."
           items={cities}
           selectedItem={city}
-          onSelect={cityOnSelect}
+          onSelect={handleCitySelect}
         />
         <p className="dark-text fw-300 ta-right">Пункт выдачи</p>
         <InputSelect
@@ -88,7 +86,7 @@ function LocationStage({ updateAvailableStageIndex }: LocationStageProps) {
           placeholder="Начните вводить пункт ..."
           items={cityPoints}
           selectedItem={point}
-          onSelect={pointOnSelect}
+          onSelect={handlePointSelect}
         />
       </div>
       <p className="dark-text fw-300">Выбрать на карте:</p>

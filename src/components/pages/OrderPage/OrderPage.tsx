@@ -3,7 +3,7 @@ import './style.scss';
 import React, { ReactElement, useState } from 'react';
 
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
-import stages from './constants';
+import { stages } from './constants';
 import OrderInfo from './OrderInfo/OrderInfo';
 import AdditionalStage from './stages/AdditionalStage/AdditionalStage';
 import FinalStage from './stages/FinalStage/FinalStage';
@@ -12,27 +12,25 @@ import ModelStage from './stages/ModelStage/ModelStage';
 import { OrderPageProps } from './types';
 
 function OrderPage({ header }: OrderPageProps) {
-  const [stageIndex, setStageIndex] = useState<number>(0);
-  const [availableStageIndex, setAvailableStageIndex] = useState<number>(0);
+  const [currentStageIndex, setCurrentStageIndex] = useState<number>(0);
+  const [reachedStageIndex, setReachedStageIndex] = useState<number>(0);
 
   function renderStage(): ReactElement {
-    switch (stageIndex) {
+    switch (currentStageIndex) {
       case 0:
         return (
           <LocationStage
-            updateAvailableStageIndex={() => setAvailableStageIndex(0)}
+            updateReachedStageIndex={() => setReachedStageIndex(0)}
           />
         );
       case 1:
         return (
-          <ModelStage
-            updateAvailableStageIndex={() => setAvailableStageIndex(1)}
-          />
+          <ModelStage updateReachedStageIndex={() => setReachedStageIndex(1)} />
         );
       case 2:
         return (
           <AdditionalStage
-            updateAvailableStageIndex={() => setAvailableStageIndex(2)}
+            updateReachedStageIndex={() => setReachedStageIndex(2)}
           />
         );
       case 3:
@@ -42,15 +40,11 @@ function OrderPage({ header }: OrderPageProps) {
     }
   }
 
-  const handleNextBtnOnClick = (): void => {
-    if (stageIndex < 3) {
-      setStageIndex(stageIndex + 1);
-      setAvailableStageIndex(stageIndex + 1);
+  const handleNextBtnClick = (): void => {
+    if (currentStageIndex < 3) {
+      setCurrentStageIndex(currentStageIndex + 1);
+      setReachedStageIndex(currentStageIndex + 1);
     }
-  };
-
-  const handleStageIndexChange = (newIndex: number): void => {
-    setStageIndex(newIndex);
   };
 
   return (
@@ -59,17 +53,18 @@ function OrderPage({ header }: OrderPageProps) {
       <div className="line-horizontal" />
       <Breadcrumbs
         items={stages.map((stage) => stage.name)}
-        activeIndex={stageIndex}
-        availableIndex={availableStageIndex}
-        onIndexChange={handleStageIndexChange}
+        currentIndex={currentStageIndex}
+        reachedIndex={reachedStageIndex}
+        onIndexChange={(newIndex: number) => setCurrentStageIndex(newIndex)}
       />
       <div className="line-horizontal" />
       <div id="order-page__content">
         <div id="order-page__content__stage">{renderStage()}</div>
         <div className="line-vertical" />
         <OrderInfo
-          btnLabel={stages[stageIndex].btnLabel}
-          btnOnClick={handleNextBtnOnClick}
+          btnLabel={stages[currentStageIndex].btnLabel}
+          btnOnClick={handleNextBtnClick}
+          reachedStageIndex={reachedStageIndex}
         />
       </div>
     </div>

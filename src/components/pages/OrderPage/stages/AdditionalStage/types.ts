@@ -1,3 +1,5 @@
-export type AdditionalStageProps = {
-  updateAvailableStageIndex: () => void;
+type AdditionalStageProps = {
+  updateReachedStageIndex: () => void;
 };
+
+export { AdditionalStageProps };

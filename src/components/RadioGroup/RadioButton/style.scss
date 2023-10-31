@@ -24,7 +24,7 @@ div.radio-button {
     border-radius: 1em;
     transition-duration: variables.$transition-duration;
     transition-property: border-width, border-color;
-    content: "";
+    content: '';
   }
 
   input {

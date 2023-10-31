@@ -5,44 +5,6 @@ div.input-select {
   color: variables.$color-dark-gray;
   font-weight: 300;
 
-  div.input-select__input-shell {
-    display: flex;
-    border-width: 0 0 1px;
-    border-style: solid;
-    border-color: variables.$color-gray;
-
-    input {
-      width: 100%;
-      padding: 0.1em 0 0.1em 0.6em;
-      color: inherit;
-      font-weight: inherit;
-      font-size: inherit;
-      text-overflow: ellipsis;
-      border: 0;
-      outline: none;
-
-      &::placeholder {
-        color: variables.$color-gray;
-      }
-    }
-
-    button {
-      display: flex;
-      align-items: center;
-      padding: 0 0.6em;
-      font-size: inherit;
-      background-color: transparent;
-      border: none;
-      outline: none;
-
-      .icon {
-        width: 0.6em;
-        height: 0.6em;
-        fill: variables.$color-dark-gray;
-      }
-    }
-  }
-
   div.input-select__select-shell {
     position: absolute;
     z-index: 1;

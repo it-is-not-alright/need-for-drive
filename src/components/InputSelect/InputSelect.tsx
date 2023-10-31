@@ -87,7 +87,7 @@ function InputSelect({
 
   return (
     <div className={classNames('input-select', { focused })}>
-      <div className="input-select__input-shell">
+      <div className="custom-input-wrapper">
         <input
           placeholder={placeholder}
           value={value}
@@ -97,7 +97,7 @@ function InputSelect({
         />
         {value !== '' && (
           <button type="button" onClick={handleClearBtnClick}>
-            <Icon name="input-select-cross" />
+            <Icon name="input-cross" />
           </button>
         )}
       </div>

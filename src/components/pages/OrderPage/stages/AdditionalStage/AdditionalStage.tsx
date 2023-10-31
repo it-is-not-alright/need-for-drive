@@ -6,7 +6,7 @@ function AdditionallyStage() {
   return (
     <>
       <p>Дата аренды</p>
-      <DateTimePicker />
+      <DateTimePicker placeholder="Введите дату и время" />
     </>
   );
 }

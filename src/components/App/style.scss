@@ -79,7 +79,7 @@ h1 {
   font-size: variables.$fs-3;
   border: none;
   outline: none;
-  transition: filter variables.$transition-duration;
+  transition: filter variables.$td-2;
 
   &:hover {
     filter: brightness(90%);
@@ -103,7 +103,7 @@ button {
   &.btn-medium {
     @extend %btn-custom;
 
-    padding: variables.$d-4 variables.$d-6;
+    padding: variables.$d-4 variables.$d-7;
     color: variables.$color-light;
     border-radius: variables.$d-1;
 
@@ -140,7 +140,7 @@ button {
   &.btn-large {
     @extend %btn-custom;
 
-    padding: variables.$d-5 variables.$d-7;
+    padding: variables.$d-5 variables.$d-8;
     color: white;
     background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
     background-blend-mode: darken;
@@ -158,13 +158,13 @@ button {
 
 div.custom-input-wrapper {
   display: flex;
-  border-width: 0 0 variables.$border-width;
+  border-width: 0 0 variables.$bw-1;
   border-style: solid;
   border-color: variables.$color-gray;
 
   input {
     width: 100%;
-    padding: 0.1em 0 0.1em 0.6em;
+    padding: 0.1em 0 0.1em variables.$d-2;
     color: inherit;
     font-weight: inherit;
     font-size: inherit;

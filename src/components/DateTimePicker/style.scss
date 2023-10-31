@@ -3,7 +3,7 @@
 %btn-select {
   color: white;
   background-color: transparent;
-  border-width: variables.$border-width;
+  border-width: variables.$bw-1;
   border-style: solid;
   border-color: transparent;
   outline: none;
@@ -20,8 +20,11 @@
 }
 
 div.date-time-picker {
-  width: 15em;
   user-select: none;
+
+  input {
+    font-weight: 300;
+  }
 
   div.date-time-picker__dialog {
     position: absolute;
@@ -30,6 +33,7 @@ div.date-time-picker {
     margin-top: variables.$d-1;
 
     @media (max-width: variables.$tablet-width) {
+      position: fixed;
       top: 0;
       left: 0;
       width: calc(100vw - variables.$d-5 * 2);
@@ -54,7 +58,7 @@ div.date-time-picker {
         button {
           padding: variables.$d-3;
           background-color: transparent;
-          border-width: variables.$border-width;
+          border-width: variables.$bw-1;
           border-style: solid;
           border-color: transparent;
           border-radius: 10em;
@@ -79,7 +83,7 @@ div.date-time-picker {
         grid-template-columns: repeat(7, 1fr);
         gap: variables.$d-0;
         margin-top: variables.$d-3;
-        transition: variables.$transition-duration;
+        transition: variables.$td-2;
 
         div {
           display: flex;

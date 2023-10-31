@@ -4,7 +4,7 @@
   #model-grid {
     display: grid;
     grid-template-columns: 1fr;
-    margin-top: 2em;
+    margin-top: variables.$d-7;
 
     @media (width >= calc(variables.$tablet-width + 100px)) {
       grid-template-columns: 1fr 1fr;

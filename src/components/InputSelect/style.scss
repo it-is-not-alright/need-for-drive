@@ -15,22 +15,23 @@ div.input-select {
     div.input-select__select {
       display: flex;
       flex-direction: column;
-      gap: 0.4em;
+      gap: variables.$d-2;
       max-height: 7em;
-      padding: 0.5em;
+      padding: variables.$d-2;
       overflow-y: auto;
-      border-width: 0 1px 1px;
+      border-width: 0 variables.$bw-1 variables.$bw-1;
       border-style: solid;
       border-color: variables.$color-light;
 
       &::-webkit-scrollbar {
-        width: 4px;
+        width: variables.$d-1;
+        height: variables.$d-1;
       }
 
       &::-webkit-scrollbar-thumb {
         background-color: #aaa;
         background-clip: padding-box;
-        border-width: 1px;
+        border-width: variables.$bw-1;
         border-style: solid;
         border-color: transparent;
         border-radius: 1em;
@@ -44,7 +45,7 @@ div.input-select {
         background-color: transparent;
         border: none;
         outline: none;
-        transition: color 0.1s;
+        transition: color variables.$td-1;
 
         &:hover {
           color: variables.$color-green;

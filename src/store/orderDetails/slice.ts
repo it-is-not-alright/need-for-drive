@@ -4,8 +4,8 @@ import { defaultCategory } from '../constants';
 import { ICategory, ICity, IModel, IPoint, OrderDetails } from '../types';
 
 const initialState: OrderDetails = {
-  currentStage: 0,
-  reachedStage: 0,
+  currentStage: 2,
+  reachedStage: 2,
   city: null,
   point: null,
   category: defaultCategory,

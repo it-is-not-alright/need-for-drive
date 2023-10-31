@@ -70,4 +70,8 @@
     <polyline fill="none" stroke-width="2" points="3,11 9,6 3,1 " />
   </symbol>
 
+  <symbol id="checkmark" viewBox="0 0 13 10">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.625 3.33333L0 5L4.875 10L13 1.66667L11.375 0L4.875 6.66667L1.625 3.33333Z" />
+  </symbol>
+
 </svg>

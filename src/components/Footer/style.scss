@@ -3,7 +3,7 @@
 footer {
   display: flex;
   flex-direction: column-reverse;
-  gap: 0.5em;
+  gap: variables.$d-2;
   align-items: flex-end;
   background-color: variables.$color-dark-gray;
 

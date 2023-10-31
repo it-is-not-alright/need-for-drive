@@ -42,7 +42,11 @@ function LocationStage() {
     throw new Error(errorMessage);
   }, [citiesError, pointsError]);
 
-  function updateCityPoints(newCity: ICity) {
+  function updateCityPoints(newCity: ICity | null) {
+    if (newCity === null) {
+      setCityPoints([]);
+      return;
+    }
     setCityPoints(
       points.filter((item) => {
         return item.cityId.id === newCity.id;
@@ -59,9 +63,7 @@ function LocationStage() {
   const handleCitySelect = (newCity: ICity | null): void => {
     dispatch(setCity(newCity));
     dispatch(setPoint(null));
-    if (newCity !== null) {
-      updateCityPoints(newCity);
-    }
+    updateCityPoints(newCity);
     clear();
   };
 

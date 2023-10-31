@@ -6,9 +6,6 @@ div.radio-button {
   gap: 0.5em;
   align-items: center;
   padding: 0;
-  color: variables.$color-gray;
-  font-weight: 300;
-  font-size: inherit;
   background-color: transparent;
   border: none;
   outline: none;
@@ -17,14 +14,19 @@ div.radio-button {
   span.radio-button-checkmark::after {
     display: block;
     width: 1em;
-    height: 1em;
-    border-width: 0.1em;
+    aspect-ratio: 1;
+    border-width: 1px;
     border-style: solid;
     border-color: variables.$color-gray;
     border-radius: 1em;
     transition-duration: variables.$transition-duration;
     transition-property: border-width, border-color;
-    content: "";
+    content: '';
+  }
+
+  p {
+    color: variables.$color-gray;
+    font-weight: 300;
   }
 
   input {
@@ -36,8 +38,14 @@ div.radio-button {
     opacity: 0;
   }
 
-  input:checked ~ span.radio-button-checkmark::after {
-    border-width: 0.3em;
-    border-color: variables.$color-green;
+  input:checked {
+    & ~ span.radio-button-checkmark::after {
+      border-width: 0.3em;
+      border-color: variables.$color-green;
+    }
+
+    & ~ p {
+      color: variables.$color-dark;
+    }
   }
 }

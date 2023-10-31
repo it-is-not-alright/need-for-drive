@@ -19,7 +19,7 @@ function RadioButton({
         onChange={onChange}
       />
       <span className="radio-button-checkmark" />
-      {label}
+      <p>{label}</p>
     </div>
   );
 }

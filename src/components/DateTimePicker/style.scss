@@ -40,7 +40,7 @@ div.date-time-picker {
       margin: variables.$d-5;
     }
 
-    div.calendar {
+    div.date-time-picker__dialog__calendar {
       width: 100%;
       padding: variables.$d-5;
       background-color: variables.$color-dark-gray;
@@ -50,7 +50,7 @@ div.date-time-picker {
         color: white;
       }
 
-      div.calendar-header {
+      div.date-time-picker__dialog__calendar-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -78,7 +78,7 @@ div.date-time-picker {
         }
       }
 
-      div.calendar-grid {
+      div.date-time-picker__dialog__calendar-grid {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: variables.$d-0;
@@ -116,7 +116,7 @@ div.date-time-picker {
       }
     }
 
-    div.time-spinner {
+    div.date-time-picker__dialog__time-spinner {
       position: absolute;
       top: 0;
       left: calc(100% + variables.$d-2);
@@ -135,7 +135,7 @@ div.date-time-picker {
         height: 50%;
       }
 
-      div.scroll-container {
+      div {
         display: flex;
         flex-direction: column;
         gap: variables.$d-0;

@@ -141,13 +141,13 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
         />
         {dateTime.day && (
           <button type="button" onClick={handleClearBtnClick}>
-            <Icon name="input-cross" />
+            <Icon name="input-cross" width={8} height={8} />
           </button>
         )}
       </div>
       <div className="date-time-picker__dialog">
-        <div className="calendar">
-          <div className="calendar-header">
+        <div className="date-time-picker__dialog__calendar">
+          <div className="date-time-picker__dialog__calendar-header">
             <p>{`${months[dateTime.month]} ${dateTime.year}`}</p>
             <div>
               <button type="button" onClick={() => handleMonthChange(false)}>
@@ -158,7 +158,7 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
               </button>
             </div>
           </div>
-          <div className="calendar-grid">
+          <div className="date-time-picker__dialog__calendar-grid">
             {weekdays.map((it) => (
               <div key={it}>
                 <p>{it}</p>
@@ -179,8 +179,8 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
             ))}
           </div>
         </div>
-        <div className="time-spinner">
-          <div className="scroll-container">
+        <div className="date-time-picker__dialog__time-spinner">
+          <div>
             {spinnerHours.map((it) => (
               <button
                 key={it}
@@ -194,7 +194,7 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
               </button>
             ))}
           </div>
-          <div className="scroll-container">
+          <div>
             {spinnerMinutes.map((it) => (
               <button
                 key={it}

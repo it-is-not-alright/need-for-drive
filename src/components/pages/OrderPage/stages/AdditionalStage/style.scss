@@ -13,9 +13,9 @@ div.input-group {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: variables.$d-3;
+    align-items: center;
 
     p {
-      margin-top: 0.1em;
       color: variables.$color-dark;
     }
 

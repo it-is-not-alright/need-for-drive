@@ -97,7 +97,7 @@ function InputSelect({
         />
         {value !== '' && (
           <button type="button" onClick={handleClearBtnClick}>
-            <Icon name="input-cross" />
+            <Icon name="input-cross" width={8} height={8} />
           </button>
         )}
       </div>

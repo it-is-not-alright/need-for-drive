@@ -23,21 +23,35 @@ export const orderDetailsSlice = createSlice({
     setReachedStage: (state, action: PayloadAction<number>) => {
       state.reachedStage = action.payload;
     },
-    setCity: (state, action: PayloadAction<ICity | null>) => {
-      state.city = action.payload;
-    },
-    setPoint: (state, action: PayloadAction<IPoint | null>) => {
-      state.point = action.payload;
-    },
+    setCity: (_state, action: PayloadAction<ICity | null>) => ({
+      ...initialState,
+      city: action.payload,
+    }),
+    setPoint: (state, action: PayloadAction<IPoint | null>) => ({
+      ...initialState,
+      city: state.city,
+      point: action.payload,
+    }),
     setCategory: (state, action: PayloadAction<ICategory>) => {
       state.category = action.payload;
     },
-    setModel: (state, action: PayloadAction<IModel | null>) => {
-      state.car = action.payload;
-    },
-    setColor: (state, action: PayloadAction<string>) => {
-      state.color = action.payload;
-    },
+    setModel: (state, action: PayloadAction<IModel | null>) => ({
+      ...initialState,
+      currentStage: 1,
+      reachedStage: 1,
+      city: state.city,
+      point: state.point,
+      car: action.payload,
+    }),
+    setColor: (state, action: PayloadAction<string>) => ({
+      ...initialState,
+      currentStage: 1,
+      reachedStage: 1,
+      city: state.city,
+      point: state.point,
+      car: state.car,
+      color: action.payload,
+    }),
   },
 });
 

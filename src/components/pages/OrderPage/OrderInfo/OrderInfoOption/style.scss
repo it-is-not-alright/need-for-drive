@@ -2,13 +2,13 @@
 
 div.order-info-option {
   display: flex;
-  gap: variables.$d-5;
+  gap: 1em;
   align-items: flex-end;
   white-space: pre-line;
 
   div.line-dotted {
     flex-grow: 1;
-    margin-bottom: variables.$d-1;
+    margin-bottom: 0.25em;
     border-top: 1.5px dotted variables.$color-gray;
   }
 

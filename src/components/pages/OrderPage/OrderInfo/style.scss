@@ -3,21 +3,21 @@
 #order-info {
   display: flex;
   flex-direction: column;
-  gap: variables.$d-7;
-  padding: variables.$d-5;
+  gap: 2em;
+  padding: 1em;
 
   @media (min-width: variables.$tablet-width) {
-    padding: variables.$d-7;
+    padding: 2em;
   }
 
   @media (min-width: variables.$desktop-mini-width) {
-    padding: variables.$d-7 variables.$d-9 0 variables.$d-7;
+    padding: 2em 4em 0 2em;
   }
 
   #order-info__options {
     display: flex;
     flex-direction: column;
-    gap: variables.$d-5;
+    gap: 1em;
   }
 
   button.btn-large {

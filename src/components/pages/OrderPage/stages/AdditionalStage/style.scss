@@ -1,28 +1,26 @@
 @use '~/components/variables.scss';
 
-#location-stage {
-  #location-stage__input-container {
+div.input-group {
+  margin-bottom: variables.$d-7;
+
+  p.input-group-header {
+    margin-bottom: variables.$d-5;
+    color: variables.$color-dark;
+    font-weight: 300;
+  }
+
+  div.input-group-grid {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: variables.$d-3;
     align-items: center;
-    margin-bottom: variables.$d-8;
 
     p {
       color: variables.$color-dark;
     }
 
     div.custom-input-wrapper {
-      max-width: 20em;
-    }
-  }
-
-  #location-stage__map {
-    width: 100%;
-    margin-top: variables.$d-5;
-
-    img {
-      max-width: 100%;
+      max-width: 15em;
     }
   }
 }

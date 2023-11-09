@@ -47,6 +47,14 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
         {reachedStage > 0 && (
           <OrderInfoOption name="Модель" value={car?.name || placeholder} />
         )}
+        {reachedStage > 1 && (
+          <>
+            <OrderInfoOption name="Цвет" value={placeholder} />
+            <OrderInfoOption name="Длительность аренды" value={placeholder} />
+            <OrderInfoOption name="Тариф" value={placeholder} />
+            <OrderInfoOption name="Полный бак" value={placeholder} />
+          </>
+        )}
       </div>
       <p className="dark-text fs-2">
         <span className="fw-500">Цена: </span>

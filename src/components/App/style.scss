@@ -67,19 +67,19 @@ h1 {
 }
 
 .fs-2 {
-  font-size: 1.2em;
+  font-size: variables.$fs-3;
 }
 
 .fs-3 {
-  font-size: 1.4em;
+  font-size: variables.$fs-4;
 }
 
 %btn-custom {
   font-weight: 500;
-  font-size: 18px;
+  font-size: variables.$fs-3;
   border: none;
   outline: none;
-  transition: filter variables.$transition-duration;
+  transition: filter variables.$td-2;
 
   &:hover {
     filter: brightness(90%);
@@ -103,9 +103,9 @@ button {
   &.btn-medium {
     @extend %btn-custom;
 
-    padding: 0.8em 2em;
+    padding: variables.$d-4 variables.$d-7;
     color: variables.$color-light;
-    border-radius: 4px;
+    border-radius: variables.$d-1;
 
     &.green {
       background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
@@ -140,11 +140,11 @@ button {
   &.btn-large {
     @extend %btn-custom;
 
-    padding: 1em 3em;
+    padding: variables.$d-5 variables.$d-8;
     color: white;
     background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
     background-blend-mode: darken;
-    border-radius: 8px;
+    border-radius: variables.$d-2;
 
     &:disabled {
       background: variables.$color-light;
@@ -153,5 +153,41 @@ button {
 
   &:disabled {
     cursor: default;
+  }
+}
+
+div.custom-input-wrapper {
+  display: flex;
+  border-width: 0 0 variables.$bw-1;
+  border-style: solid;
+  border-color: variables.$color-gray;
+
+  input {
+    width: 100%;
+    padding: 0.1em 0 0.1em variables.$d-2;
+    color: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    text-overflow: ellipsis;
+    border: 0;
+    outline: none;
+
+    &::placeholder {
+      color: variables.$color-gray;
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    padding: 0 variables.$d-2;
+    font-size: inherit;
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    .icon {
+      fill: variables.$color-dark-gray;
+    }
   }
 }

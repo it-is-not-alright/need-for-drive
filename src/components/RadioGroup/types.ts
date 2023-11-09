@@ -5,6 +5,7 @@ type RadioGroupProps = {
   items: IEntity[];
   selectedItem: IEntity | null;
   onChange: (item: IEntity) => void;
+  isVertical?: boolean;
 };
 
 export { RadioGroupProps };

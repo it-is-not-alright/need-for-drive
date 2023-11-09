@@ -44,24 +44,24 @@
     }
 
     #order-page__content__stage {
-      padding: variables.$d-5;
+      padding: 1em;
 
       @media (min-width: variables.$tablet-width) {
-        padding: variables.$d-7;
+        padding: 2em;
       }
 
       @media (min-width: variables.$desktop-mini-width) {
-        padding: variables.$d-7 variables.$d-9;
+        padding: 2em 4em;
       }
     }
 
     div.line-vertical {
-      border-left: variables.$bw-1 solid variables.$color-light;
+      border-left: 1px solid variables.$color-light;
     }
   }
 
   div.line-horizontal {
     grid-column: 1 / 4;
-    border-top: variables.$bw-1 solid variables.$color-light;
+    border-top: 1px solid variables.$color-light;
   }
 }

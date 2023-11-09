@@ -1,20 +1,13 @@
 import './style.scss';
 
-import classNames from 'classnames';
 import React from 'react';
 
 import RadioButton from './RadioButton/RadioButton';
 import { RadioGroupProps } from './types';
 
-function RadioGroup({
-  name,
-  items,
-  selectedItem,
-  onChange,
-  isVertical = false,
-}: RadioGroupProps) {
+function RadioGroup({ name, items, selectedItem, onChange }: RadioGroupProps) {
   return (
-    <div className={classNames('radio-group', { vertical: isVertical })}>
+    <div className="radio-group">
       {items.map((item) => {
         return (
           <RadioButton

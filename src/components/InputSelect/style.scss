@@ -5,6 +5,44 @@ div.input-select {
   color: variables.$color-dark-gray;
   font-weight: 300;
 
+  div.input-select__input-shell {
+    display: flex;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: variables.$color-gray;
+
+    input {
+      width: 100%;
+      padding: 0.1em 0 0.1em 0.6em;
+      color: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      text-overflow: ellipsis;
+      border: 0;
+      outline: none;
+
+      &::placeholder {
+        color: variables.$color-gray;
+      }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      padding: 0 0.6em;
+      font-size: inherit;
+      background-color: transparent;
+      border: none;
+      outline: none;
+
+      .icon {
+        width: 0.6em;
+        height: 0.6em;
+        fill: variables.$color-dark-gray;
+      }
+    }
+  }
+
   div.input-select__select-shell {
     position: absolute;
     z-index: 1;
@@ -15,23 +53,22 @@ div.input-select {
     div.input-select__select {
       display: flex;
       flex-direction: column;
-      gap: variables.$d-2;
+      gap: 0.4em;
       max-height: 7em;
-      padding: variables.$d-2;
+      padding: 0.5em;
       overflow-y: auto;
-      border-width: 0 variables.$bw-1 variables.$bw-1;
+      border-width: 0 1px 1px;
       border-style: solid;
       border-color: variables.$color-light;
 
       &::-webkit-scrollbar {
-        width: variables.$d-1;
-        height: variables.$d-1;
+        width: 4px;
       }
 
       &::-webkit-scrollbar-thumb {
         background-color: #aaa;
         background-clip: padding-box;
-        border-width: variables.$bw-1;
+        border-width: 1px;
         border-style: solid;
         border-color: transparent;
         border-radius: 1em;
@@ -45,7 +82,7 @@ div.input-select {
         background-color: transparent;
         border: none;
         outline: none;
-        transition: color variables.$td-1;
+        transition: color 0.1s;
 
         &:hover {
           color: variables.$color-green;

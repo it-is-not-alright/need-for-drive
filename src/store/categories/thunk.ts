@@ -11,11 +11,10 @@ const get = createAsyncThunk<ICategory[], void, { rejectValue: string }>(
     try {
       const { data } =
         await apiRequest.get<RequestResult<ICategory>>(categoryUrl);
-      const categories = data.map((category: ICategory) => {
+      const result = data.map((category: ICategory) => {
         return { ...category, label: category.name };
       });
-      categories.unshift(defaultCategory);
-      return categories;
+      return [defaultCategory, ...result];
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

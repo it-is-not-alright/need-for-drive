@@ -8,15 +8,10 @@ import Spinner from '~/components/Spinner/Spinner';
 import categoriesSelector from '~/store/categories/selectors';
 import { getCategories } from '~/store/categories/thunk';
 import { defaultCategory } from '~/store/constants';
-import modelsSelector from '~/store/models/selectors';
+import { filterModel } from '~/store/models/selectors';
 import { getModels } from '~/store/models/thunk';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
-import {
-  setCategory,
-  setColor,
-  setModel,
-  setReachedStage,
-} from '~/store/orderDetails/slice';
+import { setCategory, setModel } from '~/store/orderDetails/slice';
 import { AppDispatch } from '~/store/root';
 import { ICategory, IModel } from '~/store/types';
 
@@ -28,7 +23,7 @@ function ModelStage() {
     data: models,
     errorMessage: modelsError,
     isLoading,
-  } = useSelector(modelsSelector);
+  } = useSelector(filterModel);
   const { data: categories, errorMessage: categoriesError } =
     useSelector(categoriesSelector);
   const [categoryModels, setCategoryModels] = useState<IModel[]>([]);
@@ -69,9 +64,7 @@ function ModelStage() {
   };
 
   const handleModelSelect = (newCar: IModel | null): void => {
-    dispatch(setReachedStage(1));
     dispatch(setModel(newCar));
-    dispatch(setColor(''));
   };
 
   return (

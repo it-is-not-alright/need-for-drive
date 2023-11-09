@@ -8,13 +8,7 @@ import InputSelect from '~/components/InputSelect/InputSelect';
 import citiesSelector from '~/store/cities/selectors';
 import { getCities } from '~/store/cities/thunk';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
-import {
-  setCity,
-  setColor,
-  setModel,
-  setPoint,
-  setReachedStage,
-} from '~/store/orderDetails/slice';
+import { setCity, setPoint } from '~/store/orderDetails/slice';
 import pointsSelector from '~/store/points/selectors';
 import { getPoints } from '~/store/points/thunk';
 import { AppDispatch } from '~/store/root';
@@ -54,23 +48,14 @@ function LocationStage() {
     );
   }
 
-  function clear(): void {
-    dispatch(setReachedStage(0));
-    dispatch(setModel(null));
-    dispatch(setColor(''));
-  }
-
   const handleCitySelect = (newCity: ICity | null): void => {
     dispatch(setCity(newCity));
-    dispatch(setPoint(null));
     updateCityPoints(newCity);
-    clear();
   };
 
   const handlePointSelect = (newPoint: IPoint | null): void => {
     dispatch(setPoint(newPoint));
     updateCityPoints(city);
-    clear();
   };
 
   return (

@@ -21,26 +21,26 @@
 
     header,
     footer {
-      padding: 1em;
+      padding: variables.$d-5;
 
       @media (min-width: variables.$tablet-width) {
-        padding: 2em;
+        padding: variables.$d-7;
       }
 
       @media (min-width: variables.$desktop-mini-width) {
-        padding: 2em 4em;
+        padding: variables.$d-7 variables.$d-9;
       }
     }
 
     #main-page__content__info {
-      margin: 1em;
+      margin: variables.$d-5;
 
       @media (min-width: variables.$tablet-width) {
-        margin: 0 2em;
+        margin: 0 variables.$d-7;
       }
 
       @media (min-width: variables.$desktop-mini-width) {
-        margin: 0 4em;
+        margin: 0 variables.$d-9;
       }
 
       h1 {
@@ -53,8 +53,8 @@
       }
 
       p {
-        margin-top: 1em;
-        margin-bottom: 2em;
+        margin-top: variables.$d-5;
+        margin-bottom: variables.$d-7;
         font-size: 18px;
 
         @media (min-width: variables.$tablet-width) {
@@ -64,8 +64,8 @@
 
       a {
         @media (width <= calc(variables.$tablet-width - 1px)) {
-          width: calc(100% + 2em);
-          margin: -1em;
+          width: calc(100% + variables.$d-7);
+          margin: calc(0em - variables.$d-5);
           border-radius: 0;
         }
       }

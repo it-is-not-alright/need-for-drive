@@ -6,8 +6,8 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  gap: 1em;
-  padding-left: 1.5em;
+  gap: variables.$d-6;
+  padding-left: variables.$d-5;
 
   @media (min-width: variables.$tablet-width) {
     top: 50%;
@@ -17,7 +17,7 @@
   p {
     font-size: 22px;
     cursor: pointer;
-    transition: color variables.$transition-duration;
+    transition: color variables.$td-2;
     user-select: none;
 
     @media (min-width: variables.$tablet-width) {
@@ -37,11 +37,11 @@
     position: absolute;
     top: 100%;
     display: flex;
-    gap: 1.5em;
-    margin-top: 2em;
+    gap: variables.$d-6;
+    margin-top: variables.$d-7;
 
     .icon {
-      transition: fill variables.$transition-duration;
+      transition: fill variables.$td-2;
       fill: variables.$color-light;
 
       &:hover {

@@ -13,7 +13,7 @@
     background-color: transparent;
     border: none;
     outline: none;
-    transition: variables.$transition-duration;
+    transition: variables.$td-2;
 
     &:hover {
       background-color: variables.$color-green-tr;

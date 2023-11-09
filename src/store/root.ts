@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { citiesReducer } from './cities/citiesSlice';
-import { orderDetailsReducer } from './orderDetails/orderDetailsSlice';
+import { categoriesReducer } from './categories/slice';
+import { citiesReducer } from './cities/slice';
+import { modelsReducer } from './models/slice';
+import { orderDetailsReducer } from './orderDetails/slice';
 import { pointsReducer } from './points/pointsSlice';
 
 const store = configureStore({
@@ -9,6 +11,8 @@ const store = configureStore({
     orderDetails: orderDetailsReducer,
     cities: citiesReducer,
     points: pointsReducer,
+    models: modelsReducer,
+    categories: categoriesReducer,
   },
 });
 

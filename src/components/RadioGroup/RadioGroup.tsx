@@ -5,16 +5,17 @@ import React from 'react';
 import RadioButton from './RadioButton/RadioButton';
 import { RadioGroupProps } from './types';
 
-function RadioGroup({ items, selectedItem, onChange }: RadioGroupProps) {
+function RadioGroup({ name, items, selectedItem, onChange }: RadioGroupProps) {
   return (
     <div className="radio-group">
       {items.map((item) => {
         return (
           <RadioButton
+            groupName={name}
             label={item.label}
             key={item.id}
-            isActive={item.id === selectedItem.id}
-            onClick={() => onChange(item)}
+            isChecked={selectedItem !== null && item.id === selectedItem.id}
+            onChange={() => onChange(item)}
           />
         );
       })}

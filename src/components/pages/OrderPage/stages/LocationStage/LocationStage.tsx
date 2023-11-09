@@ -7,20 +7,14 @@ import MapImage from '~/assets/images/map/img-0.png';
 import InputSelect from '~/components/InputSelect/InputSelect';
 import citiesSelector from '~/store/cities/selectors';
 import { getCities } from '~/store/cities/thunk';
-import {
-  setCity,
-  setColor,
-  setPoint,
-} from '~/store/orderDetails/orderDetailsSlice';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
+import { setCity, setPoint } from '~/store/orderDetails/slice';
 import pointsSelector from '~/store/points/selectors';
 import { getPoints } from '~/store/points/thunk';
 import { AppDispatch } from '~/store/root';
 import { ICity, IPoint } from '~/store/types';
 
-import { LocationStageProps } from './types';
-
-function LocationStage({ updateReachedStageIndex }: LocationStageProps) {
+function LocationStage() {
   const { city, point } = useSelector(orderDetailsSelector);
   const { data: cities, errorMessage: citiesError } =
     useSelector(citiesSelector);
@@ -42,7 +36,11 @@ function LocationStage({ updateReachedStageIndex }: LocationStageProps) {
     throw new Error(errorMessage);
   }, [citiesError, pointsError]);
 
-  function updateCityPoints(newCity: ICity) {
+  function updateCityPoints(newCity: ICity | null) {
+    if (newCity === null) {
+      setCityPoints([]);
+      return;
+    }
     setCityPoints(
       points.filter((item) => {
         return item.cityId.id === newCity.id;
@@ -50,23 +48,14 @@ function LocationStage({ updateReachedStageIndex }: LocationStageProps) {
     );
   }
 
-  function clear(): void {
-    dispatch(setColor(''));
-    updateReachedStageIndex();
-  }
-
   const handleCitySelect = (newCity: ICity | null): void => {
     dispatch(setCity(newCity));
-    dispatch(setPoint(null));
-    if (newCity !== null) {
-      updateCityPoints(newCity);
-    }
-    clear();
+    updateCityPoints(newCity);
   };
 
   const handlePointSelect = (newPoint: IPoint | null): void => {
     dispatch(setPoint(newPoint));
-    clear();
+    updateCityPoints(city);
   };
 
   return (

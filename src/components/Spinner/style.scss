@@ -1,0 +1,30 @@
+@use '~/components/variables.scss';
+
+div.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+
+  span.spinner {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 3em;
+    height: 3em;
+    border: 5px solid variables.$color-green;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: rotation 1s linear infinite;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

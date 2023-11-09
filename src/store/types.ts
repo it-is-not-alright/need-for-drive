@@ -28,29 +28,33 @@ interface IThumbnail {
   path: string;
 }
 
-interface ICar extends IEntity {
-  name: string;
-  priceMin: number;
-  priceMax: number;
-  thumbnail: IThumbnail;
-}
-
 interface ICategory extends IEntity {
   name: string;
 }
 
+interface IModel extends IEntity {
+  name: string;
+  priceMin: number;
+  priceMax: number;
+  thumbnail: IThumbnail;
+  categoryId: ICategory;
+}
+
 type OrderDetails = {
+  currentStage: number;
+  reachedStage: number;
   city: ICity | null;
   point: IPoint | null;
+  category: ICategory | null;
+  car: IModel | null;
   color: string;
-  model: string;
 };
 
 export {
-  ICar,
   ICategory,
   ICity,
   IEntity,
+  IModel,
   IPoint,
   OrderDetails,
   RequestResult,

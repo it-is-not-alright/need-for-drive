@@ -1,4 +1,4 @@
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 
 import { RootState } from '../root';
 import { IModel, RequestState } from '../types';

@@ -1,12 +1,5 @@
-@use '~/components/variables.scss';
-
 div.radio-group {
   display: flex;
   flex-wrap: wrap;
-  gap: variables.$d-5;
-
-  &.vertical {
-    flex-direction: column;
-    gap: variables.$d-2;
-  }
+  gap: 1em;
 }

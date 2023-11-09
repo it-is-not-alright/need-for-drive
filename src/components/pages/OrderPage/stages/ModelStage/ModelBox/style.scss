@@ -5,12 +5,12 @@ div.model-box {
   flex-direction: column;
   align-items: flex-end;
   width: 100%;
-  padding: variables.$d-5;
-  border-width: variables.$bw-1;
+  padding: 1em;
+  border-width: 1px;
   border-style: solid;
   border-color: variables.$color-light;
   cursor: pointer;
-  transition: border-color variables.$td-2;
+  transition: border-color variables.$transition-duration;
 
   &:hover {
     border-color: variables.$color-gray;
@@ -27,6 +27,6 @@ div.model-box {
   img {
     max-width: 75%;
     max-height: 100%;
-    margin-top: variables.$d-7;
+    margin-top: 2em;
   }
 }

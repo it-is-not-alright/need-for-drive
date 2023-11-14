@@ -164,10 +164,11 @@ div.custom-input-wrapper {
 
   input {
     width: 100%;
-    padding: 0.1em 0 0.1em variables.$d-2;
+    padding: 0 0 0 variables.$d-2;
     color: inherit;
     font-weight: inherit;
     font-size: inherit;
+    line-height: variables.$d-6;
     text-overflow: ellipsis;
     border: 0;
     outline: none;

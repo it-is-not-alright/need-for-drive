@@ -9,7 +9,7 @@ function CheckboxGroup({ items }: CheckboxGroupProps) {
   return (
     <div className="checkbox-group">
       {items.map((item) => {
-        return <Checkbox label={item.label} />;
+        return <Checkbox label={item.label} key={item.id} />;
       })}
     </div>
   );

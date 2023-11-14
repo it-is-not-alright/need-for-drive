@@ -38,31 +38,27 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
   );
   const [calendarDays, setCalendarDays] = useState<CalendarDay[]>([]);
 
-  function getCalendarDays() {
+  function getCalendarDays(): CalendarDay[] {
     const days: CalendarDay[] = [];
     const bufferDate = new Date(dateTime.year, dateTime.month, 1);
-    const leftDelta: number = (bufferDate.getDay() || 7) - 1;
-    // last day of last month
+    const last: number = (bufferDate.getDay() || 7) - 1;
+    bufferDate.setMonth(bufferDate.getMonth() + 1);
     bufferDate.setDate(0);
-    for (
-      let i = bufferDate.getDate() - leftDelta;
-      i < bufferDate.getDate();
-      i += 1
-    ) {
-      days.push({ number: i + 1, thisMonth: false });
-    }
-    // first day of last month
-    bufferDate.setDate(1);
-    // first day of next month
-    bufferDate.setMonth(bufferDate.getMonth() + 2);
-    // last day of current month
+    const current: number = bufferDate.getDate();
+    const next: number = 7 - ((last + current) % 7 || 7);
     bufferDate.setDate(0);
-    for (let i = 0; i < bufferDate.getDate(); i += 1) {
-      days.push({ number: i + 1, thisMonth: true });
-    }
-    const rightDelta = 7 - (days.length % 7 || 7);
-    for (let i = 0; i < rightDelta; i += 1) {
-      days.push({ number: i + 1, thisMonth: false });
+    for (let i = 1; i <= last + current + next; i += 1) {
+      let number: number;
+      let thisMonth: boolean = false;
+      if (i <= last) {
+        number = bufferDate.getDate() - last + i;
+      } else if (i <= last + current) {
+        number = i - last;
+        thisMonth = true;
+      } else {
+        number = i - (last + current);
+      }
+      days.push({ number, thisMonth });
     }
     return days;
   }

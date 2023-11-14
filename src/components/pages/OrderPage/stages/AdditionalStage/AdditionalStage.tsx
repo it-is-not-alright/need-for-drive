@@ -25,8 +25,14 @@ function AdditionallyStage() {
         <div className="input-group-grid">
           <p className="fw-300 ta-right">C</p>
           <DateTimePicker placeholder="Введите дату и время" />
+          <div className="custom-input-wrapper">
+            <input type="datetime-local" />
+          </div>
           <p className="fw-300 ta-right">По</p>
           <DateTimePicker placeholder="Введите дату и время" />
+          <div className="custom-input-wrapper">
+            <input type="datetime-local" />
+          </div>
         </div>
       </div>
       <div className="input-group">

@@ -1,0 +1,161 @@
+@use '~/components/variables.scss';
+
+%btn-select {
+  color: white;
+  background-color: transparent;
+  border-width: variables.$bw-1;
+  border-style: solid;
+  border-color: transparent;
+  outline: none;
+
+  &:not(:disabled):hover {
+    border-color: variables.$color-green;
+  }
+
+  &.selected {
+    color: variables.$color-dark-gray;
+    font-weight: 700;
+    background-color: variables.$color-green;
+  }
+}
+
+div.date-time-picker {
+  user-select: none;
+
+  input {
+    font-weight: 300;
+  }
+
+  div.date-time-picker__dialog {
+    position: absolute;
+    z-index: 2;
+    display: none;
+    margin-top: variables.$d-1;
+
+    @media (max-width: variables.$tablet-width) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: calc(100vw - variables.$d-5 * 2);
+      margin: variables.$d-5;
+    }
+
+    div.date-time-picker__dialog__calendar {
+      width: 100%;
+      padding: variables.$d-5;
+      background-color: variables.$color-dark-gray;
+      border-radius: variables.$d-2;
+
+      p {
+        color: white;
+      }
+
+      div.date-time-picker__dialog__calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+          padding: variables.$d-3;
+          background-color: transparent;
+          border-width: variables.$bw-1;
+          border-style: solid;
+          border-color: transparent;
+          border-radius: 10em;
+          outline: none;
+
+          .icon {
+            stroke: variables.$color-gray;
+          }
+
+          &:hover {
+            border-color: variables.$color-gray;
+
+            .icon {
+              stroke: white;
+            }
+          }
+        }
+      }
+
+      div.date-time-picker__dialog__calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: variables.$d-0;
+        margin-top: variables.$d-3;
+        transition: variables.$td-2;
+
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          aspect-ratio: 1;
+        }
+
+        p {
+          font-weight: 500;
+          font-size: variables.$fs-1;
+        }
+
+        button {
+          @extend %btn-select;
+
+          min-width: 2.25em;
+          font-size: variables.$fs-1;
+          border-radius: 10em;
+          aspect-ratio: 1;
+
+          @media (max-width: variables.$tablet-width) {
+            min-width: none;
+          }
+
+          &:disabled {
+            color: variables.$color-gray;
+          }
+        }
+      }
+    }
+
+    div.date-time-picker__dialog__time-spinner {
+      position: absolute;
+      top: 0;
+      left: calc(100% + variables.$d-2);
+      display: flex;
+      gap: variables.$d-2;
+      justify-content: center;
+      height: 100%;
+      padding: variables.$d-5;
+      background-color: variables.$color-dark-gray;
+      border-radius: variables.$d-2;
+
+      @media (max-width: variables.$tablet-width) {
+        top: calc(100% + variables.$d-2);
+        left: 0;
+        width: 100%;
+        height: 50%;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        gap: variables.$d-0;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        button {
+          @extend %btn-select;
+
+          padding: variables.$d-2 variables.$d-5;
+          border-radius: variables.$d-1;
+        }
+      }
+    }
+  }
+
+  &.focused > div.date-time-picker__dialog {
+    display: block;
+  }
+}

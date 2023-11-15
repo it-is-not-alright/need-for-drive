@@ -1,0 +1,44 @@
+@use '~/components/variables.scss';
+
+div.input-group {
+  margin-bottom: variables.$d-7;
+
+  p.input-group-header {
+    margin-bottom: variables.$d-5;
+    color: variables.$color-dark;
+    font-weight: 300;
+  }
+
+  div.input-group-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: variables.$d-3;
+    align-items: center;
+
+    p {
+      color: variables.$color-dark;
+    }
+
+    div.custom-input-wrapper {
+      max-width: 15em;
+    }
+
+    & > div.custom-input-wrapper {
+      display: block;
+    }
+
+    div.date-time-picker {
+      display: none;
+    }
+
+    @media (min-width: variables.$tablet-width) {
+      & > div.custom-input-wrapper {
+        display: none;
+      }
+
+      div.date-time-picker {
+        display: block;
+      }
+    }
+  }
+}

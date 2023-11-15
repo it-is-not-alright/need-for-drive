@@ -3,17 +3,18 @@
 div.breadcrumbs {
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  gap: variables.$d-5;
   align-items: center;
 
   button {
     padding: 0;
+    color: variables.$color-dark;
     font-weight: 700;
     font-size: inherit;
     background-color: transparent;
     border: none;
     outline: none;
-    transition: color variables variables.$transition-duration;
+    transition: color variables variables.$td-2;
 
     &:hover,
     &.active {

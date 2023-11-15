@@ -3,7 +3,7 @@
 header {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: variables.$d-2;
   align-items: flex-end;
   height: fit-content;
 
@@ -19,11 +19,7 @@ header {
 
   #header__location {
     display: flex;
-    gap: 0.5em;
+    gap: variables.$d-2;
     align-items: center;
-
-    p {
-      font-size: 14px;
-    }
   }
 }

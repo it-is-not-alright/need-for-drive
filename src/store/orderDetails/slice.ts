@@ -41,6 +41,7 @@ export const orderDetailsSlice = createSlice({
       reachedStage: 1,
       city: state.city,
       point: state.point,
+      category: defaultCategory,
       car: action.payload,
     }),
     setColor: (state, action: PayloadAction<string>) => ({

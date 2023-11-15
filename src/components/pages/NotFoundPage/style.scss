@@ -1,3 +1,5 @@
+@use '~/components/variables.scss';
+
 div.not-found-page {
   min-height: inherit;
 
@@ -5,15 +7,15 @@ div.not-found-page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
+    padding: variables.$d-5;
     text-align: center;
 
     h1 {
-      margin-top: 3em;
+      padding: variables.$d-8;
     }
 
     button {
-      margin-top: 2em;
+      padding: variables.$d-7;
     }
   }
 }

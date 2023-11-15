@@ -2,6 +2,7 @@
 
 div.input-select {
   position: relative;
+  width: 100%;
   color: variables.$color-dark-gray;
   font-weight: 300;
 
@@ -19,7 +20,7 @@ div.input-select {
       max-height: 7em;
       padding: variables.$d-2;
       overflow-y: auto;
-      border-width: 0 variables.$bw-1 variables.$bw-1;
+      border-width: variables.$bw-1;
       border-style: solid;
       border-color: variables.$color-light;
 
@@ -39,6 +40,7 @@ div.input-select {
 
       button.input-select__select-item {
         padding: 0;
+        color: variables.$color-dark;
         font-weight: inherit;
         font-size: inherit;
         text-align: left;

@@ -1,7 +1,7 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Icon from '~/components/Icon/Icon';
 import { IEntity } from '~/store/types';
@@ -15,6 +15,7 @@ function InputSelect({
   selectedItem,
   onSelect,
 }: InputSelectProps) {
+  const wrapper = useRef<HTMLDivElement>();
   const [value, setValue] = useState<string>('');
   const [focused, setFocused] = useState<boolean>(false);
   const [overlap, setOverlap] = useState<IEntity[]>([]);
@@ -61,23 +62,21 @@ function InputSelect({
     }
   }
 
-  function handleInputFocus(): void {
-    setFocused(true);
+  function handleAnyClick(event: MouseEvent) {
+    const { target } = event;
+    if (
+      wrapper.current === null ||
+      !(target instanceof Element || target instanceof SVGElement) ||
+      !wrapper.current.contains(target)
+    ) {
+      setFocused(false);
+      window.removeEventListener('click', handleAnyClick);
+    }
   }
 
-  function handleInputBlur(
-    event: React.FocusEvent<HTMLInputElement, Element>,
-  ): void {
-    if (event.relatedTarget === null) {
-      setFocused(false);
-      return;
-    }
-    const { classList } = event.relatedTarget;
-    if (classList.contains('input-select__select-item')) {
-      event.preventDefault();
-    } else {
-      setFocused(false);
-    }
+  function handleInputFocus(): void {
+    setFocused(true);
+    document.addEventListener('click', handleAnyClick);
   }
 
   function handleSelectItemClick(item: IEntity): void {
@@ -86,14 +85,13 @@ function InputSelect({
   }
 
   return (
-    <div className={classNames('input-select', { focused })}>
+    <div className={classNames('input-select', { focused })} ref={wrapper}>
       <div className="custom-input-wrapper">
         <input
           placeholder={placeholder}
           value={value}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
-          onBlur={(event) => handleInputBlur(event)}
         />
         {value !== '' && (
           <button type="button" onClick={handleClearBtnClick}>
@@ -111,6 +109,7 @@ function InputSelect({
                   className="input-select__select-item"
                   onClick={() => handleSelectItemClick(item)}
                   type="button"
+                  tabIndex={0}
                 >
                   {item.label}
                 </button>

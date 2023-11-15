@@ -50,6 +50,7 @@ export const orderDetailsSlice = createSlice({
       reachedStage: 1,
       city: state.city,
       point: state.point,
+      category: defaultCategory,
       car: action.payload,
       color: action.payload.colorEntities[0] || null,
     }),

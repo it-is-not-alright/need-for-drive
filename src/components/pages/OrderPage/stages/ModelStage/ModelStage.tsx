@@ -63,7 +63,7 @@ function ModelStage() {
     updateCategoryModels(newCategory);
   };
 
-  const handleModelChange = (newCar: IModel | null): void => {
+  const handleModelChange = (newCar: IModel): void => {
     dispatch(setModel(newCar));
   };
 

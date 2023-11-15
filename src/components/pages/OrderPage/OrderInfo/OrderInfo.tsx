@@ -12,7 +12,7 @@ import OrderInfoOption from './OrderInfoOption/OrderInfoOption';
 import { OrderInfoProps } from './types';
 
 function OrderInfo({ btnLabel }: OrderInfoProps) {
-  const { city, point, car, currentStage, reachedStage } =
+  const { currentStage, reachedStage, city, point, car, color } =
     useSelector(orderDetailsSelector);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -49,7 +49,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
         )}
         {reachedStage > 1 && (
           <>
-            <OrderInfoOption name="Цвет" value={placeholder} />
+            <OrderInfoOption name="Цвет" value={color?.label || placeholder} />
             <OrderInfoOption name="Длительность аренды" value={placeholder} />
             <OrderInfoOption name="Тариф" value={placeholder} />
             <OrderInfoOption name="Полный бак" value={placeholder} />

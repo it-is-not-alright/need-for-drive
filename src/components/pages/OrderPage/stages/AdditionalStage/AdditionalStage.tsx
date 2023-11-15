@@ -1,23 +1,35 @@
 import './style.scss';
 
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CheckboxGroup from '~/components/CheckboxGroup/CheckboxGroup';
 import DateTimePicker from '~/components/DateTimePicker/DateTimePicker';
 import RadioGroup from '~/components/RadioGroup/RadioGroup';
+import orderDetailsSelector from '~/store/orderDetails/selectors';
+import { setColor } from '~/store/orderDetails/slice';
+import { AppDispatch } from '~/store/root';
+import { IColor } from '~/store/types';
 
-import { additionalServices, colors, rates } from './constants';
+import { additionalServices, rates } from './constants';
 
 function AdditionallyStage() {
+  const { car, color } = useSelector(orderDetailsSelector);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleColorChange = (newColor: IColor) => {
+    dispatch(setColor(newColor));
+  };
+
   return (
     <div id="additional-stage">
       <div className="input-group">
         <p className="input-group-header">Цвет</p>
         <RadioGroup
           name="color"
-          items={colors}
-          onChange={() => {}}
-          selectedItem={colors[2]}
+          items={car.colorEntities}
+          onChange={handleColorChange}
+          selectedItem={color}
         />
       </div>
       <div className="input-group">

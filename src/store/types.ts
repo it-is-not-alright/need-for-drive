@@ -32,13 +32,24 @@ interface ICategory extends IEntity {
   name: string;
 }
 
+interface IColor extends IEntity {
+  name: string;
+}
+
 interface IModel extends IEntity {
   name: string;
   priceMin: number;
   priceMax: number;
   thumbnail: IThumbnail;
   categoryId: ICategory;
+  colors: string[];
+  colorEntities: IColor[];
 }
+
+type DateRange = {
+  from: Date;
+  to: Date;
+};
 
 type OrderDetails = {
   currentStage: number;
@@ -47,12 +58,15 @@ type OrderDetails = {
   point: IPoint | null;
   category: ICategory | null;
   car: IModel | null;
-  color: string;
+  color: IColor | null;
+  dateRange: DateRange | null;
 };
 
 export {
+  DateRange,
   ICategory,
   ICity,
+  IColor,
   IEntity,
   IModel,
   IPoint,

@@ -1,20 +1,5 @@
 import { IEntity } from '~/store/types';
 
-export const colors: IEntity[] = [
-  {
-    id: 1,
-    label: 'Любой',
-  },
-  {
-    id: 2,
-    label: 'Красный',
-  },
-  {
-    id: 3,
-    label: 'Голубой',
-  },
-];
-
 export const rates: IEntity[] = [
   {
     id: 1,

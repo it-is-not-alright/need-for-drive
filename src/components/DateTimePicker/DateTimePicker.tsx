@@ -30,6 +30,16 @@ function dateToDateTime(date: Date): DateTime {
   };
 }
 
+function dateTimeToDate(dateTime: DateTime): Date {
+  return new Date(
+    dateTime.year,
+    dateTime.month,
+    dateTime.day,
+    dateTime.hours,
+    dateTime.minutes,
+  );
+}
+
 function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
   const wrapper = useRef<HTMLDivElement>();
   const [focused, setFocused] = useState<boolean>(false);
@@ -121,9 +131,7 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
   }
 
   function dateTimeToString(date: DateTime): string {
-    return dateToString(
-      new Date(date.year, date.month, date.day, date.hours, date.minutes),
-    );
+    return dateToString(dateTimeToDate(date));
   }
 
   return (

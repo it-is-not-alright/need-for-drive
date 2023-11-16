@@ -19,7 +19,7 @@ function ModelBox({ model, isActive, onClick }: ModelBoxProps) {
       onClick={onClick}
       onKeyDown={onClick}
       role="button"
-      tabIndex={model.id}
+      tabIndex={0}
     >
       <p className="dark-text fs-2">{model.name}</p>
       <p className="gray-text fw-300">{price}</p>

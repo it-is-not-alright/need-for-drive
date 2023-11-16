@@ -47,24 +47,10 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
     }
   };
 
-  function formatDateRange(): string {
-    const dateFrom = new Date(date.from).getTime();
-    const dateTo = new Date(date.to).getTime();
-    let delta = Math.abs(dateTo - dateFrom) / 1000;
-    const days = Math.floor(delta / 86400);
-    delta -= days * 86400;
-    const hours = Math.ceil(delta / 3600) % 24;
-    delta -= hours * 3600;
-    return `${days}д ${hours}ч`;
-  }
-
   function calculatePrice(): string {
     if (rate !== null) {
-      const dateFrom = new Date(date.from).getTime();
-      const dateTo = new Date(date.to).getTime();
-      const delta = Math.abs(dateTo - dateFrom) / 1000;
-      const days = Math.ceil(delta / 86400);
-      const timePrice = Math.round(days / rate.days) * rate.price;
+      const days = date.days + (date.hours === 0 ? 0 : 1);
+      const timePrice = Math.ceil(days / rate.days) * rate.price;
       const servicesPrice = services.reduce((accumulator, service) => {
         return accumulator + service.price;
       }, 0);
@@ -96,7 +82,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
             <OrderInfoOption name="Цвет" value={color?.label || placeholder} />
             <OrderInfoOption
               name="Длительность аренды"
-              value={date ? formatDateRange() : placeholder}
+              value={date ? `${date.days}д ${date.hours}ч` : placeholder}
             />
             <OrderInfoOption
               name="Тариф"

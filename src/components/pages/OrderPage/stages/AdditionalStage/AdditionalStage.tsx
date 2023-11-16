@@ -61,10 +61,16 @@ function AdditionallyStage() {
       dispatch(setDate(null));
       return;
     }
+    let delta = Math.abs(newDateTo.getTime() - newDateFrom.getTime()) / 1000;
+    const days = Math.floor(delta / 86400);
+    delta -= days * 86400;
+    const hours = Math.ceil(delta / 3600) % 24;
     dispatch(
       setDate({
-        from: newDateFrom.toISOString().slice(0, -8),
-        to: newDateTo.toISOString().slice(0, -8),
+        from: newDateFrom.toISOString(),
+        to: newDateTo.toISOString(),
+        days,
+        hours,
       }),
     );
   }

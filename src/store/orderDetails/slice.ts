@@ -67,6 +67,7 @@ export const orderDetailsSlice = createSlice({
       car: state.car,
       color: action.payload,
       rate: state.rate,
+      date: state.date,
       services: state.services,
     }),
     setDate: (state, action: PayloadAction<DateRange | null>) => ({

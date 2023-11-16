@@ -49,6 +49,8 @@ interface IModel extends IEntity {
 type DateRange = {
   from: string;
   to: string;
+  days: number;
+  hours: number;
 };
 
 interface IRateTypeId {

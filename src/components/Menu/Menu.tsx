@@ -21,10 +21,10 @@ function Menu() {
   const handleMenuBtnClick = () => {
     if (state === MenuState.Collapsed) {
       setState(MenuState.Expanded);
-      document.documentElement.style.overflowY = 'hidden';
+      document.documentElement.classList.add('no-scroll');
     } else {
       setState(MenuState.Collapsed);
-      document.documentElement.style.overflowY = 'auto';
+      document.documentElement.classList.remove('no-scroll');
     }
   };
 

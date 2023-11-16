@@ -14,12 +14,9 @@ const filterRates = createSelector(
     if (date === null) {
       return { ...ratesState, data: [] };
     }
-    const dateFrom = new Date(date.from).getTime();
-    const dateTo = new Date(date.to).getTime();
-    const delta =
-      Math.round(Math.abs((dateFrom - dateTo) / (24 * 60 * 60 * 1000))) || 1;
+    const days = date.days + (date.hours === 0 ? 0 : 1);
     const overlap = ratesState.data.filter((rate) => {
-      return rate.days <= delta;
+      return rate.days <= days;
     });
     return { ...ratesState, data: overlap };
   },

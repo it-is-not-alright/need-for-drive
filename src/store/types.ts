@@ -47,9 +47,26 @@ interface IModel extends IEntity {
 }
 
 type DateRange = {
-  from: Date;
-  to: Date;
+  from: string;
+  to: string;
 };
+
+interface IRateTypeId {
+  id: number;
+  name: string;
+  unit: string;
+}
+
+interface IRate extends IEntity {
+  rateTypeId: IRateTypeId;
+  price: number;
+  days: number;
+}
+
+interface IService extends IEntity {
+  price: number;
+  name: string;
+}
 
 type OrderDetails = {
   currentStage: number;
@@ -59,7 +76,9 @@ type OrderDetails = {
   category: ICategory | null;
   car: IModel | null;
   color: IColor | null;
-  dateRange: DateRange | null;
+  date: DateRange | null;
+  rate: IRate | null;
+  services: IService[];
 };
 
 export {
@@ -70,6 +89,8 @@ export {
   IEntity,
   IModel,
   IPoint,
+  IRate,
+  IService,
   OrderDetails,
   RequestResult,
   RequestState,

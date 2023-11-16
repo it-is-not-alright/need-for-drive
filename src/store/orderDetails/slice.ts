@@ -8,6 +8,8 @@ import {
   IColor,
   IModel,
   IPoint,
+  IRate,
+  IService,
   OrderDetails,
 } from '../types';
 
@@ -19,7 +21,9 @@ const initialState: OrderDetails = {
   category: defaultCategory,
   car: null,
   color: null,
-  dateRange: null,
+  date: null,
+  rate: null,
+  services: [],
 };
 
 export const orderDetailsSlice = createSlice({
@@ -62,8 +66,10 @@ export const orderDetailsSlice = createSlice({
       point: state.point,
       car: state.car,
       color: action.payload,
+      rate: state.rate,
+      services: state.services,
     }),
-    setDateRange: (state, action: PayloadAction<DateRange>) => ({
+    setDate: (state, action: PayloadAction<DateRange | null>) => ({
       ...initialState,
       currentStage: 2,
       reachedStage: 2,
@@ -71,8 +77,30 @@ export const orderDetailsSlice = createSlice({
       point: state.point,
       car: state.car,
       color: state.color,
-      dateRange: action.payload,
+      date: action.payload,
+      services: state.services,
     }),
+    setRate: (state, action: PayloadAction<IRate>) => ({
+      ...initialState,
+      currentStage: 2,
+      reachedStage: 2,
+      city: state.city,
+      point: state.point,
+      car: state.car,
+      color: state.color,
+      date: state.date,
+      rate: action.payload,
+      services: state.services,
+    }),
+    addService: (state, action: PayloadAction<IService>) => {
+      state.services.push(action.payload);
+    },
+    removeService: (state, action: PayloadAction<IService>) => {
+      const services: IService[] = state.services.filter((service) => {
+        return service.id !== action.payload.id;
+      });
+      state.services = services;
+    },
   },
 });
 
@@ -84,5 +112,9 @@ export const {
   setCategory,
   setModel,
   setColor,
+  setDate,
+  setRate,
+  addService,
+  removeService,
 } = orderDetailsSlice.actions;
 export const orderDetailsReducer = orderDetailsSlice.reducer;

@@ -4,7 +4,8 @@ import { categoriesReducer } from './categories/slice';
 import { citiesReducer } from './cities/slice';
 import { modelsReducer } from './models/slice';
 import { orderDetailsReducer } from './orderDetails/slice';
-import { pointsReducer } from './points/pointsSlice';
+import { pointsReducer } from './points/slice';
+import { ratesReducer } from './rates/slice';
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     points: pointsReducer,
     models: modelsReducer,
     categories: categoriesReducer,
+    rates: ratesReducer,
   },
 });
 

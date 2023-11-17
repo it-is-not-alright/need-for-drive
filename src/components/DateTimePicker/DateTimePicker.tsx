@@ -9,11 +9,18 @@ import Icon from '../Icon/Icon';
 import { months, spinnerHours, spinnerMinutes, weekdays } from './constants';
 import { CalendarDay, DateTimePickerProps } from './types';
 
+function getDefaultDate() {
+  const thisDate = new Date();
+  thisDate.setHours(23);
+  thisDate.setMinutes(59);
+  return thisDate;
+}
+
 function DateTimePicker({ value, onChange, placeholder }: DateTimePickerProps) {
   const wrapper = useRef<HTMLDivElement>();
   const [focused, setFocused] = useState<boolean>(false);
   const [calendarDays, setCalendarDays] = useState<CalendarDay[]>([]);
-  const date: Date = value ? new Date(value) : new Date();
+  const date: Date = value ? new Date(value) : getDefaultDate();
   const [month, setMonth] = useState<number>(date.getMonth());
   const [year, setYear] = useState<number>(date.getFullYear());
   const day: number | null = value?.getDate() || null;

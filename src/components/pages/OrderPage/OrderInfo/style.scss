@@ -20,7 +20,7 @@
     gap: variables.$d-5;
   }
 
-  button.btn-large {
+  & > button.btn-large {
     width: 100%;
   }
 }

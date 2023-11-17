@@ -63,6 +63,9 @@
       }
 
       a {
+        padding-right: variables.$d-8;
+        padding-left: variables.$d-8;
+
         @media (width <= calc(variables.$tablet-width - 1px)) {
           width: calc(100% + variables.$d-7);
           margin: calc(0em - variables.$d-5);

@@ -44,6 +44,8 @@ interface IModel extends IEntity {
   categoryId: ICategory;
   colors: string[];
   colorEntities: IColor[];
+  number: number;
+  tank: number;
 }
 
 type DateRange = {

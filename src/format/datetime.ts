@@ -14,4 +14,13 @@ function dateToString(date: Date | null): string {
   return `${day}.${month}.${year} ${hours}:${minutes}`;
 }
 
-export { dateToString, numTo2CharString };
+function dateToInputValue(date: Date | null) {
+  if (date === null) {
+    return '';
+  }
+  const bufferDate = new Date(date);
+  bufferDate.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+  return bufferDate.toISOString().slice(0, -8);
+}
+
+export { dateToInputValue, dateToString, numTo2CharString };

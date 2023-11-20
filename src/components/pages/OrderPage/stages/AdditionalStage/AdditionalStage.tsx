@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CheckboxGroup from '~/components/CheckboxGroup/CheckboxGroup';
 import DateTimePicker from '~/components/DateTimePicker/DateTimePicker';
 import RadioGroup from '~/components/RadioGroup/RadioGroup';
+import { dateToInputValue } from '~/format/datetime';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
 import {
   addService,
@@ -121,7 +122,7 @@ function AdditionallyStage() {
           />
           <input
             type="datetime-local"
-            value={dateFrom?.toISOString().slice(0, -8) || ''}
+            value={dateToInputValue(dateFrom)}
             onChange={(event) =>
               handleDateFromChange(new Date(event.target.value))
             }
@@ -134,7 +135,7 @@ function AdditionallyStage() {
           />
           <input
             type="datetime-local"
-            value={dateTo?.toISOString().slice(0, -8) || ''}
+            value={dateToInputValue(dateTo)}
             onChange={(event) =>
               handleDateToChange(new Date(event.target.value))
             }

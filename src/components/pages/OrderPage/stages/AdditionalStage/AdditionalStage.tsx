@@ -119,6 +119,7 @@ function AdditionallyStage() {
             value={dateFrom}
             onChange={(newDate) => handleDateFromChange(newDate)}
             placeholder="Введите дату и время"
+            minValue={new Date()}
           />
           <input
             type="datetime-local"
@@ -126,12 +127,14 @@ function AdditionallyStage() {
             onChange={(event) =>
               handleDateFromChange(new Date(event.target.value))
             }
+            min={dateToInputValue(new Date())}
           />
           <p className="fw-300 ta-right">По</p>
           <DateTimePicker
             value={dateTo}
             onChange={(newDate) => handleDateToChange(newDate)}
             placeholder="Введите дату и время"
+            minValue={dateFrom || new Date()}
           />
           <input
             type="datetime-local"
@@ -139,6 +142,7 @@ function AdditionallyStage() {
             onChange={(event) =>
               handleDateToChange(new Date(event.target.value))
             }
+            min={dateToInputValue(dateFrom || new Date())}
           />
         </div>
       </div>

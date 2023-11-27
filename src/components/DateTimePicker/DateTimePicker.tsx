@@ -16,7 +16,12 @@ function getDefaultDate() {
   return thisDate;
 }
 
-function DateTimePicker({ value, onChange, placeholder }: DateTimePickerProps) {
+function DateTimePicker({
+  value,
+  onChange,
+  placeholder,
+  minValue = null,
+}: DateTimePickerProps) {
   const wrapper = useRef<HTMLDivElement>();
   const [focused, setFocused] = useState<boolean>(false);
   const [calendarDays, setCalendarDays] = useState<CalendarDay[]>([]);
@@ -42,6 +47,13 @@ function DateTimePicker({ value, onChange, placeholder }: DateTimePickerProps) {
       } else if (i <= last + current) {
         number = i - last;
         enabled = true;
+        if (
+          minValue !== null &&
+          minValue.getMonth() === month &&
+          minValue.getDate() > number
+        ) {
+          enabled = false;
+        }
       } else {
         number = i - (last + current);
       }
@@ -52,7 +64,7 @@ function DateTimePicker({ value, onChange, placeholder }: DateTimePickerProps) {
 
   useEffect(() => {
     setCalendarDays(getCalendarDays());
-  }, [month, year]);
+  }, [month, year, minValue]);
 
   function handleMonthChange(isIncrease: boolean) {
     const newDate = new Date(year, month);
@@ -131,7 +143,15 @@ function DateTimePicker({ value, onChange, placeholder }: DateTimePickerProps) {
           <div className="date-time-picker__dialog__calendar-header">
             <p>{`${months[month]} ${year}`}</p>
             <div>
-              <button type="button" onClick={() => handleMonthChange(false)}>
+              <button
+                type="button"
+                onClick={() => handleMonthChange(false)}
+                disabled={
+                  minValue !== null &&
+                  minValue.getFullYear() >= year &&
+                  minValue.getMonth() >= month
+                }
+              >
                 <Icon name="calendar-arrow-left" width={12} height={12} />
               </button>
               <button type="button" onClick={() => handleMonthChange(true)}>

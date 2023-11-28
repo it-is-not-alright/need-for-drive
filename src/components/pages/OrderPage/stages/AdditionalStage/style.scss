@@ -23,7 +23,7 @@ div.input-group {
       max-width: 15em;
     }
 
-    & > div.custom-input-wrapper {
+    input[type='datetime-local'] {
       display: block;
     }
 
@@ -32,7 +32,7 @@ div.input-group {
     }
 
     @media (min-width: variables.$tablet-width) {
-      & > div.custom-input-wrapper {
+      input[type='datetime-local'] {
         display: none;
       }
 

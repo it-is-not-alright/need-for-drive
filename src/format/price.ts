@@ -9,8 +9,4 @@ function formatPrice(price: number, addCurrencySign: boolean = false): string {
   return addCurrencySign ? `${formattedPrice} ${currencySign}` : formattedPrice;
 }
 
-function formatPriceRange(priceMin: number, priceMax: number): string {
-  return `${formatPrice(priceMin)} - ${formatPrice(priceMax)} ${currencySign}`;
-}
-
-export { formatPrice, formatPriceRange };
+export { formatPrice };

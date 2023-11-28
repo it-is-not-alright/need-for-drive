@@ -12,7 +12,7 @@ div.model-box {
   cursor: pointer;
   transition: border-color variables.$td-2;
 
-  &:hover {
+  &:not(.active):hover {
     border-color: variables.$color-gray;
   }
 

@@ -7,40 +7,32 @@ import { dateToString, numTo2CharString } from '~/format/datetime';
 
 import Icon from '../Icon/Icon';
 import { months, spinnerHours, spinnerMinutes, weekdays } from './constants';
-import { CalendarDay, DateTime, DateTimePickerProps } from './types';
+import { CalendarDay, DateTimePickerProps } from './types';
 
-function getDefaultDateTime(): DateTime {
-  const date = new Date();
-  return {
-    year: date.getFullYear(),
-    month: date.getMonth(),
-    day: null,
-    hours: 0,
-    minutes: 0,
-  };
+function getDefaultDate() {
+  const thisDate = new Date();
+  thisDate.setHours(23);
+  thisDate.setMinutes(59);
+  return thisDate;
 }
 
-function dateToDateTime(date: Date): DateTime {
-  return {
-    year: date.getFullYear(),
-    month: date.getMonth(),
-    day: date.getDate(),
-    hours: date.getHours(),
-    minutes: date.getMinutes(),
-  };
-}
-
-function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
+function DateTimePicker({
+  value,
+  onChange,
+  placeholder,
+  minValue = null,
+}: DateTimePickerProps) {
   const wrapper = useRef<HTMLDivElement>();
   const [focused, setFocused] = useState<boolean>(false);
-  const [dateTime, setDateTime] = useState<DateTime>(
-    value ? dateToDateTime(value) : getDefaultDateTime(),
-  );
   const [calendarDays, setCalendarDays] = useState<CalendarDay[]>([]);
+  const date: Date = value ? new Date(value) : getDefaultDate();
+  const [month, setMonth] = useState<number>(date.getMonth());
+  const [year, setYear] = useState<number>(date.getFullYear());
+  const day: number | null = value?.getDate() || null;
 
   function getCalendarDays(): CalendarDay[] {
     const days: CalendarDay[] = [];
-    const bufferDate = new Date(dateTime.year, dateTime.month, 1);
+    const bufferDate = new Date(year, month, 1);
     const last: number = (bufferDate.getDay() || 7) - 1;
     bufferDate.setMonth(bufferDate.getMonth() + 1);
     bufferDate.setDate(0);
@@ -49,54 +41,65 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
     bufferDate.setDate(0);
     for (let i = 1; i <= last + current + next; i += 1) {
       let number: number;
-      let thisMonth: boolean = false;
+      let enabled: boolean = false;
       if (i <= last) {
         number = bufferDate.getDate() - last + i;
       } else if (i <= last + current) {
         number = i - last;
-        thisMonth = true;
+        enabled = true;
+        if (
+          minValue !== null &&
+          minValue.getMonth() === month &&
+          minValue.getDate() > number
+        ) {
+          enabled = false;
+        }
       } else {
         number = i - (last + current);
       }
-      days.push({ number, thisMonth });
+      days.push({ key: i, number, enabled });
     }
     return days;
   }
 
   useEffect(() => {
     setCalendarDays(getCalendarDays());
-  }, [dateTime.year, dateTime.month]);
+  }, [month, year, minValue]);
 
   function handleMonthChange(isIncrease: boolean) {
-    let { year, month } = dateTime;
+    const newDate = new Date(year, month);
+    newDate.setDate(1);
     if (isIncrease) {
-      if (dateTime.month === 11) {
-        year += 1;
-        month = 0;
-      } else {
-        month += 1;
-      }
-    } else if (!isIncrease) {
-      if (dateTime.month === 0) {
-        year -= 1;
-        month = 11;
-      } else {
-        month -= 1;
-      }
+      newDate.setMonth(newDate.getMonth() + 1);
+    } else {
+      newDate.setMonth(newDate.getMonth() - 1);
     }
-    setDateTime({ ...dateTime, year, month, day: 1 });
+    setMonth(newDate.getMonth());
+    setYear(newDate.getFullYear());
+    onChange(null);
   }
 
-  function handleDayChange(day: number) {
-    setDateTime({ ...dateTime, day });
+  function handleDayChange(newDay: number) {
+    const newDate = new Date(
+      year,
+      month,
+      newDay,
+      date.getHours(),
+      date.getMinutes(),
+    );
+    onChange(newDate);
   }
 
-  function handleHoursChange(hours: number) {
-    setDateTime({ ...dateTime, hours });
+  function handleHoursChange(newHours: number) {
+    const newDate = new Date(date);
+    newDate.setHours(newHours);
+    onChange(newDate);
   }
 
-  function handleMinutesChange(minutes: number) {
-    setDateTime({ ...dateTime, minutes });
+  function handleMinutesChange(newMinutes: number) {
+    const newDate = new Date(date);
+    newDate.setMinutes(newMinutes);
+    onChange(newDate);
   }
 
   function handleAnyClick(event: MouseEvent) {
@@ -107,7 +110,7 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
       !wrapper.current.contains(target)
     ) {
       setFocused(false);
-      window.removeEventListener('click', handleAnyClick);
+      document.removeEventListener('click', handleAnyClick);
     }
   }
 
@@ -117,13 +120,7 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
   }
 
   function handleClearBtnClick(): void {
-    setDateTime(getDefaultDateTime());
-  }
-
-  function dateTimeToString(date: DateTime): string {
-    return dateToString(
-      new Date(date.year, date.month, date.day, date.hours, date.minutes),
-    );
+    onChange(null);
   }
 
   return (
@@ -132,10 +129,10 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
         <input
           placeholder={placeholder}
           onFocus={handleFocus}
-          value={dateTime.day ? dateTimeToString(dateTime) : ''}
+          value={dateToString(value)}
           readOnly
         />
-        {dateTime.day && (
+        {value && (
           <button type="button" onClick={handleClearBtnClick}>
             <Icon name="input-cross" width={8} height={8} />
           </button>
@@ -144,9 +141,17 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
       <div className="date-time-picker__dialog">
         <div className="date-time-picker__dialog__calendar">
           <div className="date-time-picker__dialog__calendar-header">
-            <p>{`${months[dateTime.month]} ${dateTime.year}`}</p>
+            <p>{`${months[month]} ${year}`}</p>
             <div>
-              <button type="button" onClick={() => handleMonthChange(false)}>
+              <button
+                type="button"
+                onClick={() => handleMonthChange(false)}
+                disabled={
+                  minValue !== null &&
+                  minValue.getFullYear() >= year &&
+                  minValue.getMonth() >= month
+                }
+              >
                 <Icon name="calendar-arrow-left" width={12} height={12} />
               </button>
               <button type="button" onClick={() => handleMonthChange(true)}>
@@ -163,10 +168,10 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
             {calendarDays.map((it) => (
               <button
                 type="button"
-                key={it.thisMonth ? it.number : it.number + 31}
-                disabled={!it.thisMonth}
+                key={it.key}
+                disabled={!it.enabled}
                 className={classNames({
-                  selected: it.thisMonth && dateTime.day === it.number,
+                  selected: it.enabled && day === it.number,
                 })}
                 onClick={() => handleDayChange(it.number)}
               >
@@ -183,7 +188,7 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
                 type="button"
                 onClick={() => handleHoursChange(it)}
                 className={classNames({
-                  selected: dateTime.hours === it,
+                  selected: value?.getHours() === it,
                 })}
               >
                 {numTo2CharString(it)}
@@ -197,7 +202,7 @@ function DateTimePicker({ placeholder, value = null }: DateTimePickerProps) {
                 type="button"
                 onClick={() => handleMinutesChange(it)}
                 className={classNames({
-                  selected: dateTime.minutes === it,
+                  selected: value?.getMinutes() === it,
                 })}
               >
                 {numTo2CharString(it)}

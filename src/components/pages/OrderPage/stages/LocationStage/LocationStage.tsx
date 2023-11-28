@@ -48,12 +48,12 @@ function LocationStage() {
     );
   }
 
-  const handleCitySelect = (newCity: ICity | null): void => {
+  const handleCityChange = (newCity: ICity | null): void => {
     dispatch(setCity(newCity));
     updateCityPoints(newCity);
   };
 
-  const handlePointSelect = (newPoint: IPoint | null): void => {
+  const handlePointChange = (newPoint: IPoint | null): void => {
     dispatch(setPoint(newPoint));
     updateCityPoints(city);
   };
@@ -67,7 +67,7 @@ function LocationStage() {
           placeholder="Начните вводить город ..."
           items={cities}
           selectedItem={city}
-          onSelect={handleCitySelect}
+          onSelect={handleCityChange}
         />
         <p className="dark-text fw-300 ta-right">Пункт выдачи</p>
         <InputSelect
@@ -75,7 +75,7 @@ function LocationStage() {
           placeholder="Начните вводить пункт ..."
           items={cityPoints}
           selectedItem={point}
-          onSelect={handlePointSelect}
+          onSelect={handlePointChange}
         />
       </div>
       <p className="dark-text fw-300">Выбрать на карте:</p>

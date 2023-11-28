@@ -1,19 +1,14 @@
 type CalendarDay = {
+  key: number;
   number: number;
-  thisMonth: boolean;
-};
-
-type DateTime = {
-  year: number;
-  month: number;
-  day: number | null;
-  hours: number;
-  minutes: number;
+  enabled: boolean;
 };
 
 type DateTimePickerProps = {
+  value: Date | null;
+  onChange: (newValue: Date | null) => void;
   placeholder: string;
-  value?: Date;
+  minValue?: Date | null;
 };
 
-export { CalendarDay, DateTime, DateTimePickerProps };
+export { CalendarDay, DateTimePickerProps };

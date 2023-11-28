@@ -58,12 +58,12 @@ function ModelStage() {
     updateCategoryModels(category);
   }, [models]);
 
-  const onCategoryChange = (newCategory: ICategory) => {
+  const handleCategoryChange = (newCategory: ICategory) => {
     dispatch(setCategory(newCategory));
     updateCategoryModels(newCategory);
   };
 
-  const handleModelSelect = (newCar: IModel): void => {
+  const handleModelChange = (newCar: IModel): void => {
     dispatch(setModel(newCar));
   };
 
@@ -72,7 +72,7 @@ function ModelStage() {
       <RadioGroup
         name="category"
         items={categories}
-        onChange={onCategoryChange}
+        onChange={handleCategoryChange}
         selectedItem={category}
       />
       {isLoading ? (
@@ -85,7 +85,7 @@ function ModelStage() {
                 key={categoryModel.id}
                 model={categoryModel}
                 isActive={car !== null && categoryModel.id === car.id}
-                onClick={() => handleModelSelect(categoryModel)}
+                onClick={() => handleModelChange(categoryModel)}
               />
             );
           })}

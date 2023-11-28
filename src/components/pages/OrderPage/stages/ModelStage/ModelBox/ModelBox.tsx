@@ -3,12 +3,15 @@ import './style.scss';
 import classNames from 'classnames';
 import React from 'react';
 
-import { formatPriceRange } from '~/format/price';
+import { formatPrice } from '~/format/price';
 
 import { ModelBoxProps } from './types';
 
 function ModelBox({ model, isActive, onClick }: ModelBoxProps) {
-  const price = formatPriceRange(model.priceMin, model.priceMax);
+  const price = `${formatPrice(model.priceMin)} - ${formatPrice(
+    model.priceMax,
+    true,
+  )}`;
   const classes: string = classNames('model-box', { active: isActive });
   return (
     <div
@@ -16,7 +19,7 @@ function ModelBox({ model, isActive, onClick }: ModelBoxProps) {
       onClick={onClick}
       onKeyDown={onClick}
       role="button"
-      tabIndex={model.id}
+      tabIndex={0}
     >
       <p className="dark-text fs-2">{model.name}</p>
       <p className="gray-text fw-300">{price}</p>

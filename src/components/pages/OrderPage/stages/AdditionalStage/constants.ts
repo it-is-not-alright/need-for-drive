@@ -1,19 +1,4 @@
-import { IEntity } from '~/store/types';
-
-export const colors: IEntity[] = [
-  {
-    id: 1,
-    label: 'Любой',
-  },
-  {
-    id: 2,
-    label: 'Красный',
-  },
-  {
-    id: 3,
-    label: 'Голубой',
-  },
-];
+import { IEntity, IService } from '~/store/types';
 
 export const rates: IEntity[] = [
   {
@@ -26,17 +11,23 @@ export const rates: IEntity[] = [
   },
 ];
 
-export const additionalServices: IEntity[] = [
+export const additionalServices: IService[] = [
   {
     id: 1,
-    label: 'Полный бак, 500р',
+    label: 'Полный бак, 500 ₽',
+    price: 500,
+    name: 'Полный бак',
   },
   {
     id: 2,
-    label: 'Детское кресло, 200р',
+    label: 'Детское кресло, 200 ₽',
+    price: 200,
+    name: 'Детское кресло',
   },
   {
     id: 3,
-    label: 'Правый руль, 1600р',
+    label: 'Правый руль, 1600 ₽',
+    price: 1600,
+    name: 'Правый руль',
   },
 ];

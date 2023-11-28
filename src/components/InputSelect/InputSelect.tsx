@@ -70,7 +70,7 @@ function InputSelect({
       !wrapper.current.contains(target)
     ) {
       setFocused(false);
-      window.removeEventListener('click', handleAnyClick);
+      document.removeEventListener('click', handleAnyClick);
     }
   }
 

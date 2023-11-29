@@ -6,8 +6,17 @@ import { useSelector } from 'react-redux';
 import { dateToString } from '~/format/datetime';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
 
+import { fullTankServiceId } from './constants';
+
 function FinalStage() {
-  const { car, date } = useSelector(orderDetailsSelector);
+  const { car, date, services } = useSelector(orderDetailsSelector);
+
+  function fullTank(): boolean {
+    const fullTankService = services.find((service) => {
+      return service.id === fullTankServiceId;
+    });
+    return fullTankService !== undefined;
+  }
 
   return (
     <div id="final-stage">
@@ -16,7 +25,7 @@ function FinalStage() {
         <p className="car-number">{car.number}</p>
         <p>
           <span className="fw-700">Топливо </span>
-          <span className="fw-300">{`${car.tank}%`}</span>
+          <span className="fw-300">{`${fullTank() ? 100 : car.tank}%`}</span>
         </p>
         <p>
           <span className="fw-700">Доступна с </span>

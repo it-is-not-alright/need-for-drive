@@ -147,6 +147,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
         {btnLabel}
       </button>
       <PopUp
+        title="Подтвердить заказ"
         visible={popUpVisible}
         onConfirm={createOrder}
         onCancel={() => setPopUpVisible(false)}

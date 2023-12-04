@@ -66,14 +66,21 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
   }
 
   const createOrder = async () => {
-    const order = {
+    function getServiceChecked(serviceId: number) {
+      return (
+        details.services.find((service) => {
+          return service.id === serviceId;
+        }) !== undefined
+      );
+    }
+    const order: IOrder = {
       color: details.color.name,
       dateFrom: details.date.from,
       dateTo: details.date.to,
       price: getTotalPrice(),
-      isFullTank: true,
-      isNeedChildChair: false,
-      isRightWheel: false,
+      isFullTank: getServiceChecked(1),
+      isNeedChildChair: getServiceChecked(2),
+      isRightWheel: getServiceChecked(3),
       cityId: { id: details.city.id },
       pointId: { id: details.point.id },
       carId: { id: details.car.id },

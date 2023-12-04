@@ -3,11 +3,13 @@ import './style.scss';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { apiRequest } from '~/api/api';
+import { orderUrl } from '~/api/constants';
 import { formatPrice } from '~/format/price';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
 import { setCurrentStage, setReachedStage } from '~/store/orderDetails/slice';
 import { AppDispatch } from '~/store/root';
-import { IService } from '~/store/types';
+import { IId, IOrder, IService } from '~/store/types';
 
 import { placeholder } from './constants';
 import OrderInfoOption from './OrderInfoOption/OrderInfoOption';
@@ -42,18 +44,18 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
     }
   };
 
-  function calculatePrice(): string {
+  function getTotalPrice(): number {
+    const days = details.date.days + (details.date.hours === 0 ? 0 : 1);
+    const timePrice = Math.ceil(days / details.rate.days) * details.rate.price;
+    const servicesPrice = details.services.reduce((accumulator, service) => {
+      return accumulator + service.price;
+    }, 0);
+    return details.car.priceMin + timePrice + servicesPrice;
+  }
+
+  function getPrice(): string {
     if (details.rate !== null) {
-      const days = details.date.days + (details.date.hours === 0 ? 0 : 1);
-      const timePrice =
-        Math.ceil(days / details.rate.days) * details.rate.price;
-      const servicesPrice = details.services.reduce((accumulator, service) => {
-        return accumulator + service.price;
-      }, 0);
-      return formatPrice(
-        details.car.priceMin + timePrice + servicesPrice,
-        true,
-      );
+      return formatPrice(getTotalPrice(), true);
     }
     if (details.car !== null) {
       const min = formatPrice(details.car.priceMin, true);
@@ -62,6 +64,24 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
     }
     return placeholder;
   }
+
+  const createOrder = async () => {
+    const order = {
+      color: details.color.name,
+      dateFrom: details.date.from,
+      dateTo: details.date.to,
+      price: getTotalPrice(),
+      isFullTank: true,
+      isNeedChildChair: false,
+      isRightWheel: false,
+      cityId: { id: details.city.id },
+      pointId: { id: details.point.id },
+      carId: { id: details.car.id },
+      rateId: { id: details.rate.id },
+    };
+    await apiRequest.post<IOrder, IId>(orderUrl, order);
+    setPopUpVisible(false);
+  };
 
   return (
     <div id="order-info">
@@ -109,7 +129,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
       </div>
       <p className="dark-text fs-2">
         <span className="fw-500">Цена: </span>
-        <span>{details.car ? calculatePrice() : placeholder}</span>
+        <span>{details.car ? getPrice() : placeholder}</span>
       </p>
       <button
         className="btn-large"
@@ -121,7 +141,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
       </button>
       <PopUp
         visible={popUpVisible}
-        onConfirm={() => setPopUpVisible(false)}
+        onConfirm={createOrder}
         onCancel={() => setPopUpVisible(false)}
       />
     </div>

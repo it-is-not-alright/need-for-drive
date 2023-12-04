@@ -1,16 +1,14 @@
-type RequestResult<T> = {
-  count: number;
-  data: T[];
-};
-
 type RequestState<T> = {
   data: T;
   isLoading: boolean;
   errorMessage: string | null;
 };
 
-interface IEntity {
+interface IId {
   id: number;
+}
+
+interface IEntity extends IId {
   label: string;
 }
 
@@ -36,7 +34,7 @@ interface IColor extends IEntity {
   name: string;
 }
 
-interface IModel extends IEntity {
+interface ICar extends IEntity {
   name: string;
   priceMin: number;
   priceMax: number;
@@ -49,8 +47,8 @@ interface IModel extends IEntity {
 }
 
 type DateRange = {
-  from: string;
-  to: string;
+  from: number;
+  to: number;
   days: number;
   hours: number;
 };
@@ -78,24 +76,39 @@ type OrderDetails = {
   city: ICity | null;
   point: IPoint | null;
   category: ICategory | null;
-  car: IModel | null;
+  car: ICar | null;
   color: IColor | null;
   date: DateRange | null;
   rate: IRate | null;
   services: IService[];
 };
 
+interface IOrder {
+  cityId: IId;
+  pointId: IId;
+  carId: IId;
+  color: string;
+  dateFrom: number;
+  dateTo: number;
+  rateId: IId;
+  price: number;
+  isFullTank: boolean;
+  isNeedChildChair: boolean;
+  isRightWheel: boolean;
+}
+
 export {
   DateRange,
+  ICar,
   ICategory,
   ICity,
   IColor,
   IEntity,
-  IModel,
+  IId,
+  IOrder,
   IPoint,
   IRate,
   IService,
   OrderDetails,
-  RequestResult,
   RequestState,
 };

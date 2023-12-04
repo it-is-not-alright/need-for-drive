@@ -3,10 +3,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { defaultCategory } from '../constants';
 import {
   DateRange,
+  ICar,
   ICategory,
   ICity,
   IColor,
-  IModel,
   IPoint,
   IRate,
   IService,
@@ -48,7 +48,7 @@ export const orderDetailsSlice = createSlice({
     setCategory: (state, action: PayloadAction<ICategory>) => {
       state.category = action.payload;
     },
-    setModel: (state, action: PayloadAction<IModel>) => ({
+    setCar: (state, action: PayloadAction<ICar>) => ({
       ...initialState,
       currentStage: 1,
       reachedStage: 1,
@@ -111,7 +111,7 @@ export const {
   setCity,
   setPoint,
   setCategory,
-  setModel,
+  setCar,
   setColor,
   setDate,
   setRate,

@@ -68,8 +68,8 @@ function AdditionallyStage() {
     const hours = Math.ceil(delta / 3600) % 24;
     dispatch(
       setDate({
-        from: newDateFrom.toISOString(),
-        to: newDateTo.toISOString(),
+        from: newDateFrom.getTime(),
+        to: newDateTo.getTime(),
         days,
         hours,
       }),

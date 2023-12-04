@@ -1,15 +1,4 @@
-import { IEntity, IService } from '~/store/types';
-
-export const rates: IEntity[] = [
-  {
-    id: 1,
-    label: 'Поминутно, 7₽/мин',
-  },
-  {
-    id: 2,
-    label: 'На сутки, 1999 ₽/сутки',
-  },
-];
+import { IService } from '~/store/types';
 
 export const additionalServices: IService[] = [
   {

@@ -9,7 +9,7 @@ import orderDetailsSelector from '~/store/orderDetails/selectors';
 import { fullTankServiceId } from './constants';
 
 function FinalStage() {
-  const { car, date, services } = useSelector(orderDetailsSelector);
+  const { id, car, date, services } = useSelector(orderDetailsSelector);
 
   function fullTank(): boolean {
     const fullTankService = services.find((service) => {
@@ -21,6 +21,7 @@ function FinalStage() {
   return (
     <div id="final-stage">
       <div id="final-stage__info">
+        {id !== 0 && <p className="dark-text fs-4">Ваш заказ подтвержден</p>}
         <p className="dark-text fs-3">{car.name}</p>
         <p className="car-number">{car.number}</p>
         <p>

@@ -17,7 +17,7 @@ import ModelStage from './stages/ModelStage/ModelStage';
 import { OrderPageProps } from './types';
 
 function OrderPage({ header }: OrderPageProps) {
-  const { currentStage, reachedStage } = useSelector(orderDetailsSelector);
+  const { id, currentStage, reachedStage } = useSelector(orderDetailsSelector);
   const dispatch = useDispatch<AppDispatch>();
   const stageComponents: ReactElement[] = [
     <LocationStage />,
@@ -30,14 +30,18 @@ function OrderPage({ header }: OrderPageProps) {
     <div id="order-page">
       {header}
       <div className="line-horizontal" />
-      <Breadcrumbs
-        items={stages.map((stage) => stage.name)}
-        currentIndex={currentStage}
-        reachedIndex={reachedStage}
-        onIndexChange={(newIndex: number) =>
-          dispatch(setCurrentStage(newIndex))
-        }
-      />
+      {id === 0 ? (
+        <Breadcrumbs
+          items={stages.map((stage) => stage.name)}
+          currentIndex={currentStage}
+          reachedIndex={reachedStage}
+          onIndexChange={(newIndex: number) =>
+            dispatch(setCurrentStage(newIndex))
+          }
+        />
+      ) : (
+        <p className="fw-700">Заказ номер {id}</p>
+      )}
       <div className="line-horizontal" />
       <div id="order-page__content">
         <div id="order-page__content__stage">

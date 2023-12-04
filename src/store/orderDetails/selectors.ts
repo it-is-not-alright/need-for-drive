@@ -1,7 +1,7 @@
 import { RootState } from '../root';
-import { OrderDetails } from '../types';
+import { IOrderDetails } from '../types';
 
-const orderDetailsSelector = (state: RootState): OrderDetails =>
+const orderDetailsSelector = (state: RootState): IOrderDetails =>
   state.orderDetails;
 
 export default orderDetailsSelector;

@@ -72,11 +72,11 @@ h1 {
   text-align: right;
 }
 
-.fs-2 {
+.fs-3 {
   font-size: variables.$fs-3;
 }
 
-.fs-3 {
+.fs-4 {
   font-size: variables.$fs-4;
 }
 
@@ -150,6 +150,10 @@ button {
     background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
     background-blend-mode: darken;
     border-radius: variables.$d-2;
+
+    &.danger {
+      background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+    }
 
     &:disabled {
       background: variables.$color-light;

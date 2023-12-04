@@ -1,5 +1,6 @@
 import './style.scss';
 
+import classNames from 'classnames';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,7 +8,7 @@ import { apiRequest } from '~/api/api';
 import { orderUrl } from '~/api/constants';
 import { formatPrice } from '~/format/price';
 import orderDetailsSelector from '~/store/orderDetails/selectors';
-import { setCurrentStage, setReachedStage } from '~/store/orderDetails/slice';
+import { setId, setReachedStage } from '~/store/orderDetails/slice';
 import { AppDispatch } from '~/store/root';
 import { IId, IOrder, IService } from '~/store/types';
 
@@ -36,10 +37,11 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
 
   const handleNextBtnClick = (): void => {
     if (details.currentStage < 3) {
-      dispatch(setCurrentStage(details.currentStage + 1));
       dispatch(setReachedStage(details.currentStage + 1));
     }
-    if (details.currentStage === 3) {
+    if (details.id !== 0) {
+      dispatch(setReachedStage(0));
+    } else if (details.currentStage === 3) {
       setPopUpVisible(true);
     }
   };
@@ -86,7 +88,9 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
       carId: { id: details.car.id },
       rateId: { id: details.rate.id },
     };
-    await apiRequest.post<IOrder, IId>(orderUrl, order);
+    const result = await apiRequest.post<IOrder, IId>(orderUrl, order);
+    const orderId = result.id;
+    dispatch(setId(orderId));
     setPopUpVisible(false);
   };
 
@@ -134,17 +138,17 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
           </>
         )}
       </div>
-      <p className="dark-text fs-2">
+      <p className="dark-text fs-3">
         <span className="fw-500">Цена: </span>
         <span>{details.car ? getPrice() : placeholder}</span>
       </p>
       <button
-        className="btn-large"
+        className={classNames('btn-large', { danger: details.id !== 0 })}
         type="button"
         onClick={handleNextBtnClick}
         disabled={nextBtnIsDisabled()}
       >
-        {btnLabel}
+        {details.id === 0 ? btnLabel : 'Отменить'}
       </button>
       <PopUp
         visible={popUpVisible}

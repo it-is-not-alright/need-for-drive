@@ -7,13 +7,14 @@ import {
   ICategory,
   ICity,
   IColor,
+  IOrderDetails,
   IPoint,
   IRate,
   IService,
-  OrderDetails,
 } from '../types';
 
-const initialState: OrderDetails = {
+const initialState: IOrderDetails = {
+  id: 0,
   currentStage: 0,
   reachedStage: 0,
   city: null,
@@ -30,11 +31,21 @@ export const orderDetailsSlice = createSlice({
   name: 'orderDetails',
   initialState,
   reducers: {
+    setId: (state, action: PayloadAction<number>) => {
+      state.id = action.payload;
+    },
     setCurrentStage: (state, action: PayloadAction<number>) => {
       state.currentStage = action.payload;
     },
     setReachedStage: (state, action: PayloadAction<number>) => {
-      state.reachedStage = action.payload;
+      if (action.payload !== 0) {
+        return {
+          ...state,
+          currentStage: action.payload,
+          reachedStage: action.payload,
+        };
+      }
+      return initialState;
     },
     setCity: (_state, action: PayloadAction<ICity | null>) => ({
       ...initialState,
@@ -106,6 +117,7 @@ export const orderDetailsSlice = createSlice({
 });
 
 export const {
+  setId,
   setCurrentStage,
   setReachedStage,
   setCity,

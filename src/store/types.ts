@@ -70,7 +70,7 @@ interface IService extends IEntity {
   name: string;
 }
 
-type OrderDetails = {
+interface IOrderDetails extends IId {
   currentStage: number;
   reachedStage: number;
   city: ICity | null;
@@ -81,7 +81,7 @@ type OrderDetails = {
   date: DateRange | null;
   rate: IRate | null;
   services: IService[];
-};
+}
 
 interface IOrder {
   cityId: IId;
@@ -106,9 +106,9 @@ export {
   IEntity,
   IId,
   IOrder,
+  IOrderDetails,
   IPoint,
   IRate,
   IService,
-  OrderDetails,
   RequestState,
 };

@@ -12,6 +12,10 @@
     gap: variables.$d-2;
   }
 
+  p.fs-4 {
+    margin-bottom: variables.$d-2;
+  }
+
   p.car-number {
     width: fit-content;
     padding: variables.$d-1 variables.$d-2;

@@ -21,7 +21,7 @@ function CarBox({ car, isActive, onClick }: CarBoxProps) {
       role="button"
       tabIndex={0}
     >
-      <p className="dark-text fs-2">{car.name}</p>
+      <p className="dark-text fs-3">{car.name}</p>
       <p className="gray-text fw-300">{price}</p>
       <img src={car.thumbnail.path} alt={car.name} />
     </div>

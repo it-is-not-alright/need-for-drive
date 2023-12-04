@@ -10,7 +10,7 @@ function PopUp({ visible, onConfirm, onCancel }: PopUpProps) {
   return (
     <div className={classes}>
       <div className="pop-up__content">
-        <p className="dark-text fs-3">Потвердить заказ</p>
+        <p className="dark-text fs-4">Подтвердить заказ</p>
         <div className="pop-up__content">
           <button className="btn-large" type="button" onClick={onConfirm}>
             Потвердить

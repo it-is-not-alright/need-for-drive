@@ -31,12 +31,12 @@ class ApiRequest {
     return result.data as Promise<U>;
   }
 
-  public async put(url: string): Promise<Response> {
-    return this.request(url, { method: 'PUT' });
+  public async put(url: string) {
+    this.request(url, { method: 'PUT' });
   }
 
-  public async remove(url: string): Promise<Response> {
-    return this.request(url, { method: 'REMOVE' });
+  public async remove(url: string) {
+    this.request(url, { method: 'REMOVE' });
   }
 }
 

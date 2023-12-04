@@ -1,0 +1,27 @@
+@use '~/components/variables.scss';
+
+#final-stage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: variables.$d-7;
+
+  #final-stage__info {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: variables.$d-2;
+  }
+
+  p.car-number {
+    width: fit-content;
+    padding: variables.$d-1 variables.$d-2;
+    border-width: variables.$bw-1;
+    border-style: solid;
+    border-color: variables.$color-gray;
+    border-radius: variables.$d-1;
+  }
+
+  img {
+    max-width: 300px;
+  }
+}

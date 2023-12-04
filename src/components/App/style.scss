@@ -81,6 +81,7 @@ h1 {
 }
 
 %btn-custom {
+  padding: variables.$d-5 variables.$d-7;
   font-weight: 500;
   font-size: variables.$fs-3;
   border: none;
@@ -109,7 +110,6 @@ button {
   &.btn-medium {
     @extend %btn-custom;
 
-    padding: variables.$d-4 variables.$d-7;
     color: variables.$color-light;
     border-radius: variables.$d-1;
 
@@ -146,7 +146,6 @@ button {
   &.btn-large {
     @extend %btn-custom;
 
-    padding: variables.$d-5 variables.$d-8;
     color: white;
     background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
     background-blend-mode: darken;

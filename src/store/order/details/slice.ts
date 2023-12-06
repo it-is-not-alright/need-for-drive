@@ -59,44 +59,26 @@ export const orderDetailsSlice = createSlice({
       color: action.payload.colorEntities[0] || null,
     }),
     setColor: (state, action: PayloadAction<IColor>) => ({
-      ...initialState,
-      currentStage: 2,
+      ...state,
       reachedStage: 2,
-      city: state.city,
-      point: state.point,
-      car: state.car,
       color: action.payload,
-      rate: state.rate,
-      date: state.date,
-      services: state.services,
     }),
     setDate: (state, action: PayloadAction<DateRange | null>) => ({
-      ...initialState,
-      currentStage: 2,
+      ...state,
       reachedStage: 2,
-      city: state.city,
-      point: state.point,
-      car: state.car,
-      color: state.color,
       date: action.payload,
-      services: state.services,
     }),
     setRate: (state, action: PayloadAction<IRate>) => ({
-      ...initialState,
-      currentStage: 2,
+      ...state,
       reachedStage: 2,
-      city: state.city,
-      point: state.point,
-      car: state.car,
-      color: state.color,
-      date: state.date,
       rate: action.payload,
-      services: state.services,
     }),
     addService: (state, action: PayloadAction<IService>) => {
+      state.reachedStage = 2;
       state.services.push(action.payload);
     },
     removeService: (state, action: PayloadAction<IService>) => {
+      state.reachedStage = 2;
       const services: IService[] = state.services.filter((service) => {
         return service.id !== action.payload.id;
       });

@@ -3,7 +3,7 @@ import './style.scss';
 import classNames from 'classnames';
 import React from 'react';
 
-import Icon from '~/components/Icon/Icon';
+import Icon from '~/components/common/Icon/Icon';
 
 import { NavDotsProps } from './types';
 

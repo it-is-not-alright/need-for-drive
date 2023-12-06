@@ -3,7 +3,7 @@ import './style.scss';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Button from '~/components/Button/Button';
+import Button from '~/components/common/Button/Button';
 import { formatPrice } from '~/format/price';
 import orderDetailsSelector from '~/store/order/details/selectors';
 import { setReachedStage } from '~/store/order/details/slice';
@@ -12,9 +12,9 @@ import { postOrder } from '~/store/order/new/thunk';
 import { AppDispatch } from '~/store/root';
 import { IService } from '~/store/types';
 
+import PopUp from '../../../common/PopUp/PopUp';
 import { placeholder } from './constants';
 import OrderInfoOption from './OrderInfoOption/OrderInfoOption';
-import PopUp from './PopUp/PopUp';
 import { OrderInfoProps } from './types';
 
 function OrderInfo({ btnLabel }: OrderInfoProps) {
@@ -36,6 +36,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
   }, [error]);
 
   useEffect(() => {
+    console.log(newOrder);
     setPopUpVisible(false);
   }, [newOrder]);
 
@@ -57,8 +58,6 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
       dispatch(setReachedStage(details.currentStage + 1));
     } else if (details.currentStage === 3) {
       setPopUpVisible(true);
-    } else if (details.currentStage === 4) {
-      dispatch(setReachedStage(0));
     }
   };
 

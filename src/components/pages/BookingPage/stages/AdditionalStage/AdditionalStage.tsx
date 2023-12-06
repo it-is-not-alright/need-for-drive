@@ -3,9 +3,9 @@ import './style.scss';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CheckboxGroup from '~/components/CheckboxGroup/CheckboxGroup';
-import DateTimePicker from '~/components/DateTimePicker/DateTimePicker';
-import RadioGroup from '~/components/RadioGroup/RadioGroup';
+import CheckboxGroup from '~/components/common/CheckboxGroup/CheckboxGroup';
+import DateTimePicker from '~/components/common/DateTimePicker/DateTimePicker';
+import RadioGroup from '~/components/common/RadioGroup/RadioGroup';
 import { dateToInputValue } from '~/format/datetime';
 import orderDetailsSelector from '~/store/order/details/selectors';
 import {

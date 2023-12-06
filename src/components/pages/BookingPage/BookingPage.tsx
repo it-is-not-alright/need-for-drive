@@ -7,17 +7,16 @@ import orderDetailsSelector from '~/store/order/details/selectors';
 import { setCurrentStage } from '~/store/order/details/slice';
 import { AppDispatch } from '~/store/root';
 
-import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '../../common/Breadcrumbs/Breadcrumbs';
 import { breadcrumbsItems, stages } from './constants';
 import OrderInfo from './OrderInfo/OrderInfo';
 import AdditionalStage from './stages/AdditionalStage/AdditionalStage';
 import FinalStage from './stages/FinalStage/FinalStage';
 import LocationStage from './stages/LocationStage/LocationStage';
 import ModelStage from './stages/ModelStage/ModelStage';
-import ResultStage from './stages/ResultStage/ResultStage';
 import { OrderPageProps } from './types';
 
-function OrderPage({ header }: OrderPageProps) {
+function BookingPage({ header }: OrderPageProps) {
   const { id, currentStage, reachedStage } = useSelector(orderDetailsSelector);
   const dispatch = useDispatch<AppDispatch>();
   const stageComponents: ReactElement[] = [
@@ -25,7 +24,6 @@ function OrderPage({ header }: OrderPageProps) {
     <ModelStage />,
     <AdditionalStage />,
     <FinalStage />,
-    <ResultStage />,
   ];
 
   return (
@@ -56,4 +54,4 @@ function OrderPage({ header }: OrderPageProps) {
   );
 }
 
-export default OrderPage;
+export default BookingPage;

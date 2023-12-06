@@ -3,8 +3,8 @@ import './style.scss';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import RadioGroup from '~/components/RadioGroup/RadioGroup';
-import Spinner from '~/components/Spinner/Spinner';
+import RadioGroup from '~/components/common/RadioGroup/RadioGroup';
+import Spinner from '~/components/common/Spinner/Spinner';
 import { filterCars } from '~/store/cars/selectors';
 import { getCars } from '~/store/cars/thunk';
 import categoriesSelector from '~/store/categories/selectors';

@@ -3,7 +3,7 @@ import './style.scss';
 import classNames from 'classnames';
 import React from 'react';
 
-import Button from '~/components/Button/Button';
+import Button from '~/components/common/Button/Button';
 
 import { PopUpProps } from './types';
 

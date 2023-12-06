@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MapImage from '~/assets/images/map/img-0.png';
-import InputSelect from '~/components/InputSelect/InputSelect';
+import InputSelect from '~/components/common/InputSelect/InputSelect';
 import citiesSelector from '~/store/cities/selectors';
 import { getCities } from '~/store/cities/thunk';
 import orderDetailsSelector from '~/store/order/details/selectors';

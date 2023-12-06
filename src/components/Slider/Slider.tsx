@@ -3,8 +3,8 @@ import './style.scss';
 import React, { useState } from 'react';
 
 import useInterval from '../../hooks/useInterval';
-import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
+import Button from '../common/Button/Button';
+import Icon from '../common/Icon/Icon';
 import { defaultDelay, longDelay, slides } from './constants';
 import NavDots from './NavDots/NavDots';
 import SliderImages from './SliderImages/SliderImages';

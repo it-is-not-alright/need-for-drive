@@ -2,7 +2,7 @@ import './style.scss';
 
 import React from 'react';
 
-import Icon from '~/components/Icon/Icon';
+import Icon from '~/components/common/Icon/Icon';
 
 import { CheckboxProps } from './types';
 

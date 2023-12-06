@@ -3,7 +3,7 @@ import './style.scss';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '~/components/Button/Button';
+import Button from '~/components/common/Button/Button';
 import Footer from '~/components/Footer/Footer';
 import Slider from '~/components/Slider/Slider';
 

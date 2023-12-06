@@ -14,7 +14,6 @@ import {
 } from '../../types';
 
 const initialState: OrderDetails = {
-  id: 0,
   currentStage: 0,
   reachedStage: 0,
   city: null,
@@ -31,11 +30,6 @@ export const orderDetailsSlice = createSlice({
   name: 'orderDetails',
   initialState,
   reducers: {
-    setId: (state, action: PayloadAction<number>) => {
-      state.id = action.payload;
-      state.currentStage = 4;
-      state.reachedStage = 4;
-    },
     setCurrentStage: (state, action: PayloadAction<number>) => {
       state.currentStage = action.payload;
     },
@@ -119,7 +113,6 @@ export const orderDetailsSlice = createSlice({
 });
 
 export const {
-  setId,
   setCurrentStage,
   setReachedStage,
   setCity,

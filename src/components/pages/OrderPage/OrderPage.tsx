@@ -3,8 +3,8 @@ import './style.scss';
 import React, { ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import orderDetailsSelector from '~/store/orderDetails/selectors';
-import { setCurrentStage } from '~/store/orderDetails/slice';
+import orderDetailsSelector from '~/store/order/details/selectors';
+import { setCurrentStage } from '~/store/order/details/slice';
 import { AppDispatch } from '~/store/root';
 
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';

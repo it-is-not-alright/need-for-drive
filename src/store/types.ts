@@ -70,7 +70,7 @@ interface IService extends IEntity {
   name: string;
 }
 
-interface IOrderDetails extends IId {
+interface OrderDetails extends IId {
   currentStage: number;
   reachedStage: number;
   city: ICity | null;
@@ -97,6 +97,16 @@ interface IOrder {
   isRightWheel: boolean;
 }
 
+type RootState = {
+  orderDetails: OrderDetails;
+  cities: RequestState<ICity[]>;
+  points: RequestState<IPoint[]>;
+  cars: RequestState<ICar[]>;
+  categories: RequestState<ICategory[]>;
+  rates: RequestState<IRate[]>;
+  newOrder: RequestState<IId>;
+};
+
 export {
   DateRange,
   ICar,
@@ -106,9 +116,10 @@ export {
   IEntity,
   IId,
   IOrder,
-  IOrderDetails,
   IPoint,
   IRate,
   IService,
+  OrderDetails,
   RequestState,
+  RootState,
 };

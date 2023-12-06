@@ -3,6 +3,7 @@ type PopUpProps = {
   visible: boolean;
   onConfirm: () => void;
   onCancel: () => void;
+  loading?: boolean;
 };
 
 export { PopUpProps };

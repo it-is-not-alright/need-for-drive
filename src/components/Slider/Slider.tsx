@@ -3,6 +3,7 @@ import './style.scss';
 import React, { useState } from 'react';
 
 import useInterval from '../../hooks/useInterval';
+import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import { defaultDelay, longDelay, slides } from './constants';
 import NavDots from './NavDots/NavDots';
@@ -80,12 +81,10 @@ function Slider() {
           <p className="light-text fw-300">
             {slides[currentIndex].description}
           </p>
-          <button
-            className={`btn-medium ${slides[currentIndex].colorTheme}`}
-            type="button"
-          >
-            Подробнее
-          </button>
+          <Button
+            text="Забронировать"
+            className={`medium ${slides[currentIndex].colorTheme}`}
+          />
         </div>
         <NavDots
           slides={slides}

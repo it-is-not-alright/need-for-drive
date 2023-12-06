@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { dateToString } from '~/format/datetime';
-import orderDetailsSelector from '~/store/orderDetails/selectors';
+import orderDetailsSelector from '~/store/order/details/selectors';
 
 function ResultStage() {
   const { car, date } = useSelector(orderDetailsSelector);

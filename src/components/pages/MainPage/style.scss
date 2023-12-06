@@ -52,7 +52,7 @@
         }
       }
 
-      p {
+      & > p {
         margin-top: variables.$d-5;
         margin-bottom: variables.$d-7;
         font-size: 18px;
@@ -62,7 +62,7 @@
         }
       }
 
-      a {
+      button {
         padding-right: variables.$d-8;
         padding-left: variables.$d-8;
 

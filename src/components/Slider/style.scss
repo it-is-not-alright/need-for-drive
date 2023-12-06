@@ -45,7 +45,7 @@
         }
       }
 
-      p {
+      & > p {
         font-size: 22px;
 
         @media (min-width: variables.$desktop-width) {

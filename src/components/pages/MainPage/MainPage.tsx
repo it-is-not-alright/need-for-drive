@@ -12,7 +12,7 @@ import { MainPageProps } from './types';
 function MainPage({ header }: MainPageProps) {
   const navigate = useNavigate();
 
-  const handleBookButton = () => {
+  const handleBookButtonClick = () => {
     navigate('/order');
   };
 
@@ -27,7 +27,7 @@ function MainPage({ header }: MainPageProps) {
             <span className="green-text">Need for drive</span>
           </h1>
           <p className="gray-text">Поминутная аренда авто твоего города</p>
-          <Button text="Забронировать" onClick={handleBookButton} />
+          <Button text="Забронировать" onClick={handleBookButtonClick} />
         </div>
         <Footer />
       </div>

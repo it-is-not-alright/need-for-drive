@@ -1,5 +1,3 @@
-import { PostResult } from './types';
-
 class ApiRequest {
   public baseUrl: string;
 
@@ -27,16 +25,16 @@ class ApiRequest {
       },
       body: JSON.stringify(body),
     };
-    const result = await this.request<PostResult<U>>(url, init);
-    return result.data as Promise<U>;
+    const result = await this.request<U>(url, init);
+    return result as Promise<U>;
   }
 
-  public async put(url: string): Promise<Response> {
-    return this.request(url, { method: 'PUT' });
+  public async put(url: string) {
+    this.request(url, { method: 'PUT' });
   }
 
-  public async remove(url: string): Promise<Response> {
-    return this.request(url, { method: 'REMOVE' });
+  public async remove(url: string) {
+    this.request(url, { method: 'REMOVE' });
   }
 }
 

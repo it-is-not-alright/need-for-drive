@@ -97,6 +97,16 @@ interface IOrder {
   isRightWheel: boolean;
 }
 
+type RootState = {
+  orderDetails: OrderDetails;
+  cities: RequestState<ICity[]>;
+  points: RequestState<IPoint[]>;
+  cars: RequestState<ICar[]>;
+  categories: RequestState<ICategory[]>;
+  rates: RequestState<IRate[]>;
+  newOrder: RequestState<IId>;
+};
+
 export {
   DateRange,
   ICar,
@@ -111,4 +121,5 @@ export {
   IService,
   OrderDetails,
   RequestState,
+  RootState,
 };

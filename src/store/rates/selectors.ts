@@ -1,7 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { RootState } from '../root';
-import { IRate, RequestState } from '../types';
+import { IRate, RequestState, RootState } from '../types';
 
 const ratesSelector = (state: RootState): RequestState<IRate[]> => state.rates;
 

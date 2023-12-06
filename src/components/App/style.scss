@@ -80,23 +80,6 @@ h1 {
   font-size: variables.$fs-4;
 }
 
-%btn-custom {
-  padding: variables.$d-5 variables.$d-7;
-  font-weight: 500;
-  font-size: variables.$fs-3;
-  border: none;
-  outline: none;
-  transition: filter variables.$td-2;
-
-  &:hover {
-    filter: brightness(90%);
-  }
-
-  &:active {
-    filter: brightness(80%);
-  }
-}
-
 button {
   cursor: pointer;
 
@@ -105,59 +88,6 @@ button {
     background-color: transparent;
     border: none;
     outline: none;
-  }
-
-  &.btn-medium {
-    @extend %btn-custom;
-
-    color: variables.$color-light;
-    border-radius: variables.$d-1;
-
-    &.green {
-      background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
-    }
-
-    &.blue {
-      background: linear-gradient(90deg, #132949 0%, #0c7b67 100%);
-    }
-
-    &.orange {
-      background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
-    }
-
-    &.purple {
-      background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
-    }
-  }
-}
-
-a {
-  text-decoration: none;
-
-  &.btn-large {
-    display: block;
-    width: fit-content;
-    text-align: center;
-  }
-}
-
-a,
-button {
-  &.btn-large {
-    @extend %btn-custom;
-
-    color: white;
-    background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
-    background-blend-mode: darken;
-    border-radius: variables.$d-2;
-
-    &:disabled {
-      background: variables.$color-light;
-    }
-  }
-
-  &:disabled {
-    cursor: default;
   }
 }
 

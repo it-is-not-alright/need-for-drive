@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { defaultCategory } from '../constants';
+import { defaultCategory } from '../../constants';
 import {
   DateRange,
   ICar,
@@ -11,7 +11,7 @@ import {
   IRate,
   IService,
   OrderDetails,
-} from '../types';
+} from '../../types';
 
 const initialState: OrderDetails = {
   currentStage: 0,

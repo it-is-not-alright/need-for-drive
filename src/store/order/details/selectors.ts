@@ -1,5 +1,4 @@
-import { RootState } from '../root';
-import { OrderDetails } from '../types';
+import { OrderDetails, RootState } from '../../types';
 
 const orderDetailsSelector = (state: RootState): OrderDetails =>
   state.orderDetails;

@@ -4,7 +4,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { dateToString } from '~/format/datetime';
-import orderDetailsSelector from '~/store/orderDetails/selectors';
+import orderDetailsSelector from '~/store/order/details/selectors';
 
 import { fullTankServiceId } from './constants';
 

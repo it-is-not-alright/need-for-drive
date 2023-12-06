@@ -10,8 +10,8 @@ import { getCars } from '~/store/cars/thunk';
 import categoriesSelector from '~/store/categories/selectors';
 import { getCategories } from '~/store/categories/thunk';
 import { defaultCategory } from '~/store/constants';
-import orderDetailsSelector from '~/store/orderDetails/selectors';
-import { setCar, setCategory } from '~/store/orderDetails/slice';
+import orderDetailsSelector from '~/store/order/details/selectors';
+import { setCar, setCategory } from '~/store/order/details/slice';
 import { AppDispatch } from '~/store/root';
 import { ICar, ICategory } from '~/store/types';
 

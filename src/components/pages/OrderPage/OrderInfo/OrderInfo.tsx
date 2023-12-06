@@ -1,15 +1,16 @@
 import './style.scss';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { apiRequest } from '~/api/api';
-import { orderUrl } from '~/api/constants';
+import Button from '~/components/Button/Button';
 import { formatPrice } from '~/format/price';
-import orderDetailsSelector from '~/store/orderDetails/selectors';
-import { setCurrentStage, setReachedStage } from '~/store/orderDetails/slice';
+import orderDetailsSelector from '~/store/order/details/selectors';
+import { setCurrentStage, setReachedStage } from '~/store/order/details/slice';
+import newOrderSelector from '~/store/order/new/selectors';
+import { postOrder } from '~/store/order/new/thunk';
 import { AppDispatch } from '~/store/root';
-import { IId, IOrder, IService } from '~/store/types';
+import { IService } from '~/store/types';
 
 import { placeholder } from './constants';
 import OrderInfoOption from './OrderInfoOption/OrderInfoOption';
@@ -19,7 +20,24 @@ import { OrderInfoProps } from './types';
 function OrderInfo({ btnLabel }: OrderInfoProps) {
   const details = useSelector(orderDetailsSelector);
   const [popUpVisible, setPopUpVisible] = useState<boolean>(false);
+  const {
+    data: newOrder,
+    isLoading,
+    errorMessage: error,
+  } = useSelector(newOrderSelector);
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (error === null) {
+      return;
+    }
+    const errorMessage: string = 'Ошибка сервера';
+    throw new Error(errorMessage);
+  }, [error]);
+
+  useEffect(() => {
+    setPopUpVisible(false);
+  }, [newOrder]);
 
   function nextBtnIsDisabled(): boolean {
     switch (details.currentStage) {
@@ -47,10 +65,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
   function getTotalPrice(): number {
     const days = details.date.days + (details.date.hours === 0 ? 0 : 1);
     const timePrice = Math.ceil(days / details.rate.days) * details.rate.price;
-    const servicesPrice = details.services.reduce((accumulator, service) => {
-      return accumulator + service.price;
-    }, 0);
-    return details.car.priceMin + timePrice + servicesPrice;
+    return details.car.priceMin + timePrice;
   }
 
   function getPrice(): string {
@@ -66,28 +81,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
   }
 
   const createOrder = async () => {
-    function getServiceChecked(serviceId: number) {
-      return (
-        details.services.find((service) => {
-          return service.id === serviceId;
-        }) !== undefined
-      );
-    }
-    const order: IOrder = {
-      color: details.color.name,
-      dateFrom: details.date.from,
-      dateTo: details.date.to,
-      price: getTotalPrice(),
-      isFullTank: getServiceChecked(1),
-      isNeedChildChair: getServiceChecked(2),
-      isRightWheel: getServiceChecked(3),
-      cityId: { id: details.city.id },
-      pointId: { id: details.point.id },
-      carId: { id: details.car.id },
-      rateId: { id: details.rate.id },
-    };
-    await apiRequest.post<IOrder, IId>(orderUrl, order);
-    setPopUpVisible(false);
+    dispatch(postOrder());
   };
 
   return (
@@ -138,19 +132,17 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
         <span className="fw-500">Цена: </span>
         <span>{details.car ? getPrice() : placeholder}</span>
       </p>
-      <button
-        className="btn-large"
-        type="button"
+      <Button
+        text={btnLabel}
         onClick={handleNextBtnClick}
         disabled={nextBtnIsDisabled()}
-      >
-        {btnLabel}
-      </button>
+      />
       <PopUp
         title="Подтвердить заказ"
         visible={popUpVisible}
         onConfirm={createOrder}
         onCancel={() => setPopUpVisible(false)}
+        loading={isLoading}
       />
     </div>
   );

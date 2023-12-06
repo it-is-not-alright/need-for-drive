@@ -3,7 +3,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { carsReducer } from './cars/slice';
 import { categoriesReducer } from './categories/slice';
 import { citiesReducer } from './cities/slice';
-import { orderDetailsReducer } from './orderDetails/slice';
+import { orderDetailsReducer } from './order/details/slice';
+import { newOrderReducer } from './order/new/slice';
 import { pointsReducer } from './points/slice';
 import { ratesReducer } from './rates/slice';
 
@@ -15,10 +16,10 @@ const store = configureStore({
     cars: carsReducer,
     categories: categoriesReducer,
     rates: ratesReducer,
+    newOrder: newOrderReducer,
   },
 });
 
 export default store;
 
-export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

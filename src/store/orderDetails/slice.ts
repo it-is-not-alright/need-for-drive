@@ -33,6 +33,8 @@ export const orderDetailsSlice = createSlice({
   reducers: {
     setId: (state, action: PayloadAction<number>) => {
       state.id = action.payload;
+      state.currentStage = 4;
+      state.reachedStage = 4;
     },
     setCurrentStage: (state, action: PayloadAction<number>) => {
       state.currentStage = action.payload;

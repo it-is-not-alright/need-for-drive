@@ -8,12 +8,13 @@ import { setCurrentStage } from '~/store/orderDetails/slice';
 import { AppDispatch } from '~/store/root';
 
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
-import { stages } from './constants';
+import { breadcrumbsItems, stages } from './constants';
 import OrderInfo from './OrderInfo/OrderInfo';
 import AdditionalStage from './stages/AdditionalStage/AdditionalStage';
 import FinalStage from './stages/FinalStage/FinalStage';
 import LocationStage from './stages/LocationStage/LocationStage';
 import ModelStage from './stages/ModelStage/ModelStage';
+import ResultStage from './stages/ResultStage/ResultStage';
 import { OrderPageProps } from './types';
 
 function OrderPage({ header }: OrderPageProps) {
@@ -24,23 +25,24 @@ function OrderPage({ header }: OrderPageProps) {
     <ModelStage />,
     <AdditionalStage />,
     <FinalStage />,
+    <ResultStage />,
   ];
 
   return (
     <div id="order-page">
       {header}
       <div className="line-horizontal" />
-      {id === 0 ? (
+      {currentStage === 4 ? (
+        <p className="fw-700">Заказ номер {id}</p>
+      ) : (
         <Breadcrumbs
-          items={stages.map((stage) => stage.name)}
+          items={breadcrumbsItems}
           currentIndex={currentStage}
           reachedIndex={reachedStage}
           onIndexChange={(newIndex: number) =>
             dispatch(setCurrentStage(newIndex))
           }
         />
-      ) : (
-        <p className="fw-700">Заказ номер {id}</p>
       )}
       <div className="line-horizontal" />
       <div id="order-page__content">

@@ -12,6 +12,11 @@ import { setId, setReachedStage } from '~/store/orderDetails/slice';
 import { AppDispatch } from '~/store/root';
 import { IId, IOrder, IService } from '~/store/types';
 
+import {
+  childChairService,
+  fullTankService,
+  rightWheelService,
+} from '../../../../store/services/constants';
 import { placeholder } from './constants';
 import OrderInfoOption from './OrderInfoOption/OrderInfoOption';
 import PopUp from './PopUp/PopUp';
@@ -38,11 +43,10 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
   const handleNextBtnClick = (): void => {
     if (details.currentStage < 3) {
       dispatch(setReachedStage(details.currentStage + 1));
-    }
-    if (details.id !== 0) {
-      dispatch(setReachedStage(0));
     } else if (details.currentStage === 3) {
       setPopUpVisible(true);
+    } else if (details.currentStage === 4) {
+      dispatch(setReachedStage(0));
     }
   };
 
@@ -60,7 +64,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
       return formatPrice(getTotalPrice(), true);
     }
     if (details.car !== null) {
-      const min = formatPrice(details.car.priceMin, true);
+      const min = formatPrice(details.car.priceMin);
       const max = formatPrice(details.car.priceMax, true);
       return `от ${min} до ${max}`;
     }
@@ -80,16 +84,16 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
       dateFrom: details.date.from,
       dateTo: details.date.to,
       price: getTotalPrice(),
-      isFullTank: getServiceChecked(1),
-      isNeedChildChair: getServiceChecked(2),
-      isRightWheel: getServiceChecked(3),
+      isFullTank: getServiceChecked(fullTankService.id),
+      isNeedChildChair: getServiceChecked(childChairService.id),
+      isRightWheel: getServiceChecked(rightWheelService.id),
       cityId: { id: details.city.id },
       pointId: { id: details.point.id },
       carId: { id: details.car.id },
       rateId: { id: details.rate.id },
     };
-    const result = await apiRequest.post<IOrder, IId>(orderUrl, order);
-    const orderId = result.id;
+    const orderResponse = await apiRequest.post<IOrder, IId>(orderUrl, order);
+    const orderId = orderResponse.id;
     dispatch(setId(orderId));
     setPopUpVisible(false);
   };
@@ -143,12 +147,14 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
         <span>{details.car ? getPrice() : placeholder}</span>
       </p>
       <button
-        className={classNames('btn-large', { danger: details.id !== 0 })}
+        className={classNames('btn-large', {
+          danger: details.currentStage === 4,
+        })}
         type="button"
         onClick={handleNextBtnClick}
         disabled={nextBtnIsDisabled()}
       >
-        {details.id === 0 ? btnLabel : 'Отменить'}
+        {btnLabel}
       </button>
       <PopUp
         title="Подтвердить заказ"

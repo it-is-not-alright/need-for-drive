@@ -20,7 +20,7 @@ import { getRates } from '~/store/rates/thunk';
 import { AppDispatch } from '~/store/root';
 import { IColor, IRate, IService } from '~/store/types';
 
-import { additionalServices } from './constants';
+import { additionalServices } from '../../../../../store/services/constants';
 
 function AdditionallyStage() {
   const { car, color, date, rate, services } =

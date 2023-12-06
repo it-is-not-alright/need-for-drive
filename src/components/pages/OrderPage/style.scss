@@ -42,10 +42,6 @@
     #order-page__content__stage {
       padding: variables.$d-5 0 variables.$d-5 0;
 
-      @media (min-width: variables.$tablet-width) {
-        padding: variables.$d-7 variables.$d-7 variables.$d-7 0;
-      }
-
       @media (min-width: variables.$desktop-mini-width) {
         padding: variables.$d-7 variables.$d-9 variables.$d-7 0;
       }
@@ -53,6 +49,14 @@
 
     div.line-vertical {
       border-left: variables.$bw-1 solid variables.$color-light;
+    }
+
+    #order-info {
+      padding: variables.$d-5 0 variables.$d-5 0;
+
+      @media (min-width: variables.$desktop-mini-width) {
+        padding: variables.$d-7 0 variables.$d-7 variables.$d-7;
+      }
     }
   }
 

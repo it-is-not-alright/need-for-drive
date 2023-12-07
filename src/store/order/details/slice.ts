@@ -24,6 +24,7 @@ const initialState: OrderDetails = {
   date: null,
   rate: null,
   services: [],
+  price: 0,
 };
 
 export const orderDetailsSlice = createSlice({
@@ -75,14 +76,21 @@ export const orderDetailsSlice = createSlice({
       reachedStage: 2,
       date: action.payload,
     }),
-    setRate: (state, action: PayloadAction<IRate>) => ({
-      ...state,
-      reachedStage: 2,
-      rate: action.payload,
-    }),
+    setRate: (state, action: PayloadAction<IRate>) => {
+      state.reachedStage = 2;
+      state.rate = action.payload;
+      const days = state.date.days + (state.date.hours === 0 ? 0 : 1);
+      const timePrice = Math.ceil(days / state.rate.days) * state.rate.price;
+      let servicePrice = 0;
+      state.services.forEach((service: IService) => {
+        servicePrice += service.price;
+      });
+      state.price = state.car.priceMin + timePrice + servicePrice;
+    },
     addService: (state, action: PayloadAction<IService>) => {
       state.reachedStage = 2;
       state.services.push(action.payload);
+      state.price += action.payload.price;
     },
     removeService: (state, action: PayloadAction<IService>) => {
       state.reachedStage = 2;
@@ -90,6 +98,7 @@ export const orderDetailsSlice = createSlice({
         return service.id !== action.payload.id;
       });
       state.services = services;
+      state.price -= action.payload.price;
     },
   },
 });

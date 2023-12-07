@@ -61,15 +61,9 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
     }
   };
 
-  function getTotalPrice(): number {
-    const days = details.date.days + (details.date.hours === 0 ? 0 : 1);
-    const timePrice = Math.ceil(days / details.rate.days) * details.rate.price;
-    return details.car.priceMin + timePrice;
-  }
-
   function getPrice(): string {
     if (details.rate !== null) {
-      return formatPrice(getTotalPrice(), true);
+      return formatPrice(details.price, true);
     }
     if (details.car !== null) {
       const min = formatPrice(details.car.priceMin);

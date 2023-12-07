@@ -24,7 +24,7 @@ const post = createAsyncThunk<IId, void, { rejectValue: string }>(
         color: orderDetails.color.name,
         dateFrom: orderDetails.date.from,
         dateTo: orderDetails.date.to,
-        price: 0,
+        price: orderDetails.price,
         isFullTank: checked(fullTankService.id),
         isNeedChildChair: checked(childChairService.id),
         isRightWheel: checked(rightWheelService.id),

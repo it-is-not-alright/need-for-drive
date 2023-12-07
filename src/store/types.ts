@@ -81,6 +81,7 @@ type OrderDetails = {
   date: DateRange | null;
   rate: IRate | null;
   services: IService[];
+  price: number;
 };
 
 interface IOrder {

@@ -5,18 +5,15 @@ import { useSelector } from 'react-redux';
 
 import { dateToString } from '~/format/datetime';
 import orderDetailsSelector from '~/store/order/details/selectors';
-
-import { fullTankService } from '../../../../../store/services/constants';
+import { fullTankService } from '~/store/services/constants';
 
 function FinalStage() {
   const { car, date, services } = useSelector(orderDetailsSelector);
 
   function fullTank(): boolean {
-    return (
-      services.find((service) => {
-        return service.id === fullTankService.id;
-      }) !== undefined
-    );
+    return services.some((service) => {
+      return service.id === fullTankService.id;
+    });
   }
 
   return (

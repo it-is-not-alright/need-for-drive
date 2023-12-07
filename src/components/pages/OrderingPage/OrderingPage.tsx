@@ -16,7 +16,7 @@ import LocationStage from './stages/LocationStage/LocationStage';
 import ModelStage from './stages/ModelStage/ModelStage';
 import { OrderPageProps } from './types';
 
-function BookingPage({ header }: OrderPageProps) {
+function OrderingPage({ header }: OrderPageProps) {
   const { currentStage, reachedStage } = useSelector(orderDetailsSelector);
   const dispatch = useDispatch<AppDispatch>();
   const stageComponents: ReactElement[] = [
@@ -50,4 +50,4 @@ function BookingPage({ header }: OrderPageProps) {
   );
 }
 
-export default BookingPage;
+export default OrderingPage;

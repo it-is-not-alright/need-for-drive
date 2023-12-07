@@ -48,11 +48,6 @@ button.custom-button {
     border-radius: variables.$d-2;
   }
 
-  &:disabled {
-    background: variables.$color-light;
-    cursor: default;
-  }
-
   &.loading > p {
     visibility: hidden;
   }
@@ -67,7 +62,7 @@ button.custom-button {
     border-bottom-color: transparent;
     border-radius: 50%;
     animation: rotation 1s linear infinite;
-    content: "";
+    content: '';
     aspect-ratio: 1;
   }
 }

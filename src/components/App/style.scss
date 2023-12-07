@@ -89,6 +89,11 @@ button {
     border: none;
     outline: none;
   }
+
+  &:disabled {
+    background: variables.$color-light;
+    cursor: default;
+  }
 }
 
 div.custom-input-wrapper {

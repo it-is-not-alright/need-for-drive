@@ -12,12 +12,17 @@ function Button({
   loading = false,
   disabled = false,
 }: ButtonProps) {
-  const classes = classNames('custom-button', className, { loading });
+  const handleClick = () => {
+    if (!loading) {
+      onClick();
+    }
+  };
+
   return (
     <button
-      className={classes}
+      className={classNames('custom-button', className, { loading })}
       type="button"
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
     >
       <p>{text}</p>

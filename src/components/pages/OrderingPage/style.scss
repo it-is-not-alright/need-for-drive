@@ -2,16 +2,25 @@
 
 #order-page {
   display: grid;
-  grid-template-columns: minmax(variables.$d-5, auto) minmax(auto, 1376px) minmax(variables.$d-5, auto);
+  grid-template-columns: minmax(variables.$d-5, auto) minmax(auto, 1376px) minmax(
+      variables.$d-5,
+      auto
+    );
   grid-template-rows: auto auto auto auto 1fr;
   min-height: inherit;
 
   @media (min-width: variables.$tablet-width) {
-    grid-template-columns: minmax(variables.$d-7, auto) minmax(auto, 1376px) minmax(variables.$d-7, auto);
+    grid-template-columns: minmax(variables.$d-7, auto) minmax(auto, 1376px) minmax(
+        variables.$d-7,
+        auto
+      );
   }
 
   @media (min-width: variables.$desktop-mini-width) {
-    grid-template-columns: minmax(variables.$d-9, auto) minmax(auto, 1376px) minmax(variables.$d-9, auto);
+    grid-template-columns: minmax(variables.$d-9, auto) minmax(auto, 1376px) minmax(
+        variables.$d-9,
+        auto
+      );
   }
 
   header {
@@ -23,7 +32,7 @@
     }
   }
 
-  & > p, div.breadcrumbs {
+  & > div.breadcrumbs {
     grid-column: 2;
     padding: variables.$d-2 0;
   }

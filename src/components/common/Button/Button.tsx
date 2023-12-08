@@ -12,9 +12,9 @@ function Button({
   loading = false,
   disabled = false,
 }: ButtonProps) {
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!loading) {
-      onClick();
+      onClick(event);
     }
   };
 

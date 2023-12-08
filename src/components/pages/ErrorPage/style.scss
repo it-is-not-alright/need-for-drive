@@ -1,4 +1,4 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 div.error-page {
   min-height: inherit;
@@ -7,19 +7,19 @@ div.error-page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: variables.$d-5;
+    padding: c.$d-5;
     text-align: center;
 
     h1 {
-      margin-top: variables.$d-8;
+      margin-top: c.$d-8;
     }
 
     p {
-      margin-top: variables.$d-5;
+      margin-top: c.$d-5;
     }
 
     button {
-      margin-top: variables.$d-8;
+      margin-top: c.$d-8;
     }
   }
 }

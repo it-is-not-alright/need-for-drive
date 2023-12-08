@@ -1,28 +1,28 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 #final-stage {
   display: flex;
   flex-wrap: wrap;
-  gap: variables.$d-7;
+  gap: c.$d-7;
 
   #final-stage__info {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    gap: variables.$d-2;
+    gap: c.$d-2;
   }
 
   p.fs-4 {
-    margin-bottom: variables.$d-2;
+    margin-bottom: c.$d-2;
   }
 
   p.car-number {
     width: fit-content;
-    padding: variables.$d-1 variables.$d-2;
-    border-width: variables.$bw-1;
+    padding: c.$d-1 c.$d-2;
+    border-width: c.$bw-1;
     border-style: solid;
-    border-color: variables.$color-gray;
-    border-radius: variables.$d-1;
+    border-color: c.$c-gray;
+    border-radius: c.$d-1;
   }
 
   img {

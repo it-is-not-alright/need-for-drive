@@ -58,9 +58,9 @@
     <path d="M0 0L6 4.03L0 8V0Z" fill="#999999"/>
   </symbol>
 
-  <svg id="input-cross" viewBox="0 0 8 8">
+  <symbol id="input-cross" viewBox="0 0 8 8">
     <path d="M8 0.805714L7.19429 0L4 3.19429L0.805714 0L0 0.805714L3.19429 4L0 7.19429L0.805714 8L4 4.80571L7.19429 8L8 7.19429L4.80571 4L8 0.805714Z" />
-  </svg>
+  </symbol>
 
   <symbol id="calendar-arrow-left" viewBox="0 0 12 12">
     <polyline fill="none" stroke-width="2" points="9,1 3,6 9,11 " />

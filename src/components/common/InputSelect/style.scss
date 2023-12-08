@@ -1,9 +1,9 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 div.input-select {
   position: relative;
   width: 100%;
-  color: variables.$color-dark-gray;
+  color: c.$c-dark-gray;
   font-weight: 300;
 
   div.input-select__select-shell {
@@ -16,23 +16,23 @@ div.input-select {
     div.input-select__select {
       display: flex;
       flex-direction: column;
-      gap: variables.$d-2;
+      gap: c.$d-2;
       max-height: 7em;
-      padding: variables.$d-2;
+      padding: c.$d-2;
       overflow-y: auto;
-      border-width: variables.$bw-1;
+      border-width: c.$bw-1;
       border-style: solid;
-      border-color: variables.$color-light;
+      border-color: c.$c-light;
 
       &::-webkit-scrollbar {
-        width: variables.$d-1;
-        height: variables.$d-1;
+        width: c.$d-1;
+        height: c.$d-1;
       }
 
       &::-webkit-scrollbar-thumb {
         background-color: #aaa;
         background-clip: padding-box;
-        border-width: variables.$bw-1;
+        border-width: c.$bw-1;
         border-style: solid;
         border-color: transparent;
         border-radius: 1em;
@@ -40,17 +40,16 @@ div.input-select {
 
       button.input-select__select-item {
         padding: 0;
-        color: variables.$color-dark;
+        color: c.$c-dark;
         font-weight: inherit;
         font-size: inherit;
         text-align: left;
         background-color: transparent;
         border: none;
         outline: none;
-        transition: color variables.$td-1;
 
         &:hover {
-          color: variables.$color-green;
+          color: c.$c-green;
         }
       }
     }

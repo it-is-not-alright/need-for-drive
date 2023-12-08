@@ -1,14 +1,14 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 #order-info {
   display: flex;
   flex-direction: column;
-  gap: variables.$d-7;
+  gap: c.$d-7;
 
   #order-info__options {
     display: flex;
     flex-direction: column;
-    gap: variables.$d-5;
+    gap: c.$d-5;
   }
 
   & > button.btn-large {

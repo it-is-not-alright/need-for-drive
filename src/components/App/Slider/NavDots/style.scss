@@ -1,18 +1,18 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 #slider__content__nav-dots {
   position: absolute;
-  bottom: variables.$d-7;
+  bottom: c.$d-7;
   left: 50%;
   display: flex;
   gap: 8px;
   transform: translateX(-50%);
 
   .icon {
-    fill: variables.$color-light;
+    fill: c.$c-light;
 
     &.active {
-      fill: variables.$color-green;
+      fill: c.$c-green;
     }
   }
 }

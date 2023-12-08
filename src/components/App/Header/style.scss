@@ -1,13 +1,14 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 header {
   display: flex;
   flex-direction: column;
-  gap: variables.$d-2;
+  gap: c.$d-2;
   align-items: flex-end;
+  width: 100%;
   height: fit-content;
 
-  @media (min-width: variables.$tablet-width) {
+  @media (min-width: c.$w-tablet) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -19,7 +20,7 @@ header {
 
   #header__location {
     display: flex;
-    gap: variables.$d-2;
+    gap: c.$d-2;
     align-items: center;
   }
 }

@@ -1,16 +1,16 @@
 // Colors
-$color-green: #0ec261;
-$color-green-tr: #0ec26133;
-$color-dark: #121212;
-$color-gray: #999;
-$color-light: #eee;
-$color-dark-gray: #151b1f;
-$color-dark-gray-tr: #151b1fcf;
+$c-green: #0ec261;
+$c-green-tr: #0ec26133;
+$c-dark: #121212;
+$c-gray: #999;
+$c-light: #eee;
+$c-dark-gray: #151b1f;
+$c-dark-gray-tr: #151b1fcf;
 
 // Screen dimensions
-$desktop-width: 1440px;
-$desktop-mini-width: 1024px;
-$tablet-width: 600px;
+$w-desktop: 1440px;
+$w-desktop-mini: 1024px;
+$w-tablet: 600px;
 
 // Dimensions
 $d-0: 0.2em;
@@ -34,6 +34,6 @@ $fs-4: 1.4em;
 $bw-1: 1px;
 $bw-2: 2px;
 
-// Other
+// Transition duration
 $td-1: 0.2s;
-$td-2: 0.2s;
+$td-2: 0.3s;

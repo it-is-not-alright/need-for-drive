@@ -1,0 +1,32 @@
+@use '~/components/constants.scss' as c;
+
+footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: c.$d-2;
+  align-items: flex-end;
+  background-color: c.$c-dark-gray;
+
+  @media (min-width: c.$w-tablet) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+  }
+
+  #footer__p-license {
+    color: c.$c-light;
+
+    @media (min-width: c.$w-tablet) {
+      color: c.$c-gray;
+    }
+  }
+
+  #footer__p-phone {
+    color: c.$c-green;
+
+    @media (min-width: c.$w-tablet) {
+      color: c.$c-dark;
+    }
+  }
+}

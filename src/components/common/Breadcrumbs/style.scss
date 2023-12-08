@@ -1,28 +1,27 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 div.breadcrumbs {
   display: flex;
   flex-wrap: wrap;
-  gap: variables.$d-5;
+  gap: c.$d-5;
   align-items: center;
 
   button {
     padding: 0;
-    color: variables.$color-dark;
+    color: c.$c-dark;
     font-weight: 700;
     font-size: inherit;
     background-color: transparent;
     border: none;
     outline: none;
-    transition: color variables variables.$td-2;
 
     &:hover,
     &.active {
-      color: variables.$color-green;
+      color: c.$c-green;
     }
 
     &:disabled {
-      color: variables.$color-gray;
+      color: c.$c-gray;
     }
   }
 }

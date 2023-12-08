@@ -1,22 +1,22 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 div.input-group {
-  margin-bottom: variables.$d-7;
+  margin-bottom: c.$d-7;
 
   p.input-group-header {
-    margin-bottom: variables.$d-5;
-    color: variables.$color-dark;
+    margin-bottom: c.$d-5;
+    color: c.$c-dark;
     font-weight: 300;
   }
 
   div.input-group-grid {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: variables.$d-3;
+    gap: c.$d-3;
     align-items: center;
 
     p {
-      color: variables.$color-dark;
+      color: c.$c-dark;
     }
 
     div.custom-input-wrapper {
@@ -31,7 +31,7 @@ div.input-group {
       display: none;
     }
 
-    @media (min-width: variables.$tablet-width) {
+    @media (min-width: c.$w-tablet) {
       input[type='datetime-local'] {
         display: none;
       }

@@ -2,9 +2,10 @@ import './style.scss';
 
 import React, { useState } from 'react';
 
-import useInterval from '../../hooks/useInterval';
-import Button from '../common/Button/Button';
-import Icon from '../common/Icon/Icon';
+import Button from '~/components/common/Button/Button';
+import Icon from '~/components/common/Icon/Icon';
+import useInterval from '~/hooks/useInterval';
+
 import { defaultDelay, longDelay, slides } from './constants';
 import NavDots from './NavDots/NavDots';
 import SliderImages from './SliderImages/SliderImages';
@@ -82,7 +83,7 @@ function Slider() {
             {slides[currentIndex].description}
           </p>
           <Button
-            text="Забронировать"
+            text="Подробнее"
             className={`medium ${slides[currentIndex].colorTheme}`}
           />
         </div>

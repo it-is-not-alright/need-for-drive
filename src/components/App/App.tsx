@@ -2,33 +2,38 @@ import './style.scss';
 import '~/assets/fonts/styles/roboto.scss';
 
 import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
-import Header from '~/components/Header/Header';
-import Menu from '~/components/Menu/Menu';
+import Header from '~/components/App/Header/Header';
 import MainPage from '~/components/pages/MainPage/MainPage';
 import NotFoundPage from '~/components/pages/NotFoundPage/NotFoundPage';
 import OrderingPage from '~/components/pages/OrderingPage/OrderingPage';
 
+import OrderPage from '../pages/OrderPage/OrderPage';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Menu from './Menu/Menu';
+import Slider from './Slider/Slider';
+import { AppRoute } from './types';
 
 function App() {
+  const location = useLocation();
+
   return (
-    <HashRouter>
+    <>
       <Menu />
       <main>
+        <Header />
         <ErrorBoundary>
           <Routes>
-            <Route path="/" element={<MainPage header={<Header />} />} />
-            <Route
-              path="/order"
-              element={<OrderingPage header={<Header />} />}
-            />
+            <Route path={AppRoute.Main} element={<MainPage />} />
+            <Route path={AppRoute.Ordering} element={<OrderingPage />} />
+            <Route path={AppRoute.Order} element={<OrderPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </ErrorBoundary>
       </main>
-    </HashRouter>
+      {location.pathname === AppRoute.Main && <Slider />}
+    </>
   );
 }
 

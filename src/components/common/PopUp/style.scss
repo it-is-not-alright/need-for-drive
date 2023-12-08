@@ -1,4 +1,4 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 div.pop-up {
   position: fixed;
@@ -16,13 +16,13 @@ div.pop-up {
     width: fit-content;
 
     & > p {
-      margin-bottom: variables.$d-6;
+      margin-bottom: c.$d-6;
       text-align: center;
     }
 
     div.pop-up__button_div {
       display: flex;
-      gap: variables.$d-5;
+      gap: c.$d-5;
     }
   }
 

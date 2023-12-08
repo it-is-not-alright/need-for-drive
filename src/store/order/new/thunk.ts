@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiRequest } from '~/api/api';
-import { orderUrl } from '~/api/constants';
-import { PostResult } from '~/api/types';
+import { ApiRoute, PostResult } from '~/api/types';
 import {
   childChairService,
   fullTankService,
@@ -34,7 +33,7 @@ const post = createAsyncThunk<IId, void, { rejectValue: string }>(
         rateId: { id: orderDetails.rate.id },
       };
       const { data } = await apiRequest.post<IOrder, PostResult<IId>>(
-        orderUrl,
+        ApiRoute.Order,
         order,
       );
       return data;

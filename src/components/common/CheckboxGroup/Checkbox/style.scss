@@ -1,37 +1,34 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 div.checkbox {
   position: relative;
   display: flex;
-  gap: variables.$d-2;
+  gap: c.$d-2;
   align-items: center;
   width: fit-content;
   background-color: transparent;
   border: none;
   outline: none;
-  transition: color variables.$td-2;
 
   div.checkbox-checkmark {
     position: relative;
-    width: variables.$d-5;
-    border-width: variables.$bw-1;
+    width: c.$d-5;
+    border-width: c.$bw-1;
     border-style: solid;
-    border-color: variables.$color-gray;
-    transition-duration: variables.$td-2;
-    transition-property: border-width, border-color;
+    border-color: c.$c-gray;
     aspect-ratio: 1;
 
     svg.icon {
       position: absolute;
       left: 0.1em;
       display: none;
-      width: variables.$d-5;
+      width: c.$d-5;
       aspect-ratio: 13 / 10;
     }
   }
 
   p {
-    color: variables.$color-gray;
+    color: c.$c-gray;
     font-weight: 300;
   }
 
@@ -47,7 +44,7 @@ div.checkbox {
 
   input:checked {
     & ~ div.checkbox-checkmark {
-      border-color: variables.$color-green;
+      border-color: c.$c-green;
 
       svg.icon {
         display: block;
@@ -55,7 +52,7 @@ div.checkbox {
     }
 
     & ~ p {
-      color: variables.$color-dark;
+      color: c.$c-dark;
     }
   }
 }

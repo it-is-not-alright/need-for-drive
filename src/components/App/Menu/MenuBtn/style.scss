@@ -1,11 +1,9 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 #icon-menu-mobile {
   display: none;
-  width: 35px;
-  height: 32px;
 
-  $max: calc(variables.$tablet-width - 1px);
+  $max: calc(c.$w-tablet - 1px);
 
   @media (max-width: $max) {
     display: block;
@@ -14,11 +12,9 @@
 
 #icon-menu-tablet {
   display: none;
-  width: 48px;
-  height: 32px;
 
-  $min: variables.$tablet-width;
-  $max: calc(variables.$desktop-mini-width - 1px);
+  $min: c.$w-tablet;
+  $max: calc(c.$w-desktop-mini - 1px);
 
   @media (min-width: $min) and (max-width: $max) {
     display: block;
@@ -27,10 +23,9 @@
 
 #icon-menu-desktop {
   display: none;
-  width: 40px;
-  height: 32px;
 
-  $min: variables.$desktop-mini-width;
+  
+  $min: c.$w-desktop-mini;
 
   @media (min-width: $min) {
     display: block;

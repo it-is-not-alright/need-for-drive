@@ -1,46 +1,44 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 #slider {
   position: relative;
-  background-color: variables.$color-dark-gray;
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+  background-color: c.$c-dark-gray;
 
   button.slider-btn {
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
     background-color: transparent;
     border: none;
     outline: none;
-    transition: variables.$td-2;
 
     &:hover {
-      background-color: variables.$color-green-tr;
+      background-color: c.$c-green-tr;
     }
   }
 
   #slider__content {
-    position: relative;
-    flex-grow: 1;
-    margin: 0 10%;
+    z-index: 1;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    padding: c.$d-7;
+
+    @media (min-width: c.$w-desktop) {
+      grid-template-rows: 1fr auto 2fr;
+    }
 
     #slider__content__info {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-
-      @media (min-width: variables.$desktop-width) {
-        top: 25%;
-        transform: none;
-      }
+      grid-row: 2;
 
       h1 {
         margin-top: 0;
         margin-bottom: 0.2em;
         font-size: 32px;
 
-        @media (min-width: variables.$desktop-width) {
+        @media (min-width: c.$w-desktop) {
           font-size: 40px;
         }
       }
@@ -48,7 +46,7 @@
       & > p {
         font-size: 22px;
 
-        @media (min-width: variables.$desktop-width) {
+        @media (min-width: c.$w-desktop) {
           font-size: 24px;
         }
       }

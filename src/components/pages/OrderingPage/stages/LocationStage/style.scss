@@ -1,15 +1,15 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 #location-stage {
   #location-stage__input-container {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: variables.$d-3;
+    gap: c.$d-3;
     align-items: center;
-    margin-bottom: variables.$d-8;
+    margin-bottom: c.$d-8;
 
     p {
-      color: variables.$color-dark;
+      color: c.$c-dark;
     }
 
     div.custom-input-wrapper {
@@ -19,7 +19,7 @@
 
   #location-stage__map {
     width: 100%;
-    margin-top: variables.$d-5;
+    margin-top: c.$d-5;
 
     img {
       max-width: 100%;

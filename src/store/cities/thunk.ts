@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiRequest } from '~/api/api';
-import { cityUrl } from '~/api/constants';
-import { GetArrayResult } from '~/api/types';
+import { ApiRoute, GetArrayResult } from '~/api/types';
 
 import { ICity } from '../types';
 
@@ -10,7 +9,9 @@ const get = createAsyncThunk<ICity[], void, { rejectValue: string }>(
   'cities/get',
   async (_, thunkApi) => {
     try {
-      const { data } = await apiRequest.get<GetArrayResult<ICity>>(cityUrl);
+      const { data } = await apiRequest.get<GetArrayResult<ICity>>(
+        ApiRoute.City,
+      );
       return data.map((city: ICity) => {
         return { ...city, label: city.name };
       });

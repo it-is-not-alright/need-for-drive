@@ -1,8 +1,10 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router';
+
+import { AppRoute } from '~/components/App/types';
 
 import LangBtn from './LangBtn/LangBtn';
 import MenuBtn from './MenuBtn/MenuBtn';
@@ -11,12 +13,7 @@ import { MenuState } from './types';
 
 function Menu() {
   const [state, setState] = useState<MenuState>(MenuState.Collapsed);
-  const [isLimited, setIsLimited] = useState<boolean>(false);
   const location = useLocation();
-
-  useEffect(() => {
-    setIsLimited(location.pathname === '/');
-  }, [location]);
 
   const handleMenuBtnClick = () => {
     if (state === MenuState.Collapsed) {
@@ -37,7 +34,9 @@ function Menu() {
       <div id="menu__container">
         <div
           id="menu__container__content"
-          className={classNames({ limited: isLimited })}
+          className={classNames({
+            limited: location.pathname === AppRoute.Main,
+          })}
         >
           <NavBlock />
           <LangBtn />

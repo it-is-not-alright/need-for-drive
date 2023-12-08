@@ -2,8 +2,11 @@ import './style.scss';
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
+import { AppRoute } from '~/components/App/types';
 import Button from '~/components/common/Button/Button';
+import PopUp from '~/components/common/PopUp/PopUp';
 import { formatPrice } from '~/format/price';
 import orderDetailsSelector from '~/store/order/details/selectors';
 import { setReachedStage } from '~/store/order/details/slice';
@@ -12,7 +15,6 @@ import { postOrder } from '~/store/order/new/thunk';
 import { AppDispatch } from '~/store/root';
 import { IService } from '~/store/types';
 
-import PopUp from '../../../common/PopUp/PopUp';
 import { placeholder } from './constants';
 import OrderInfoOption from './OrderInfoOption/OrderInfoOption';
 import { OrderInfoProps } from './types';
@@ -26,6 +28,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
     errorMessage: error,
   } = useSelector(newOrderSelector);
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (error === null) {
@@ -36,8 +39,11 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
   }, [error]);
 
   useEffect(() => {
-    console.log(newOrder);
+    if (newOrder.id === 0) {
+      return;
+    }
     setPopUpVisible(false);
+    navigate(AppRoute.Order);
   }, [newOrder]);
 
   function nextBtnIsDisabled(): boolean {
@@ -53,12 +59,15 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
     }
   }
 
-  const handleNextBtnClick = (): void => {
+  const handleNextBtnClick = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ): void => {
     if (details.currentStage < 3) {
       dispatch(setReachedStage(details.currentStage + 1));
     } else if (details.currentStage === 3) {
       setPopUpVisible(true);
     }
+    (event.target as HTMLElement).blur();
   };
 
   function getPrice(): string {
@@ -73,7 +82,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
     return placeholder;
   }
 
-  const createOrder = async () => {
+  const createOrder = () => {
     dispatch(postOrder());
   };
 
@@ -127,7 +136,7 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
       </p>
       <Button
         text={btnLabel}
-        onClick={handleNextBtnClick}
+        onClick={(event) => handleNextBtnClick(event)}
         disabled={nextBtnIsDisabled()}
       />
       <PopUp

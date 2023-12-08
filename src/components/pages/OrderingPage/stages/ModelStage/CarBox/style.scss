@@ -1,23 +1,22 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 div.car-box {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   width: 100%;
-  padding: variables.$d-5;
-  border-width: variables.$bw-1;
+  padding: c.$d-5;
+  border-width: c.$bw-1;
   border-style: solid;
-  border-color: variables.$color-light;
+  border-color: c.$c-light;
   cursor: pointer;
-  transition: border-color variables.$td-2;
 
   &:not(.active):hover {
-    border-color: variables.$color-gray;
+    border-color: c.$c-gray;
   }
 
   &.active {
-    border-color: variables.$color-green;
+    border-color: c.$c-green;
   }
 
   p {
@@ -27,6 +26,6 @@ div.car-box {
   img {
     max-width: 75%;
     max-height: 100%;
-    margin-top: variables.$d-7;
+    margin-top: c.$d-7;
   }
 }

@@ -1,6 +1,6 @@
 import ApiRequest from './ApiRequest';
-import { apiPrefix } from './constants';
+import { ApiRoute } from './types';
 
-const apiRequest = new ApiRequest(apiPrefix);
+const apiRequest = new ApiRequest(ApiRoute.Base);
 
 export { apiRequest };

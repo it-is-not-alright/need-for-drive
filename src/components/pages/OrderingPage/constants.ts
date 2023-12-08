@@ -17,14 +17,8 @@ const stages: Stage[] = [
     name: 'Итого',
     btnLabel: 'Заказать',
   },
-  {
-    name: '',
-    btnLabel: 'Отменить',
-  },
 ];
 
-const breadcrumbsItems = stages
-  .map((stage: Stage) => stage.name)
-  .filter((name: string) => name !== '');
+const breadcrumbsItems: string[] = stages.map((stage: Stage) => stage.name);
 
 export { breadcrumbsItems, stages };

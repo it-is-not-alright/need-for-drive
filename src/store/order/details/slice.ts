@@ -75,6 +75,7 @@ export const orderDetailsSlice = createSlice({
       ...state,
       reachedStage: 2,
       date: action.payload,
+      rate: null,
     }),
     setRate: (state, action: PayloadAction<IRate>) => {
       state.reachedStage = 2;

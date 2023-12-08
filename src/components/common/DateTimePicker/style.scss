@@ -1,25 +1,25 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 %btn-select {
   color: white;
   background-color: transparent;
-  border-width: variables.$bw-1;
+  border-width: c.$bw-1;
   border-style: solid;
   border-color: transparent;
   outline: none;
 
   &:not(:disabled):hover {
-    border-color: variables.$color-green;
+    border-color: c.$c-green;
   }
 
   &.selected {
-    color: variables.$color-dark-gray;
+    color: c.$c-dark-gray;
     font-weight: 700;
-    background-color: variables.$color-green;
+    background-color: c.$c-green;
   }
 
   &:disabled {
-    color: variables.$color-gray;
+    color: c.$c-gray;
   }
 }
 
@@ -33,22 +33,22 @@ div.date-time-picker {
   div.date-time-picker__dialog {
     position: absolute;
     z-index: 2;
-    margin-top: variables.$d-1;
+    margin-top: c.$d-1;
     visibility: hidden;
 
-    @media (max-width: variables.$tablet-width) {
+    @media (max-width: c.$w-tablet) {
       position: fixed;
       top: 0;
       left: 0;
-      width: calc(100vw - variables.$d-5 * 2);
-      margin: variables.$d-5;
+      width: calc(100vw - c.$d-5 * 2);
+      margin: c.$d-5;
     }
 
     div.date-time-picker__dialog__calendar {
       width: 100%;
-      padding: variables.$d-5;
-      background-color: variables.$color-dark-gray;
-      border-radius: variables.$d-2;
+      padding: c.$d-5;
+      background-color: c.$c-dark-gray;
+      border-radius: c.$d-2;
 
       p {
         color: white;
@@ -60,20 +60,20 @@ div.date-time-picker {
         align-items: center;
 
         button {
-          padding: variables.$d-3;
+          padding: c.$d-3;
           background-color: transparent;
-          border-width: variables.$bw-1;
+          border-width: c.$bw-1;
           border-style: solid;
           border-color: transparent;
           border-radius: 10em;
           outline: none;
 
           .icon {
-            stroke: variables.$color-gray;
+            stroke: c.$c-gray;
           }
 
           &:hover {
-            border-color: variables.$color-gray;
+            border-color: c.$c-gray;
 
             .icon {
               stroke: white;
@@ -89,8 +89,8 @@ div.date-time-picker {
       div.date-time-picker__dialog__calendar-grid {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        gap: variables.$d-0;
-        margin-top: variables.$d-3;
+        gap: c.$d-0;
+        margin-top: c.$d-3;
 
         div {
           display: flex;
@@ -101,18 +101,18 @@ div.date-time-picker {
 
         p {
           font-weight: 500;
-          font-size: variables.$fs-1;
+          font-size: c.$fs-1;
         }
 
         button {
           @extend %btn-select;
 
           min-width: 2.25em;
-          font-size: variables.$fs-1;
+          font-size: c.$fs-1;
           border-radius: 10em;
           aspect-ratio: 1;
 
-          @media (max-width: variables.$tablet-width) {
+          @media (max-width: c.$w-tablet) {
             min-width: none;
           }
         }
@@ -122,17 +122,17 @@ div.date-time-picker {
     div.date-time-picker__dialog__time-spinner {
       position: absolute;
       top: 0;
-      left: calc(100% + variables.$d-2);
+      left: calc(100% + c.$d-2);
       display: flex;
-      gap: variables.$d-2;
+      gap: c.$d-2;
       justify-content: center;
       height: 100%;
-      padding: variables.$d-5;
-      background-color: variables.$color-dark-gray;
-      border-radius: variables.$d-2;
+      padding: c.$d-5;
+      background-color: c.$c-dark-gray;
+      border-radius: c.$d-2;
 
-      @media (max-width: variables.$tablet-width) {
-        top: calc(100% + variables.$d-2);
+      @media (max-width: c.$w-tablet) {
+        top: calc(100% + c.$d-2);
         left: 0;
         width: 100%;
         height: 50%;
@@ -141,7 +141,7 @@ div.date-time-picker {
       div {
         display: flex;
         flex-direction: column;
-        gap: variables.$d-0;
+        gap: c.$d-0;
         overflow-y: auto;
 
         &::-webkit-scrollbar {
@@ -151,8 +151,8 @@ div.date-time-picker {
         button {
           @extend %btn-select;
 
-          padding: variables.$d-2 variables.$d-5;
-          border-radius: variables.$d-1;
+          padding: c.$d-2 c.$d-5;
+          border-radius: c.$d-1;
         }
       }
     }

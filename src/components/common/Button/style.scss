@@ -1,13 +1,13 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 %btn-custom {
   position: relative;
-  padding: variables.$d-5 variables.$d-7;
+  padding: c.$d-5 c.$d-7;
   font-weight: 500;
-  font-size: variables.$fs-3;
+  font-size: c.$fs-3;
   border: none;
   outline: none;
-  transition: filter variables.$td-2;
+  transition: filter c.$td-1;
 
   &:hover {
     filter: brightness(90%);
@@ -16,36 +16,43 @@
   &:active {
     filter: brightness(80%);
   }
+
+  &:disabled {
+    background: c.$c-light;
+  }
 }
 
 button.custom-button {
   @extend %btn-custom;
 
   &.medium {
-    color: variables.$color-light;
-    border-radius: variables.$d-1;
+    color: c.$c-light;
+    border-radius: c.$d-1;
 
-    &.green {
+    &:not([disabled]).green {
       background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
     }
 
-    &.blue {
+    &:not([disabled]).blue {
       background: linear-gradient(90deg, #132949 0%, #0c7b67 100%);
     }
 
-    &.orange {
+    &:not([disabled]).orange {
       background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
     }
 
-    &.purple {
+    &:not([disabled]).purple {
       background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
     }
   }
 
   &.large {
     color: white;
-    background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
-    border-radius: variables.$d-2;
+    border-radius: c.$d-2;
+
+    &:not([disabled]) {
+      background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+    }
   }
 
   &.loading > p {
@@ -56,9 +63,9 @@ button.custom-button {
     position: absolute;
     inset: 0;
     display: block;
-    width: variables.$d-6;
+    width: c.$d-6;
     margin: auto;
-    border: variables.$d-0 solid white;
+    border: c.$d-0 solid white;
     border-bottom-color: transparent;
     border-radius: 50%;
     animation: rotation 1s linear infinite;

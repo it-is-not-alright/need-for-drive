@@ -41,7 +41,7 @@ interface ICar extends IEntity {
   thumbnail: IThumbnail;
   categoryId: ICategory;
   colors: string[];
-  colorEntities: IColor[];
+  colorObjects: IColor[];
   number: number;
   tank: number;
 }
@@ -80,8 +80,10 @@ type OrderDetails = {
   color: IColor | null;
   date: DateRange | null;
   rate: IRate | null;
-  services: IService[];
   price: number;
+  isFullTank: boolean;
+  isNeedChildChair: boolean;
+  isRightWheel: boolean;
 };
 
 interface IOrder {

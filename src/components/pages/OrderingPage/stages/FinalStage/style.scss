@@ -5,24 +5,20 @@
   flex-wrap: wrap;
   gap: c.$d-7;
 
-  #final-stage__info {
+  div {
     display: flex;
     flex-grow: 1;
     flex-direction: column;
     gap: c.$d-2;
-  }
-
-  p.fs-4 {
-    margin-bottom: c.$d-2;
-  }
-
-  p.car-number {
-    width: fit-content;
-    padding: c.$d-1 c.$d-2;
-    border-width: c.$bw-1;
-    border-style: solid;
-    border-color: c.$c-gray;
-    border-radius: c.$d-1;
+  
+    p.car-number {
+      width: fit-content;
+      padding: c.$d-1 c.$d-2;
+      border-width: c.$bw-1;
+      border-style: solid;
+      border-color: c.$c-gray;
+      border-radius: c.$d-1;
+    }
   }
 
   img {

@@ -3,19 +3,19 @@ import { Stage } from './types';
 const stages: Stage[] = [
   {
     name: 'Местоположение',
-    btnLabel: 'Выбрать модель',
+    buttonLabel: 'Выбрать модель',
   },
   {
     name: 'Модель',
-    btnLabel: 'Дополнительно',
+    buttonLabel: 'Дополнительно',
   },
   {
     name: 'Дополнительно',
-    btnLabel: 'Итого',
+    buttonLabel: 'Итого',
   },
   {
     name: 'Итого',
-    btnLabel: 'Заказать',
+    buttonLabel: 'Заказать',
   },
 ];
 

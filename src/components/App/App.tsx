@@ -28,7 +28,7 @@ function App() {
             <Route path={AppRoute.Main} element={<MainPage />} />
             <Route path={AppRoute.Ordering} element={<OrderingPage />} />
             <Route path={AppRoute.Order} element={<OrderPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path={AppRoute.Any} element={<NotFoundPage />} />
           </Routes>
         </ErrorBoundary>
       </main>

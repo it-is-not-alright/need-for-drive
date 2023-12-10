@@ -1,12 +1,10 @@
-import './style.scss';
-
 import React from 'react';
 
 import Sprite from '~/assets/sprite.svg';
 
-import { IconListProps } from './types';
+import { IconSetProps } from './types';
 
-function IconList({ names }: IconListProps) {
+function IconSet({ names }: IconSetProps) {
   return (
     <svg className="icon">
       {names.map((name) => {
@@ -18,4 +16,4 @@ function IconList({ names }: IconListProps) {
   );
 }
 
-export default IconList;
+export default IconSet;

@@ -23,7 +23,7 @@ function PopUp({
           <Button text="Подтвердить" onClick={onConfirm} loading={loading} />
           <Button
             text="Вернуться"
-            className="medium orange"
+            className="secondary orange"
             onClick={onCancel}
           />
         </div>

@@ -84,7 +84,7 @@ function Slider() {
           </p>
           <Button
             text="Подробнее"
-            className={`medium ${slides[currentIndex].colorTheme}`}
+            className={`secondary ${slides[currentIndex].colorTheme}`}
           />
         </div>
         <NavDots

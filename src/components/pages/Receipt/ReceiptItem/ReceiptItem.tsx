@@ -2,11 +2,11 @@ import './style.scss';
 
 import React from 'react';
 
-import { OrderInfoOptionProps } from './types';
+import { ReceiptItemProps } from './types';
 
-function OrderInfoOption({ name, value }: OrderInfoOptionProps) {
+function ReceiptItem({ name, value }: ReceiptItemProps) {
   return (
-    <div className="order-info-option fw-300">
+    <div className="receipt-option fw-300">
       <p className="dark-text">{name}</p>
       <div className="line-dotted" />
       <p className="gray-text">{value}</p>
@@ -14,4 +14,4 @@ function OrderInfoOption({ name, value }: OrderInfoOptionProps) {
   );
 }
 
-export default OrderInfoOption;
+export default ReceiptItem;

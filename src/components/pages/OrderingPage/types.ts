@@ -1,6 +1,6 @@
 type Stage = {
   name: string;
-  btnLabel: string;
+  buttonLabel: string;
 };
 
 export { Stage };

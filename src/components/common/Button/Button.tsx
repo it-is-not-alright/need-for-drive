@@ -7,14 +7,14 @@ import { ButtonProps } from './types';
 
 function Button({
   text,
-  className = 'large',
+  className = 'primary',
   onClick = () => {},
   loading = false,
   disabled = false,
 }: ButtonProps) {
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = () => {
     if (!loading) {
-      onClick(event);
+      onClick();
     }
   };
 

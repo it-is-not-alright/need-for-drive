@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import {
+  childChairService,
+  fullTankService,
+  rightWheelService,
+} from '~/store/services/constants';
+
 import { defaultCategory } from '../../constants';
 import {
   DateRange,
@@ -23,9 +29,21 @@ const initialState: OrderDetails = {
   color: null,
   date: null,
   rate: null,
-  services: [],
   price: 0,
+  isFullTank: false,
+  isNeedChildChair: false,
+  isRightWheel: false,
 };
+
+function calculatePrice(details: OrderDetails): number {
+  let price: number = details.car.priceMin;
+  const days = details.date.days + (details.date.hours === 0 ? 0 : 1);
+  price += Math.ceil(days / details.rate.days) * details.rate.price;
+  price += details.isFullTank ? fullTankService.price : 0;
+  price += details.isNeedChildChair ? childChairService.price : 0;
+  price += details.isRightWheel ? rightWheelService.price : 0;
+  return price;
+}
 
 export const orderDetailsSlice = createSlice({
   name: 'orderDetails',
@@ -35,14 +53,8 @@ export const orderDetailsSlice = createSlice({
       state.currentStage = action.payload;
     },
     setReachedStage: (state, action: PayloadAction<number>) => {
-      if (action.payload !== 0) {
-        return {
-          ...state,
-          currentStage: action.payload,
-          reachedStage: action.payload,
-        };
-      }
-      return initialState;
+      state.currentStage = action.payload;
+      state.reachedStage = action.payload;
     },
     setCity: (_state, action: PayloadAction<ICity | null>) => ({
       ...initialState,
@@ -64,7 +76,7 @@ export const orderDetailsSlice = createSlice({
       point: state.point,
       category: defaultCategory,
       car: action.payload,
-      color: action.payload.colorEntities[0] || null,
+      color: action.payload.colorObjects[0] || null,
     }),
     setColor: (state, action: PayloadAction<IColor>) => ({
       ...state,
@@ -80,27 +92,26 @@ export const orderDetailsSlice = createSlice({
     setRate: (state, action: PayloadAction<IRate>) => {
       state.reachedStage = 2;
       state.rate = action.payload;
-      const days = state.date.days + (state.date.hours === 0 ? 0 : 1);
-      const timePrice = Math.ceil(days / state.rate.days) * state.rate.price;
-      let servicePrice = 0;
-      state.services.forEach((service: IService) => {
-        servicePrice += service.price;
-      });
-      state.price = state.car.priceMin + timePrice + servicePrice;
+      state.price = calculatePrice(state);
     },
-    addService: (state, action: PayloadAction<IService>) => {
+    toggleService: (state, action: PayloadAction<IService>) => {
       state.reachedStage = 2;
-      state.services.push(action.payload);
-      state.price += action.payload.price;
+      const service: IService = action.payload;
+      switch (service.id) {
+        case fullTankService.id:
+          state.isFullTank = !state.isFullTank;
+          break;
+        case childChairService.id:
+          state.isNeedChildChair = !state.isNeedChildChair;
+          break;
+        case rightWheelService.id:
+          state.isRightWheel = !state.isRightWheel;
+          break;
+        default:
+      }
+      state.price = calculatePrice(state);
     },
-    removeService: (state, action: PayloadAction<IService>) => {
-      state.reachedStage = 2;
-      const services: IService[] = state.services.filter((service) => {
-        return service.id !== action.payload.id;
-      });
-      state.services = services;
-      state.price -= action.payload.price;
-    },
+    resetOrderDetails: () => initialState,
   },
 });
 
@@ -114,7 +125,7 @@ export const {
   setColor,
   setDate,
   setRate,
-  addService,
-  removeService,
+  toggleService,
+  resetOrderDetails,
 } = orderDetailsSlice.actions;
 export const orderDetailsReducer = orderDetailsSlice.reducer;

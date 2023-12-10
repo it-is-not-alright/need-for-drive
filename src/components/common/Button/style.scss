@@ -16,42 +16,43 @@
   &:active {
     filter: brightness(80%);
   }
-
-  &:disabled {
-    background: c.$c-light;
-  }
 }
 
 button.custom-button {
   @extend %btn-custom;
 
-  &.medium {
+  &.secondary {
     color: c.$c-light;
     border-radius: c.$d-1;
 
-    &:not([disabled]).green {
+    &.green {
       background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
     }
 
-    &:not([disabled]).blue {
+    &.blue {
       background: linear-gradient(90deg, #132949 0%, #0c7b67 100%);
     }
 
-    &:not([disabled]).orange {
+    &.orange {
       background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
     }
 
-    &:not([disabled]).purple {
+    &.purple {
       background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
     }
   }
 
-  &.large {
+  &.primary {
     color: white;
+    background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
     border-radius: c.$d-2;
 
-    &:not([disabled]) {
-      background: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+    &.danger {
+      background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+    }
+
+    &:disabled {
+      background: c.$c-light;
     }
   }
 

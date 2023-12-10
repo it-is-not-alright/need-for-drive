@@ -9,20 +9,20 @@ import RadioGroup from '~/components/common/RadioGroup/RadioGroup';
 import { dateToInputValue } from '~/format/datetime';
 import orderDetailsSelector from '~/store/order/details/selectors';
 import {
-  addService,
-  removeService,
   setColor,
   setDate,
   setRate,
+  toggleService,
 } from '~/store/order/details/slice';
 import { filterRates } from '~/store/rates/selectors';
 import { getRates } from '~/store/rates/thunk';
 import { AppDispatch } from '~/store/root';
 import { additionalServices } from '~/store/services/constants';
+import { getOrderServices } from '~/store/services/tools';
 import { IColor, IRate, IService } from '~/store/types';
 
 function AdditionallyStage() {
-  const { car, color, date, rate, services } =
+  const { car, color, date, rate, isFullTank, isNeedChildChair, isRightWheel } =
     useSelector(orderDetailsSelector);
   const { data: rates, errorMessage: error } = useSelector(filterRates);
   const [dateFrom, setDateFrom] = useState<Date | null>(
@@ -31,11 +31,18 @@ function AdditionallyStage() {
   const [dateTo, setDateTo] = useState<Date | null>(
     date ? new Date(date.to) : null,
   );
+  const [services, setServices] = useState<IService[]>([]);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getRates());
   }, []);
+
+  useEffect(() => {
+    setServices(
+      getOrderServices({ isFullTank, isNeedChildChair, isRightWheel }),
+    );
+  }, [isFullTank, isNeedChildChair, isRightWheel]);
 
   const handleColorChange = (newColor: IColor) => {
     dispatch(setColor(newColor));
@@ -91,12 +98,8 @@ function AdditionallyStage() {
     handleDateRangeChange(from, to);
   };
 
-  const handleServiceChecked = (service: IService, checked: boolean) => {
-    if (checked) {
-      dispatch(addService(service));
-    } else {
-      dispatch(removeService(service));
-    }
+  const handleServiceChecked = (service: IService) => {
+    dispatch(toggleService(service));
   };
 
   return (
@@ -105,7 +108,7 @@ function AdditionallyStage() {
         <p className="input-group-header">Цвет</p>
         <RadioGroup
           name="color"
-          items={car.colorEntities}
+          items={car.colorObjects}
           onChange={handleColorChange}
           selectedItem={color}
         />

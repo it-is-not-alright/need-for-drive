@@ -18,8 +18,6 @@
     flex-direction: column;
     align-items: center;
     width: 0;
-    transition-duration: c.$td-2;
-    transition-property: padding;
 
     button.lang-btn {
       display: none;
@@ -28,7 +26,7 @@
     @media (min-width: c.$w-tablet) {
       justify-content: space-between;
       width: fit-content;
-      padding: c.$d-6 c.$d-5 c.$d-4 c.$d-5;
+      padding: c.$d-6 c.$d-5 c.$d-5 c.$d-5;
 
       button.lang-btn {
         display: block;
@@ -36,7 +34,7 @@
     }
 
     @media (min-width: c.$w-desktop-mini) {
-      padding: c.$d-6 c.$d-2 c.$d-4 c.$d-2;
+      padding: c.$d-6 c.$d-2 c.$d-5 c.$d-2;
     }
 
     #menu-btn {
@@ -50,7 +48,7 @@
     }
   }
 
-  #menu__container {
+  #menu__body {
     position: absolute;
     display: flex;
     width: 100vw;
@@ -59,9 +57,6 @@
     transition: background-color c.$td-2;
 
     button.lang-btn {
-      position: absolute;
-      bottom: c.$d-6;
-      left: c.$d-6;
       display: block;
     }
 
@@ -74,19 +69,48 @@
       }
     }
 
-    #menu__container__content {
+    #menu__body__content {
       display: grid;
-      grid-template-rows: c.$d-9 auto 1fr;
+      grid-template-rows: c.$d-8 repeat(3, auto minmax(0, c.$d-5)) auto minmax(0, c.$d-7) auto 1fr;
+      padding: c.$d-5;
       overflow: hidden;
       background-color: c.$c-dark-gray;
-      transition: width c.$td-2;
+      transition-duration: c.$td-2;
+      transition-property: width, padding;
 
       @media (min-width: c.$w-tablet) {
-        grid-template-rows: 1fr auto 1fr;
+        grid-template-rows: 1fr repeat(3, auto minmax(0, c.$d-5)) auto minmax(0, c.$d-7) auto 1fr;
       }
 
-      #nav-block {
-        grid-row: 2;
+      p {
+        font-size: 22px;
+        cursor: pointer;
+        user-select: none;
+    
+        @media (min-width: c.$w-tablet) {
+          font-size: 28px;
+        }
+    
+        @media (min-width: c.$w-desktop-mini) {
+          font-size: 32px;
+        }
+    
+        &:hover {
+          color: c.$c-green;
+        }
+      }
+    
+      #menu__body__content__btn-block {
+        display: flex;
+        gap: c.$d-6;
+    
+        .icon {
+          fill: c.$c-light;
+    
+          &:hover {
+            fill: c.$c-green;
+          }
+        }
       }
     }
   }
@@ -105,12 +129,13 @@
       }
     }
 
-    #menu__container {
+    #menu__body {
       background-color: transparent;
       animation: hide-menu c.$td-2 forwards;
 
-      #menu__container__content {
+      #menu__body__content {
         width: 0%;
+        padding: 0;
       }
     }
   }
@@ -121,16 +146,16 @@
       height: 32px;
     }
 
-    #menu__container {
+    #menu__body {
       background-color: c.$c-dark-gray-tr;
       visibility: visible;
 
-      #menu__container__content {
+      #menu__body__content {
         width: 100%;
 
         &.limited {
           @media (min-width: c.$w-desktop-mini) {
-            width: max(calc(50%), 600px);
+            width: max(calc(50%), c.$w-tablet);
           }
         }
       }

@@ -15,7 +15,9 @@ const initialState: RequestState<IId> = {
 export const newOrderSlice = createSlice({
   name: 'newOrder',
   initialState,
-  reducers: {},
+  reducers: {
+    resetNewOrder: () => initialState,
+  },
   extraReducers: (builder) => {
     builder.addCase(postOrder.pending, (state) => {
       state.isLoading = true;
@@ -37,4 +39,5 @@ export const newOrderSlice = createSlice({
   },
 });
 
+export const { resetNewOrder } = newOrderSlice.actions;
 export const newOrderReducer = newOrderSlice.reducer;

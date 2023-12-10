@@ -1,22 +1,23 @@
-import { IOrder, IService } from '../types';
+import { IService } from '../types';
 import {
   childChairService,
   fullTankService,
   rightWheelService,
 } from './constants';
+import { ServiceSet } from './types';
 
-function getOrderServices(order: IOrder): IService[] {
+function getOrderServices(serviceSet: ServiceSet): IService[] {
   const services: IService[] = [];
-  if (order.isFullTank) {
+  if (serviceSet.isFullTank) {
     services.push(fullTankService);
   }
-  if (order.isNeedChildChair) {
+  if (serviceSet.isNeedChildChair) {
     services.push(childChairService);
   }
-  if (order.isRightWheel) {
+  if (serviceSet.isRightWheel) {
     services.push(rightWheelService);
   }
-  return [];
+  return services;
 }
 
 export { getOrderServices };

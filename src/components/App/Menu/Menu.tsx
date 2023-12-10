@@ -38,15 +38,15 @@ function Menu() {
             limited: location.pathname === AppRoute.Main,
           })}
         >
-          <span />
+          <div />
           <p>ПАРКОВКА</p>
-          <span />
+          <div />
           <p>СТРАХОВКА</p>
-          <span />
+          <div />
           <p>БЕНЗИН</p>
-          <span />
+          <div />
           <p>ОБСЛУЖИВАНИЕ</p>
-          <span />
+          <div />
           <div id="menu__body__content__btn-block">
             <button className="btn-icon" type="button">
               <Icon name="telegram" width={32} height={32} />
@@ -58,7 +58,7 @@ function Menu() {
               <Icon name="instagram" width={32} height={32} />
             </button>
           </div>
-          <span />
+          <div />
           <LangButton />
         </div>
       </div>

@@ -3,24 +3,24 @@ import './style.scss';
 import React from 'react';
 import { useNavigate } from 'react-router';
 
+import Button from '~/components/Button/Button';
+
 import { ErrorPageProps } from './types';
 
 function ErrorPage({ title, errorMessage, reset }: ErrorPageProps) {
   const navigate = useNavigate();
 
-  function resetBtnOnClick() {
+  const handleResetButtonClick = () => {
     navigate('/');
     reset();
-  }
+  };
 
   return (
     <div className="error-page">
       <div className="error-page__content">
         <h1 className="dark-text">{title}</h1>
         <p className="dark-text">{errorMessage}</p>
-        <button className="btn-large" type="button" onClick={resetBtnOnClick}>
-          На главную
-        </button>
+        <Button text="На главную" onClick={handleResetButtonClick} />
       </div>
     </div>
   );

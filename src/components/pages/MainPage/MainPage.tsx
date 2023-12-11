@@ -1,14 +1,21 @@
 import './style.scss';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+import Button from '~/components/Button/Button';
 import Footer from '~/components/Footer/Footer';
 import Slider from '~/components/Slider/Slider';
 
 import { MainPageProps } from './types';
 
 function MainPage({ header }: MainPageProps) {
+  const navigate = useNavigate();
+
+  const handleBookButtonClick = () => {
+    navigate('/order');
+  };
+
   return (
     <div id="main-page">
       <div id="main-page__content">
@@ -20,9 +27,7 @@ function MainPage({ header }: MainPageProps) {
             <span className="green-text">Need for drive</span>
           </h1>
           <p className="gray-text">Поминутная аренда авто твоего города</p>
-          <Link className="btn-large" to="/order">
-            Забронировать
-          </Link>
+          <Button text="Забронировать" onClick={handleBookButtonClick} />
         </div>
         <Footer />
       </div>

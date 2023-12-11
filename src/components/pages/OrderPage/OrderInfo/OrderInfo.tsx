@@ -1,11 +1,14 @@
 import './style.scss';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Button from '~/components/Button/Button';
 import { formatPrice } from '~/format/price';
-import orderDetailsSelector from '~/store/orderDetails/selectors';
-import { setCurrentStage, setReachedStage } from '~/store/orderDetails/slice';
+import orderDetailsSelector from '~/store/order/details/selectors';
+import { setCurrentStage, setReachedStage } from '~/store/order/details/slice';
+import newOrderSelector from '~/store/order/new/selectors';
+import { postOrder } from '~/store/order/new/thunk';
 import { AppDispatch } from '~/store/root';
 import { IService } from '~/store/types';
 
@@ -17,7 +20,24 @@ import { OrderInfoProps } from './types';
 function OrderInfo({ btnLabel }: OrderInfoProps) {
   const details = useSelector(orderDetailsSelector);
   const [popUpVisible, setPopUpVisible] = useState<boolean>(false);
+  const {
+    data: newOrder,
+    isLoading,
+    errorMessage: error,
+  } = useSelector(newOrderSelector);
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (error === null) {
+      return;
+    }
+    const errorMessage: string = 'Ошибка сервера';
+    throw new Error(errorMessage);
+  }, [error]);
+
+  useEffect(() => {
+    setPopUpVisible(false);
+  }, [newOrder]);
 
   function nextBtnIsDisabled(): boolean {
     switch (details.currentStage) {
@@ -42,18 +62,9 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
     }
   };
 
-  function calculatePrice(): string {
+  function getPrice(): string {
     if (details.rate !== null) {
-      const days = details.date.days + (details.date.hours === 0 ? 0 : 1);
-      const timePrice =
-        Math.ceil(days / details.rate.days) * details.rate.price;
-      const servicesPrice = details.services.reduce((accumulator, service) => {
-        return accumulator + service.price;
-      }, 0);
-      return formatPrice(
-        details.car.priceMin + timePrice + servicesPrice,
-        true,
-      );
+      return formatPrice(details.price, true);
     }
     if (details.car !== null) {
       const min = formatPrice(details.car.priceMin, true);
@@ -62,6 +73,10 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
     }
     return placeholder;
   }
+
+  const createOrder = async () => {
+    dispatch(postOrder());
+  };
 
   return (
     <div id="order-info">
@@ -109,20 +124,19 @@ function OrderInfo({ btnLabel }: OrderInfoProps) {
       </div>
       <p className="dark-text fs-2">
         <span className="fw-500">Цена: </span>
-        <span>{details.car ? calculatePrice() : placeholder}</span>
+        <span>{details.car ? getPrice() : placeholder}</span>
       </p>
-      <button
-        className="btn-large"
-        type="button"
+      <Button
+        text={btnLabel}
         onClick={handleNextBtnClick}
         disabled={nextBtnIsDisabled()}
-      >
-        {btnLabel}
-      </button>
+      />
       <PopUp
+        title="Подтвердить заказ"
         visible={popUpVisible}
-        onConfirm={() => setPopUpVisible(false)}
+        onConfirm={createOrder}
         onCancel={() => setPopUpVisible(false)}
+        loading={isLoading}
       />
     </div>
   );

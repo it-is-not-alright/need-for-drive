@@ -8,8 +8,6 @@ div.spinner-wrapper {
   height: inherit;
 
   span.spinner {
-    display: inline-block;
-    box-sizing: border-box;
     width: variables.$d-8;
     height: variables.$d-8;
     border: variables.$d-1 solid variables.$color-green;

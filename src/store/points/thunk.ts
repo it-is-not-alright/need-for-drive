@@ -1,15 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiRequest } from '~/api/api';
+import { pointUrl } from '~/api/constants';
+import { GetArrayResult } from '~/api/types';
 
-import { pointUrl } from '../constants';
-import { IPoint, RequestResult } from '../types';
+import { IPoint } from '../types';
 
 const get = createAsyncThunk<IPoint[], void, { rejectValue: string }>(
   'points/get',
   async (_, thunkApi) => {
     try {
-      const { data } = await apiRequest.get<RequestResult<IPoint>>(pointUrl);
+      const { data } = await apiRequest.get<GetArrayResult<IPoint>>(pointUrl);
       return data.map((point: IPoint) => {
         return { ...point, label: `${point.name}, ${point.address}` };
       });

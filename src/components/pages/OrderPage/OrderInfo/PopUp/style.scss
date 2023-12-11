@@ -10,18 +10,19 @@ div.pop-up {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #FFFFFFDF;
+  background-color: #ffffffdf;
 
   div.pop-up__content {
     width: fit-content;
 
-    p {
+    & > p {
       margin-bottom: variables.$d-6;
       text-align: center;
     }
 
-    button.btn-large {
-      margin-right: variables.$d-5;
+    div.pop-up__button_div {
+      display: flex;
+      gap: variables.$d-5;
     }
   }
 

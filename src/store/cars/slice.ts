@@ -1,31 +1,31 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IModel, RequestState } from '../types';
-import { getModels } from './thunk';
+import { ICar, RequestState } from '../types';
+import { getCars } from './thunk';
 
-const initialState: RequestState<IModel[]> = {
+const initialState: RequestState<ICar[]> = {
   data: [],
   isLoading: true,
   errorMessage: null,
 };
 
-export const modelsSlice = createSlice({
+export const carsSlice = createSlice({
   name: 'cars',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getModels.pending, (state) => {
+    builder.addCase(getCars.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(
-      getModels.fulfilled,
-      (state, action: PayloadAction<IModel[]>) => {
+      getCars.fulfilled,
+      (state, action: PayloadAction<ICar[]>) => {
         state.data = action.payload;
         state.isLoading = false;
       },
     );
     builder.addCase(
-      getModels.rejected,
+      getCars.rejected,
       (state, action: PayloadAction<string>) => {
         state.isLoading = false;
         state.errorMessage = action.payload;
@@ -34,4 +34,4 @@ export const modelsSlice = createSlice({
   },
 });
 
-export const modelsReducer = modelsSlice.reducer;
+export const carsReducer = carsSlice.reducer;

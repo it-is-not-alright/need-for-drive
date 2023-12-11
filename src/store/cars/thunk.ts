@@ -1,16 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiRequest } from '~/api/api';
+import { carUrl } from '~/api/constants';
+import { GetArrayResult } from '~/api/types';
 
-import { modelUrl } from '../constants';
-import { IColor, IModel, RequestResult } from '../types';
+import { ICar, IColor } from '../types';
 
-const get = createAsyncThunk<IModel[], void, { rejectValue: string }>(
-  'models/get',
+const get = createAsyncThunk<ICar[], void, { rejectValue: string }>(
+  'cars/get',
   async (_, thunkApi) => {
     try {
-      const { data } = await apiRequest.get<RequestResult<IModel>>(modelUrl);
-      return data.map((car: IModel) => {
+      const { data } = await apiRequest.get<GetArrayResult<ICar>>(carUrl);
+      return data.map((car: ICar) => {
         const colorEntities: IColor[] = car.colors.map((color, id) => {
           const label = color.charAt(0).toUpperCase() + color.slice(1);
           return { id, label, name: color };
@@ -23,4 +24,4 @@ const get = createAsyncThunk<IModel[], void, { rejectValue: string }>(
   },
 );
 
-export const getModels = get;
+export const getCars = get;

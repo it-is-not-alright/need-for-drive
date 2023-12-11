@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { defaultCategory } from '../constants';
+import { defaultCategory } from '../../constants';
 import {
   DateRange,
+  ICar,
   ICategory,
   ICity,
   IColor,
-  IModel,
   IPoint,
   IRate,
   IService,
   OrderDetails,
-} from '../types';
+} from '../../types';
 
 const initialState: OrderDetails = {
   currentStage: 0,
@@ -24,6 +24,7 @@ const initialState: OrderDetails = {
   date: null,
   rate: null,
   services: [],
+  price: 0,
 };
 
 export const orderDetailsSlice = createSlice({
@@ -48,7 +49,7 @@ export const orderDetailsSlice = createSlice({
     setCategory: (state, action: PayloadAction<ICategory>) => {
       state.category = action.payload;
     },
-    setModel: (state, action: PayloadAction<IModel>) => ({
+    setCar: (state, action: PayloadAction<ICar>) => ({
       ...initialState,
       currentStage: 1,
       reachedStage: 1,
@@ -59,48 +60,39 @@ export const orderDetailsSlice = createSlice({
       color: action.payload.colorEntities[0] || null,
     }),
     setColor: (state, action: PayloadAction<IColor>) => ({
-      ...initialState,
-      currentStage: 2,
+      ...state,
       reachedStage: 2,
-      city: state.city,
-      point: state.point,
-      car: state.car,
       color: action.payload,
-      rate: state.rate,
-      date: state.date,
-      services: state.services,
     }),
     setDate: (state, action: PayloadAction<DateRange | null>) => ({
-      ...initialState,
-      currentStage: 2,
+      ...state,
       reachedStage: 2,
-      city: state.city,
-      point: state.point,
-      car: state.car,
-      color: state.color,
       date: action.payload,
-      services: state.services,
+      rate: null,
     }),
-    setRate: (state, action: PayloadAction<IRate>) => ({
-      ...initialState,
-      currentStage: 2,
-      reachedStage: 2,
-      city: state.city,
-      point: state.point,
-      car: state.car,
-      color: state.color,
-      date: state.date,
-      rate: action.payload,
-      services: state.services,
-    }),
+    setRate: (state, action: PayloadAction<IRate>) => {
+      state.reachedStage = 2;
+      state.rate = action.payload;
+      const days = state.date.days + (state.date.hours === 0 ? 0 : 1);
+      const timePrice = Math.ceil(days / state.rate.days) * state.rate.price;
+      let servicePrice = 0;
+      state.services.forEach((service: IService) => {
+        servicePrice += service.price;
+      });
+      state.price = state.car.priceMin + timePrice + servicePrice;
+    },
     addService: (state, action: PayloadAction<IService>) => {
+      state.reachedStage = 2;
       state.services.push(action.payload);
+      state.price += action.payload.price;
     },
     removeService: (state, action: PayloadAction<IService>) => {
+      state.reachedStage = 2;
       const services: IService[] = state.services.filter((service) => {
         return service.id !== action.payload.id;
       });
       state.services = services;
+      state.price -= action.payload.price;
     },
   },
 });
@@ -111,7 +103,7 @@ export const {
   setCity,
   setPoint,
   setCategory,
-  setModel,
+  setCar,
   setColor,
   setDate,
   setRate,

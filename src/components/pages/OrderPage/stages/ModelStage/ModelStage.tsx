@@ -5,66 +5,66 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import RadioGroup from '~/components/RadioGroup/RadioGroup';
 import Spinner from '~/components/Spinner/Spinner';
+import { filterCars } from '~/store/cars/selectors';
+import { getCars } from '~/store/cars/thunk';
 import categoriesSelector from '~/store/categories/selectors';
 import { getCategories } from '~/store/categories/thunk';
 import { defaultCategory } from '~/store/constants';
-import { filterModel } from '~/store/models/selectors';
-import { getModels } from '~/store/models/thunk';
-import orderDetailsSelector from '~/store/orderDetails/selectors';
-import { setCategory, setModel } from '~/store/orderDetails/slice';
+import orderDetailsSelector from '~/store/order/details/selectors';
+import { setCar, setCategory } from '~/store/order/details/slice';
 import { AppDispatch } from '~/store/root';
-import { ICategory, IModel } from '~/store/types';
+import { ICar, ICategory } from '~/store/types';
 
-import ModelBox from './ModelBox/ModelBox';
+import CarBox from './CarBox/CarBox';
 
 function ModelStage() {
   const { category, car } = useSelector(orderDetailsSelector);
   const {
-    data: models,
-    errorMessage: modelsError,
+    data: cars,
+    errorMessage: carsError,
     isLoading,
-  } = useSelector(filterModel);
+  } = useSelector(filterCars);
   const { data: categories, errorMessage: categoriesError } =
     useSelector(categoriesSelector);
-  const [categoryModels, setCategoryModels] = useState<IModel[]>([]);
+  const [categoryCars, setCategoryCars] = useState<ICar[]>([]);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getModels());
+    dispatch(getCars());
     dispatch(getCategories());
   }, []);
 
   useEffect(() => {
-    if (modelsError === null && categoriesError === null) {
+    if (carsError === null && categoriesError === null) {
       return;
     }
     const errorMessage: string = 'Ошибка сервера';
     throw new Error(errorMessage);
-  }, [modelsError, categoriesError]);
+  }, [carsError, categoriesError]);
 
-  function updateCategoryModels(newCategory: ICategory) {
+  function updateCategoryCars(newCategory: ICategory) {
     if (newCategory.id === defaultCategory.id) {
-      setCategoryModels(models);
+      setCategoryCars(cars);
       return;
     }
-    setCategoryModels(
-      models.filter((item) => {
+    setCategoryCars(
+      cars.filter((item) => {
         return item.categoryId.id === newCategory.id;
       }),
     );
   }
 
   useEffect(() => {
-    updateCategoryModels(category);
-  }, [models]);
+    updateCategoryCars(category);
+  }, [cars]);
 
   const handleCategoryChange = (newCategory: ICategory) => {
     dispatch(setCategory(newCategory));
-    updateCategoryModels(newCategory);
+    updateCategoryCars(newCategory);
   };
 
-  const handleModelChange = (newCar: IModel): void => {
-    dispatch(setModel(newCar));
+  const handleCarChange = (newCar: ICar): void => {
+    dispatch(setCar(newCar));
   };
 
   return (
@@ -78,14 +78,14 @@ function ModelStage() {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div id="model-grid">
-          {categoryModels.map((categoryModel) => {
+        <div id="car-grid">
+          {categoryCars.map((categoryCar) => {
             return (
-              <ModelBox
-                key={categoryModel.id}
-                model={categoryModel}
-                isActive={car !== null && categoryModel.id === car.id}
-                onClick={() => handleModelChange(categoryModel)}
+              <CarBox
+                key={categoryCar.id}
+                car={categoryCar}
+                isActive={car !== null && categoryCar.id === car.id}
+                onClick={() => handleCarChange(categoryCar)}
               />
             );
           })}

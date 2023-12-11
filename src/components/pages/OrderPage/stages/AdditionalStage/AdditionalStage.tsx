@@ -7,20 +7,19 @@ import CheckboxGroup from '~/components/CheckboxGroup/CheckboxGroup';
 import DateTimePicker from '~/components/DateTimePicker/DateTimePicker';
 import RadioGroup from '~/components/RadioGroup/RadioGroup';
 import { dateToInputValue } from '~/format/datetime';
-import orderDetailsSelector from '~/store/orderDetails/selectors';
+import orderDetailsSelector from '~/store/order/details/selectors';
 import {
   addService,
   removeService,
   setColor,
   setDate,
   setRate,
-} from '~/store/orderDetails/slice';
+} from '~/store/order/details/slice';
 import { filterRates } from '~/store/rates/selectors';
 import { getRates } from '~/store/rates/thunk';
 import { AppDispatch } from '~/store/root';
+import { additionalServices } from '~/store/services/constants';
 import { IColor, IRate, IService } from '~/store/types';
-
-import { additionalServices } from './constants';
 
 function AdditionallyStage() {
   const { car, color, date, rate, services } =
@@ -68,8 +67,8 @@ function AdditionallyStage() {
     const hours = Math.ceil(delta / 3600) % 24;
     dispatch(
       setDate({
-        from: newDateFrom.toISOString(),
-        to: newDateTo.toISOString(),
+        from: newDateFrom.getTime(),
+        to: newDateTo.getTime(),
         days,
         hours,
       }),

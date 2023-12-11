@@ -6,4 +6,8 @@ type Slide = {
   imageSource: string;
 };
 
-export { Slide };
+type SliderProps = {
+  isDisplay: boolean;
+};
+
+export { Slide, SliderProps };

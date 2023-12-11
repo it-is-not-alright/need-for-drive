@@ -32,7 +32,7 @@ function App() {
           </Routes>
         </ErrorBoundary>
       </main>
-      {location.pathname === AppRoute.Main && <Slider />}
+      <Slider isDisplay={location.pathname === AppRoute.Main} />
     </>
   );
 }

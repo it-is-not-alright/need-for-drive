@@ -182,12 +182,12 @@ div.centered-grid {
     grid-column: 2;
     padding-right: c.$d-5;
     padding-left: c.$d-5;
-  
+
     @media (min-width: c.$w-tablet) {
       padding-right: c.$d-7;
       padding-left: c.$d-7;
     }
-  
+
     @media (min-width: c.$w-desktop-mini) {
       padding-right: c.$d-9;
       padding-left: c.$d-9;

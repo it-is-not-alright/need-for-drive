@@ -71,7 +71,10 @@
 
     #menu__body__content {
       display: grid;
-      grid-template-rows: c.$d-8 repeat(3, auto minmax(0, c.$d-5)) auto minmax(0, c.$d-7) auto 1fr;
+      grid-template-rows: c.$d-8 repeat(3, auto minmax(0, c.$d-5)) auto minmax(
+          0,
+          c.$d-7
+        ) auto 1fr;
       padding: c.$d-5;
       overflow: hidden;
       background-color: c.$c-dark-gray;
@@ -79,34 +82,37 @@
       transition-property: width, padding;
 
       @media (min-width: c.$w-tablet) {
-        grid-template-rows: 1fr repeat(3, auto minmax(0, c.$d-5)) auto minmax(0, c.$d-7) auto 1fr;
+        grid-template-rows: 1fr repeat(3, auto minmax(0, c.$d-5)) auto minmax(
+            0,
+            c.$d-7
+          ) auto 1fr;
       }
 
       p {
         font-size: 22px;
         cursor: pointer;
         user-select: none;
-    
+
         @media (min-width: c.$w-tablet) {
           font-size: 28px;
         }
-    
+
         @media (min-width: c.$w-desktop-mini) {
           font-size: 32px;
         }
-    
+
         &:hover {
           color: c.$c-green;
         }
       }
-    
+
       #menu__body__content__btn-block {
         display: flex;
         gap: c.$d-6;
-    
+
         .icon {
           fill: c.$c-light;
-    
+
           &:hover {
             fill: c.$c-green;
           }

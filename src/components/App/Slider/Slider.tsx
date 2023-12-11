@@ -9,8 +9,9 @@ import useInterval from '~/hooks/useInterval';
 import { defaultDelay, longDelay, slides } from './constants';
 import NavDots from './NavDots/NavDots';
 import SliderImages from './SliderImages/SliderImages';
+import { SliderProps } from './types';
 
-function Slider() {
+function Slider({ isDisplay }: SliderProps) {
   let pauseInterval: number;
   const [isPause, setIsPause] = useState<boolean>(false);
   const [delay, setDelay] = useState<number>(defaultDelay);
@@ -65,6 +66,8 @@ function Slider() {
     pause();
     setCurrentIndex(slideIndex);
   };
+
+  if (!isDisplay) return null;
 
   return (
     <div id="slider">

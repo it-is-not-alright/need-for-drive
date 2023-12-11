@@ -37,11 +37,11 @@
           flex-grow: 1;
           flex-direction: column;
           gap: c.$d-2;
-      
+
           p.fs-4 {
             margin-bottom: c.$d-2;
           }
-        
+
           p.car-number {
             width: fit-content;
             padding: c.$d-1 c.$d-2;
@@ -51,7 +51,7 @@
             border-radius: c.$d-1;
           }
         }
-  
+
         img {
           max-width: 300px;
         }

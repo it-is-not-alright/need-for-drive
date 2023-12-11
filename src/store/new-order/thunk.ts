@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiRequest } from '~/api/api';
 import { apiErrorMessage } from '~/api/constants';
-import { ApiRoute, PostResult } from '~/api/types';
+import { ApiUrl, PostResult } from '~/api/types';
 import { IId, IOrder, OrderDetails } from '~/store/types';
 
 const post = createAsyncThunk<
@@ -26,7 +26,7 @@ const post = createAsyncThunk<
       rateId: orderDetails.rate,
     };
     const { data } = await apiRequest.post<IOrder, PostResult<IId>>(
-      ApiRoute.Order,
+      ApiUrl.Order,
       order,
     );
     return data;

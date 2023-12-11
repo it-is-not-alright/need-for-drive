@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiRequest } from '~/api/api';
 import { apiErrorMessage } from '~/api/constants';
-import { ApiRoute, GetArrayResult } from '~/api/types';
+import { ApiUrl, GetArrayResult } from '~/api/types';
 
 import { defaultCategory } from '../constants';
 import { ICategory } from '../types';
@@ -12,7 +12,7 @@ const get = createAsyncThunk<ICategory[], void, { rejectValue: string }>(
   async (_, thunkApi) => {
     try {
       const { data } = await apiRequest.get<GetArrayResult<ICategory>>(
-        ApiRoute.Category,
+        ApiUrl.Category,
       );
       const result = data.map((category: ICategory) => {
         return { ...category, label: category.name };

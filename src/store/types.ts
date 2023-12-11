@@ -48,14 +48,14 @@ interface ICar extends IEntity {
   tank: number;
 }
 
-interface IRateTypeId {
+interface IRateType {
   id: number;
   name: string;
   unit: string;
 }
 
 interface IRate extends IEntity {
-  rateTypeId: IRateTypeId;
+  rateTypeId: IRateType;
   price: number;
   days: number;
 }

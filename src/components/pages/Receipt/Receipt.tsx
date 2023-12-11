@@ -64,7 +64,7 @@ function Receipt({
                   : placeholder
               }
             />
-            {details.rate && (
+            {details.rate?.rateTypeId && (
               <ReceiptItem name="Тариф" value={details.rate.rateTypeId.name} />
             )}
             {details.isFullTank && (

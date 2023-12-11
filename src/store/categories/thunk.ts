@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiRequest } from '~/api/api';
+import { apiErrorMessage } from '~/api/constants';
 import { ApiRoute, GetArrayResult } from '~/api/types';
 
 import { defaultCategory } from '../constants';
@@ -18,7 +19,7 @@ const get = createAsyncThunk<ICategory[], void, { rejectValue: string }>(
       });
       return [defaultCategory, ...result];
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(apiErrorMessage);
     }
   },
 );

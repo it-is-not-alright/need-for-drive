@@ -4,10 +4,8 @@ import { IId, RequestState } from '~/store/types';
 
 import { postOrder } from './thunk';
 
-const initialState: RequestState<IId> = {
-  data: {
-    id: 0,
-  },
+const initialState: RequestState<IId | null> = {
+  data: null,
   isLoading: false,
   errorMessage: null,
 };

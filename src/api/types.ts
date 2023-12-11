@@ -2,6 +2,10 @@ type PostResult<T> = {
   data: T;
 };
 
+type GetResult<T> = {
+  data: T;
+};
+
 type GetArrayResult<T> = {
   count: number;
   data: T[];
@@ -17,4 +21,4 @@ enum ApiRoute {
   Order = 'db/order',
 }
 
-export { ApiRoute, GetArrayResult, PostResult };
+export { ApiRoute, GetArrayResult, GetResult, PostResult };

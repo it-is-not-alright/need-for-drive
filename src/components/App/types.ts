@@ -1,6 +1,6 @@
 enum AppRoute {
   Main = '/',
-  Order = '/order',
+  Order = '/order/:id',
   Ordering = '/ordering',
   Any = '*',
 }

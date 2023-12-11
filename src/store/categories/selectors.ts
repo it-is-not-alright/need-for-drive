@@ -1,4 +1,5 @@
-import { ICategory, RequestState, RootState } from '../types';
+import { RootState } from '../root';
+import { ICategory, RequestState } from '../types';
 
 const categoriesSelector = (state: RootState): RequestState<ICategory[]> =>
   state.categories;

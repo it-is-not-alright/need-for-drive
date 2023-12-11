@@ -1,4 +1,5 @@
-import { ICity, RequestState, RootState } from '../types';
+import { RootState } from '../root';
+import { ICity, RequestState } from '../types';
 
 const citiesSelector = (state: RootState): RequestState<ICity[]> =>
   state.cities;

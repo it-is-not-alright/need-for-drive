@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiRequest } from '~/api/api';
+import { apiErrorMessage } from '~/api/constants';
 import { ApiRoute, GetArrayResult } from '~/api/types';
 
 import { ICity } from '../types';
@@ -16,7 +17,7 @@ const get = createAsyncThunk<ICity[], void, { rejectValue: string }>(
         return { ...city, label: city.name };
       });
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(apiErrorMessage);
     }
   },
 );

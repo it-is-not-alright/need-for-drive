@@ -1,7 +1,9 @@
 import React, { Component, ErrorInfo } from 'react';
 
+import ApiError from '~/api/ApiError';
 import ErrorPage from '~/components/pages/ErrorPage/ErrorPage';
 
+import { unknownErrorMessage } from './constants';
 import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -13,7 +15,9 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // eslint-disable-next-line no-console
     console.error('ErrorBoundary caught an error: ', error, errorInfo);
-    this.setState({ errorMessage: error.message });
+    const errorMessage: string =
+      error.name === ApiError.name ? error.message : unknownErrorMessage;
+    this.setState({ errorMessage });
   }
 
   private reset = (): void => {

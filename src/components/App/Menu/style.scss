@@ -71,10 +71,9 @@
 
     #menu__body__content {
       display: grid;
-      grid-template-rows: c.$d-8 repeat(3, auto minmax(0, c.$d-5)) auto minmax(
-          0,
-          c.$d-7
-        ) auto 1fr;
+      grid-template-rows:
+        c.$d-8 repeat(3, auto minmax(0, c.$d-5)) auto minmax(0, c.$d-7)
+        auto 1fr;
       padding: c.$d-5;
       overflow: hidden;
       background-color: c.$c-dark-gray;
@@ -82,10 +81,9 @@
       transition-property: width, padding;
 
       @media (min-width: c.$w-tablet) {
-        grid-template-rows: 1fr repeat(3, auto minmax(0, c.$d-5)) auto minmax(
-            0,
-            c.$d-7
-          ) auto 1fr;
+        grid-template-rows:
+          1fr repeat(3, auto minmax(0, c.$d-5)) auto minmax(0, c.$d-7)
+          auto 1fr;
       }
 
       p {

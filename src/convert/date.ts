@@ -1,6 +1,5 @@
-function numTo2CharString(num: number): string {
-  return num.toString().padStart(2, '0');
-}
+import { numTo2CharString } from './string';
+import { DateRange, TimeInterval } from './types';
 
 function dateToString(date: Date | null): string {
   if (date === null) {
@@ -23,4 +22,15 @@ function dateToInputValue(date: Date | null) {
   return bufferDate.toISOString().slice(0, -8);
 }
 
-export { dateToInputValue, dateToString, numTo2CharString };
+function toTimeInterval(range: DateRange): TimeInterval {
+  if (range === null) {
+    return { days: 0, hours: 0 };
+  }
+  let delta = Math.abs(range.to - range.from) / 1000;
+  const days = Math.floor(delta / 86400);
+  delta -= days * 86400;
+  const hours = Math.ceil(delta / 3600) % 24;
+  return { days, hours };
+}
+
+export { dateToInputValue, dateToString, toTimeInterval };

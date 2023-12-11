@@ -1,3 +1,5 @@
+import { DateRange } from '~/convert/types';
+
 type RequestState<T> = {
   data: T;
   isLoading: boolean;
@@ -46,13 +48,6 @@ interface ICar extends IEntity {
   tank: number;
 }
 
-type DateRange = {
-  from: number;
-  to: number;
-  days: number;
-  hours: number;
-};
-
 interface IRateTypeId {
   id: number;
   name: string;
@@ -87,31 +82,20 @@ type OrderDetails = {
 };
 
 interface IOrder {
-  cityId: IId;
-  pointId: IId;
-  carId: IId;
+  cityId: ICity;
+  pointId: IPoint;
+  carId: ICar;
   color: string;
-  dateFrom: number;
-  dateTo: number;
-  rateId: IId;
+  dateFrom: string;
+  dateTo: string;
+  rateId: IRate;
   price: number;
   isFullTank: boolean;
   isNeedChildChair: boolean;
   isRightWheel: boolean;
 }
 
-type RootState = {
-  orderDetails: OrderDetails;
-  cities: RequestState<ICity[]>;
-  points: RequestState<IPoint[]>;
-  cars: RequestState<ICar[]>;
-  categories: RequestState<ICategory[]>;
-  rates: RequestState<IRate[]>;
-  newOrder: RequestState<IId>;
-};
-
 export {
-  DateRange,
   ICar,
   ICategory,
   ICity,
@@ -124,5 +108,4 @@ export {
   IService,
   OrderDetails,
   RequestState,
-  RootState,
 };

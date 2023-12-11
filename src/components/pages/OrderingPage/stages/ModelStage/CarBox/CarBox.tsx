@@ -3,12 +3,12 @@ import './style.scss';
 import classNames from 'classnames';
 import React from 'react';
 
-import { formatPrice } from '~/format/price';
+import { toCurrencyString } from '~/convert/price';
 
 import { CarBoxProps } from './types';
 
 function CarBox({ car, isActive, onClick }: CarBoxProps) {
-  const price = `${formatPrice(car.priceMin)} - ${formatPrice(
+  const price = `${toCurrencyString(car.priceMin)} - ${toCurrencyString(
     car.priceMax,
     true,
   )}`;

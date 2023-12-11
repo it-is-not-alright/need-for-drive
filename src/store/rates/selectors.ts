@@ -1,6 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { IRate, RequestState, RootState } from '../types';
+import { toTimeInterval } from '~/convert/date';
+
+import { RootState } from '../root';
+import { IRate, RequestState } from '../types';
 
 const ratesSelector = (state: RootState): RequestState<IRate[]> => state.rates;
 
@@ -13,7 +16,8 @@ const filterRates = createSelector(
     if (date === null) {
       return { ...ratesState, data: [] };
     }
-    const days = date.days + (date.hours === 0 ? 0 : 1);
+    const interval = toTimeInterval(date);
+    const days = interval.days + (interval.hours === 0 ? 0 : 1);
     const overlap = ratesState.data.filter((rate) => {
       return rate.days <= days;
     });

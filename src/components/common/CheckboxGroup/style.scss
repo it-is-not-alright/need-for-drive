@@ -1,0 +1,7 @@
+@use '~/components/constants.scss' as c;
+
+div.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: c.$d-2;
+}

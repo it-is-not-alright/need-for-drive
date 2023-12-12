@@ -1,0 +1,58 @@
+@use '~/components/constants.scss' as c;
+
+div.checkbox {
+  position: relative;
+  display: flex;
+  gap: c.$d-2;
+  align-items: center;
+  width: fit-content;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  div.checkbox-checkmark {
+    position: relative;
+    width: c.$d-5;
+    border-width: c.$bw-1;
+    border-style: solid;
+    border-color: c.$c-gray;
+    aspect-ratio: 1;
+
+    svg.icon {
+      position: absolute;
+      left: 0.1em;
+      display: none;
+      width: c.$d-5;
+      aspect-ratio: 13 / 10;
+    }
+  }
+
+  p {
+    color: c.$c-gray;
+    font-weight: 300;
+  }
+
+  input {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  input:checked {
+    & ~ div.checkbox-checkmark {
+      border-color: c.$c-green;
+
+      svg.icon {
+        display: block;
+      }
+    }
+
+    & ~ p {
+      color: c.$c-dark;
+    }
+  }
+}

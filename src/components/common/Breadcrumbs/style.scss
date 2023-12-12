@@ -1,0 +1,27 @@
+@use '~/components/constants.scss' as c;
+
+div.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: c.$d-5;
+  align-items: center;
+
+  button {
+    padding: 0;
+    color: c.$c-dark;
+    font-weight: 700;
+    font-size: inherit;
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    &:hover,
+    &.active {
+      color: c.$c-green;
+    }
+
+    &:disabled {
+      color: c.$c-gray;
+    }
+  }
+}

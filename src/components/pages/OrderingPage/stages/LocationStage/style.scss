@@ -1,0 +1,28 @@
+@use '~/components/constants.scss' as c;
+
+#location-stage {
+  #location-stage__input-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: c.$d-3;
+    align-items: center;
+    margin-bottom: c.$d-8;
+
+    p {
+      color: c.$c-dark;
+    }
+
+    div.custom-input-wrapper {
+      max-width: 20em;
+    }
+  }
+
+  #location-stage__map {
+    width: 100%;
+    margin-top: c.$d-5;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}

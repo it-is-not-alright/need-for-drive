@@ -1,0 +1,18 @@
+@use '~/components/constants.scss' as c;
+
+div.receipt-option {
+  display: flex;
+  gap: c.$d-5;
+  align-items: flex-end;
+  white-space: pre-line;
+
+  div.line-dotted {
+    flex-grow: 1;
+    margin-bottom: c.$d-1;
+    border-top: 1.5px dotted c.$c-gray;
+  }
+
+  p.gray-text {
+    text-align: right;
+  }
+}

@@ -3,35 +3,29 @@ import './style.scss';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from '~/components/Button/Button';
-import Footer from '~/components/Footer/Footer';
-import Slider from '~/components/Slider/Slider';
+import { AppRoute } from '~/components/App/types';
+import Button from '~/components/common/Button/Button';
+import Footer from '~/components/pages/MainPage/Footer/Footer';
 
-import { MainPageProps } from './types';
-
-function MainPage({ header }: MainPageProps) {
+function MainPage() {
   const navigate = useNavigate();
 
-  const handleBookButtonClick = () => {
-    navigate('/order');
+  const handleOrderingButtonClick = () => {
+    navigate(AppRoute.Ordering);
   };
 
   return (
-    <div id="main-page">
+    <div id="main-page" className="centered-grid">
       <div id="main-page__content">
-        {header}
-        <div id="main-page__content__info">
-          <h1 className="fw-700">
-            <span className="dark-text">Каршеринг</span>
-            <br />
-            <span className="green-text">Need for drive</span>
-          </h1>
-          <p className="gray-text">Поминутная аренда авто твоего города</p>
-          <Button text="Забронировать" onClick={handleBookButtonClick} />
-        </div>
-        <Footer />
+        <h1 className="fw-700">
+          <span className="dark-text">Каршеринг</span>
+          <br />
+          <span className="green-text">Need for drive</span>
+        </h1>
+        <p className="gray-text">Поминутная аренда авто твоего города</p>
+        <Button text="Забронировать" onClick={handleOrderingButtonClick} />
       </div>
-      <Slider />
+      <Footer />
     </div>
   );
 }

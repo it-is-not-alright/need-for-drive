@@ -1,0 +1,37 @@
+@use '~/components/constants.scss' as c;
+
+div.pop-up {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffffdf;
+
+  div.pop-up__content {
+    width: fit-content;
+
+    & > p {
+      margin-bottom: c.$d-6;
+      text-align: center;
+    }
+
+    div.pop-up__button_div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: c.$d-5;
+
+      button {
+        flex: 1;
+      }
+    }
+  }
+
+  &.visible {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

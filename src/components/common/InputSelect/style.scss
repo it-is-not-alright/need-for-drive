@@ -1,0 +1,63 @@
+@use '~/components/constants.scss' as c;
+
+div.input-select {
+  position: relative;
+  width: 100%;
+  color: c.$c-dark-gray;
+  font-weight: 300;
+
+  div.input-select__select-shell {
+    position: absolute;
+    z-index: 1;
+    display: none;
+    width: 100%;
+    background-color: white;
+
+    div.input-select__select {
+      display: flex;
+      flex-direction: column;
+      gap: c.$d-2;
+      max-height: 7em;
+      padding: c.$d-2;
+      overflow-y: auto;
+      border-width: c.$bw-1;
+      border-style: solid;
+      border-color: c.$c-light;
+
+      &::-webkit-scrollbar {
+        width: c.$d-1;
+        height: c.$d-1;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #aaa;
+        background-clip: padding-box;
+        border-width: c.$bw-1;
+        border-style: solid;
+        border-color: transparent;
+        border-radius: 1em;
+      }
+
+      button.input-select__select-item {
+        padding: 0;
+        color: c.$c-dark;
+        font-weight: inherit;
+        font-size: inherit;
+        text-align: left;
+        background-color: transparent;
+        border: none;
+        outline: none;
+
+        &:hover {
+          color: c.$c-green;
+        }
+      }
+    }
+  }
+
+  &.focused {
+    div.input-select__select-shell {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@use '~/components/constants.scss' as c;
+
+#icon-menu-mobile {
+  display: none;
+
+  $max: calc(c.$w-tablet - 1px);
+
+  @media (max-width: $max) {
+    display: block;
+  }
+}
+
+#icon-menu-tablet {
+  display: none;
+
+  $min: c.$w-tablet;
+  $max: calc(c.$w-desktop-mini - 1px);
+
+  @media (min-width: $min) and (max-width: $max) {
+    display: block;
+  }
+}
+
+#icon-menu-desktop {
+  display: none;
+
+  $min: c.$w-desktop-mini;
+
+  @media (min-width: $min) {
+    display: block;
+  }
+}

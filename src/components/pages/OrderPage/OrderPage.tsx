@@ -1,50 +1,62 @@
 import './style.scss';
 
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
+import { AppRoute } from '~/components/App/types';
+import { dateToString } from '~/format/datetime';
 import orderDetailsSelector from '~/store/order/details/selectors';
-import { setCurrentStage } from '~/store/order/details/slice';
+import { resetOrderDetails } from '~/store/order/details/slice';
 import { AppDispatch } from '~/store/root';
 
-import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
-import { stages } from './constants';
-import OrderInfo from './OrderInfo/OrderInfo';
-import AdditionalStage from './stages/AdditionalStage/AdditionalStage';
-import FinalStage from './stages/FinalStage/FinalStage';
-import LocationStage from './stages/LocationStage/LocationStage';
-import ModelStage from './stages/ModelStage/ModelStage';
-import { OrderPageProps } from './types';
+import Receipt from '../Receipt/Receipt';
 
-function OrderPage({ header }: OrderPageProps) {
-  const { currentStage, reachedStage } = useSelector(orderDetailsSelector);
+function OrderPage() {
+  const details = useSelector(orderDetailsSelector);
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const stageComponents: ReactElement[] = [
-    <LocationStage />,
-    <ModelStage />,
-    <AdditionalStage />,
-    <FinalStage />,
-  ];
+
+  const handleReceiptButtonClick = (): void => {
+    dispatch(resetOrderDetails());
+    navigate(AppRoute.Ordering);
+  };
 
   return (
-    <div id="order-page">
-      {header}
+    <div id="order-page" className="centered-grid">
       <div className="line-horizontal" />
-      <Breadcrumbs
-        items={stages.map((stage) => stage.name)}
-        currentIndex={currentStage}
-        reachedIndex={reachedStage}
-        onIndexChange={(newIndex: number) =>
-          dispatch(setCurrentStage(newIndex))
-        }
-      />
+      <p className="dark-text fw-700">Заказ номер RU58491823</p>
       <div className="line-horizontal" />
       <div id="order-page__content">
-        <div id="order-page__content__stage">
-          {stageComponents[currentStage]}
+        <div id="order-page__content__main">
+          <div>
+            <div>
+              <p className="dark-text fs-4">Ваш заказ подтверждён</p>
+              <p className="dark-text fs-3">{details.car.name}</p>
+              <p className="car-number">{details.car.number}</p>
+              <p>
+                <span className="fw-700">Топливо </span>
+                <span className="fw-300">{`${
+                  details.isFullTank ? 100 : details.car.tank
+                }%`}</span>
+              </p>
+              <p>
+                <span className="fw-700">Доступна с </span>
+                <span className="fw-300">
+                  {dateToString(new Date(details.date.from))}
+                </span>
+              </p>
+            </div>
+            <img src={details.car.thumbnail.path} alt={details.car.name} />
+          </div>
         </div>
         <div className="line-vertical" />
-        <OrderInfo btnLabel={stages[currentStage].btnLabel} />
+        <Receipt
+          details={details}
+          buttonLabel="Отменить"
+          buttonOnClick={handleReceiptButtonClick}
+          buttonDanger
+        />
       </div>
     </div>
   );

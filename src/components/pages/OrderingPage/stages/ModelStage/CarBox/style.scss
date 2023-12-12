@@ -1,0 +1,29 @@
+@use '~/components/constants.scss' as c;
+
+div.car-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: c.$d-5;
+  border-width: c.$bw-1;
+  border-style: solid;
+  border-color: c.$c-light;
+  cursor: pointer;
+
+  &:not(.active):hover {
+    border-color: c.$c-gray;
+  }
+
+  &.active {
+    border-color: c.$c-green;
+  }
+
+  p {
+    width: 100%;
+  }
+
+  img {
+    max-width: 75%;
+    margin-top: c.$d-7;
+  }
+}

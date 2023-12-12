@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { apiRequest } from '~/api/api';
-import { rateUrl } from '~/api/constants';
-import { GetArrayResult } from '~/api/types';
+import { ApiRoute, GetArrayResult } from '~/api/types';
 import { formatPrice } from '~/format/price';
 
 import { IRate } from '../types';
@@ -12,7 +11,9 @@ const get = createAsyncThunk<IRate[], void, { rejectValue: string }>(
   'rates/get',
   async (_, thunkApi) => {
     try {
-      const { data } = await apiRequest.get<GetArrayResult<IRate>>(rateUrl);
+      const { data } = await apiRequest.get<GetArrayResult<IRate>>(
+        ApiRoute.Rate,
+      );
       return data.map((rate: IRate) => {
         return {
           ...rate,

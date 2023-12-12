@@ -1,0 +1,25 @@
+@use '~/components/constants.scss' as c;
+
+button.lang-btn {
+  width: 48px;
+  aspect-ratio: 1;
+  padding: 0;
+  color: c.$c-green;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+  border-width: c.$bw-1;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 10em;
+  outline: none;
+
+  &:hover {
+    color: c.$c-light;
+    border-color: c.$c-light;
+  }
+
+  &:active {
+    color: c.$c-green;
+  }
+}

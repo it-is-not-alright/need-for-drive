@@ -1,0 +1,29 @@
+@use '~/components/constants.scss' as c;
+
+#final-stage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: c.$d-7;
+  justify-content: center;
+
+  div {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: c.$d-2;
+
+    p.car-number {
+      width: fit-content;
+      padding: c.$d-1 c.$d-2;
+      border-width: c.$bw-1;
+      border-style: solid;
+      border-color: c.$c-gray;
+      border-radius: c.$d-1;
+    }
+  }
+
+  img {
+    width: 100%;
+    max-width: 300px;
+  }
+}

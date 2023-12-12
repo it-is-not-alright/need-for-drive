@@ -1,86 +1,48 @@
-@use '~/components/variables.scss';
+@use '~/components/constants.scss' as c;
 
 #main-page {
   display: grid;
-  grid-template-columns: 1fr;
-  min-height: inherit;
+  grid-template-rows: c.$d-7 auto 1fr auto;
+  height: 100%;
 
-  @media (min-width: variables.$desktop-mini-width) {
-    grid-template-columns: minmax(600px, 1fr) 1fr;
+  @media (min-width: c.$w-tablet) {
+    grid-template-rows: 1fr auto 1fr auto;
   }
 
   #main-page__content {
-    position: relative;
-    display: grid;
-    grid-column: 1;
-    grid-template-rows: auto 1fr auto;
+    grid-row: 2;
 
-    @media (min-width: variables.$tablet-width) {
-      grid-template-rows: 1fr 3fr auto;
-    }
+    h1 {
+      font-size: 32px;
 
-    header,
-    footer {
-      padding: variables.$d-5;
-
-      @media (min-width: variables.$tablet-width) {
-        padding: variables.$d-7;
-      }
-
-      @media (min-width: variables.$desktop-mini-width) {
-        padding: variables.$d-7 variables.$d-9;
+      @media (min-width: c.$w-tablet) {
+        font-size: 70px;
       }
     }
 
-    #main-page__content__info {
-      margin: variables.$d-5;
+    & > p {
+      margin-top: c.$d-5;
+      margin-bottom: c.$d-7;
+      font-size: 18px;
 
-      @media (min-width: variables.$tablet-width) {
-        margin: 0 variables.$d-7;
+      @media (min-width: c.$w-tablet) {
+        font-size: 26px;
       }
+    }
 
-      @media (min-width: variables.$desktop-mini-width) {
-        margin: 0 variables.$d-9;
-      }
+    button {
+      padding-right: c.$d-8;
+      padding-left: c.$d-8;
 
-      h1 {
-        margin: 0;
-        font-size: 32px;
-
-        @media (min-width: variables.$tablet-width) {
-          font-size: 70px;
-        }
-      }
-
-      & > p {
-        margin-top: variables.$d-5;
-        margin-bottom: variables.$d-7;
-        font-size: 18px;
-
-        @media (min-width: variables.$tablet-width) {
-          font-size: 26px;
-        }
-      }
-
-      button {
-        padding-right: variables.$d-8;
-        padding-left: variables.$d-8;
-
-        @media (width <= calc(variables.$tablet-width - 1px)) {
-          width: calc(100% + variables.$d-7);
-          margin: calc(0em - variables.$d-5);
-          border-radius: 0;
-        }
+      @media (width <= calc(c.$w-tablet - 1px)) {
+        width: calc(100% + c.$d-7);
+        margin: calc(0em - c.$d-5);
+        border-radius: 0;
       }
     }
   }
 
-  #slider {
-    display: none;
-
-    @media (min-width: variables.$desktop-mini-width) {
-      display: flex;
-      grid-column: 2;
-    }
+  footer {
+    grid-row: 4;
   }
 }

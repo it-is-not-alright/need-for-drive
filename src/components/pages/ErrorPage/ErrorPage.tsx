@@ -3,7 +3,8 @@ import './style.scss';
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import Button from '~/components/Button/Button';
+import { AppRoute } from '~/components/App/types';
+import Button from '~/components/common/Button/Button';
 
 import { ErrorPageProps } from './types';
 
@@ -11,7 +12,7 @@ function ErrorPage({ title, errorMessage, reset }: ErrorPageProps) {
   const navigate = useNavigate();
 
   const handleResetButtonClick = () => {
-    navigate('/');
+    navigate(AppRoute.Main);
     reset();
   };
 

@@ -1,0 +1,180 @@
+@use '~/components/constants.scss' as c;
+
+#menu {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  height: 100dvh;
+  background-color: c.$c-dark-gray;
+
+  @media (min-width: c.$w-tablet) {
+    position: sticky;
+  }
+
+  #menu__sidebar {
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 0;
+
+    button.lang-btn {
+      display: none;
+    }
+
+    @media (min-width: c.$w-tablet) {
+      justify-content: space-between;
+      width: fit-content;
+      padding: c.$d-6 c.$d-5 c.$d-5 c.$d-5;
+
+      button.lang-btn {
+        display: block;
+      }
+    }
+
+    @media (min-width: c.$w-desktop-mini) {
+      padding: c.$d-6 c.$d-2 c.$d-5 c.$d-2;
+    }
+
+    #menu-btn {
+      position: absolute;
+      top: c.$d-5;
+      left: c.$d-5;
+
+      @media (min-width: c.$w-tablet) {
+        position: static;
+      }
+    }
+  }
+
+  #menu__body {
+    position: absolute;
+    display: flex;
+    width: 100vw;
+    height: inherit;
+    margin-left: 0%;
+    transition: background-color c.$td-2;
+
+    button.lang-btn {
+      display: block;
+    }
+
+    @media (min-width: c.$w-tablet) {
+      width: calc(100vw - 100%);
+      margin-left: 100%;
+
+      button.lang-btn {
+        display: none;
+      }
+    }
+
+    #menu__body__content {
+      display: grid;
+      grid-template-rows: c.$d-8 repeat(3, auto minmax(0, c.$d-5)) auto minmax(
+          0,
+          c.$d-7
+        ) auto 1fr;
+      padding: c.$d-5;
+      overflow: hidden;
+      background-color: c.$c-dark-gray;
+      transition-duration: c.$td-2;
+      transition-property: width, padding;
+
+      @media (min-width: c.$w-tablet) {
+        grid-template-rows: 1fr repeat(3, auto minmax(0, c.$d-5)) auto minmax(
+            0,
+            c.$d-7
+          ) auto 1fr;
+      }
+
+      p {
+        font-size: 22px;
+        cursor: pointer;
+        user-select: none;
+
+        @media (min-width: c.$w-tablet) {
+          font-size: 28px;
+        }
+
+        @media (min-width: c.$w-desktop-mini) {
+          font-size: 32px;
+        }
+
+        &:hover {
+          color: c.$c-green;
+        }
+      }
+
+      #menu__body__content__btn-block {
+        display: flex;
+        gap: c.$d-6;
+
+        .icon {
+          fill: c.$c-light;
+
+          &:hover {
+            fill: c.$c-green;
+          }
+        }
+      }
+    }
+  }
+
+  &.collapsed {
+    #menu-btn > svg.icon {
+      width: 35px;
+      height: 32px;
+
+      @media (min-width: c.$w-tablet) {
+        width: 48px;
+      }
+
+      @media (min-width: c.$w-desktop-mini) {
+        width: 40px;
+      }
+    }
+
+    #menu__body {
+      background-color: transparent;
+      animation: hide-menu c.$td-2 forwards;
+
+      #menu__body__content {
+        width: 0%;
+        padding: 0;
+      }
+    }
+  }
+
+  &.expanded {
+    #menu-btn > svg.icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    #menu__body {
+      background-color: c.$c-dark-gray-tr;
+      visibility: visible;
+
+      #menu__body__content {
+        width: 100%;
+
+        &.limited {
+          @media (min-width: c.$w-desktop-mini) {
+            width: max(calc(50%), c.$w-tablet);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes hide-menu {
+  99% {
+    visibility: visible;
+  }
+
+  100% {
+    visibility: hidden;
+  }
+}

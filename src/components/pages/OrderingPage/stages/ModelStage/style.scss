@@ -1,0 +1,35 @@
+@use '~/components/constants.scss' as c;
+
+#model-stage {
+  #car-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+    max-height: 25em;
+    margin-top: 2em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-width: 1px;
+    border-style: solid;
+    border-color: c.$c-light;
+
+    &::-webkit-scrollbar {
+      width: 0.75em;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: c.$c-light;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: c.$c-gray;
+    }
+
+    @media (min-width: c.$w-desktop-mini) {
+      max-height: none;
+    }
+  }
+
+  div.spinner-wrapper {
+    padding: 5em;
+  }
+}

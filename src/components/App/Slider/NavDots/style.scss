@@ -1,0 +1,18 @@
+@use '~/components/constants.scss' as c;
+
+#slider__content__nav-dots {
+  position: absolute;
+  bottom: c.$d-7;
+  left: 50%;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+
+  .icon {
+    fill: c.$c-light;
+
+    &.active {
+      fill: c.$c-green;
+    }
+  }
+}

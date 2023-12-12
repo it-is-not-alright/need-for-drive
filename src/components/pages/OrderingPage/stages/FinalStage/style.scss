@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: c.$d-7;
+  justify-content: center;
 
   div {
     display: flex;
@@ -22,6 +23,7 @@
   }
 
   img {
+    width: 100%;
     max-width: 300px;
   }
 }

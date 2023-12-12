@@ -6,8 +6,6 @@ div.pop-up {
   left: 0;
   z-index: 3;
   display: none;
-  justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
   background-color: #ffffffdf;
@@ -22,11 +20,18 @@ div.pop-up {
 
     div.pop-up__button_div {
       display: flex;
+      flex-wrap: wrap;
       gap: c.$d-5;
+
+      button {
+        flex: 1;
+      }
     }
   }
 
   &.visible {
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

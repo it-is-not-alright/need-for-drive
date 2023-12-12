@@ -3,4 +3,8 @@ enum MenuState {
   Expanded = 'expanded',
 }
 
-export { MenuState };
+type MenuProps = {
+  isLimited: boolean;
+};
+
+export { MenuProps, MenuState };

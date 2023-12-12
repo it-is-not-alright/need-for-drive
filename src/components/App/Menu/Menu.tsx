@@ -2,18 +2,15 @@ import './style.scss';
 
 import classNames from 'classnames';
 import React, { useState } from 'react';
-import { useLocation } from 'react-router';
 
-import { AppRoute } from '~/components/App/types';
 import Icon from '~/components/common/Icon/Icon';
 
 import LangButton from './LangButton/LangButton';
 import MenuButton from './MenuButton/MenuButton';
-import { MenuState } from './types';
+import { MenuProps, MenuState } from './types';
 
-function Menu() {
+function Menu({ isLimited }: MenuProps) {
   const [state, setState] = useState<MenuState>(MenuState.Collapsed);
-  const location = useLocation();
 
   const handleMenuButtonClick = () => {
     if (state === MenuState.Collapsed) {
@@ -35,7 +32,7 @@ function Menu() {
         <div
           id="menu__body__content"
           className={classNames('fw-500 white-text', {
-            limited: location.pathname === AppRoute.Main,
+            limited: isLimited,
           })}
         >
           <div />

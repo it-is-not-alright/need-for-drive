@@ -3,17 +3,18 @@ import './style.scss';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ApiError from '~/api/ApiError';
 import CheckboxGroup from '~/components/common/CheckboxGroup/CheckboxGroup';
 import DateTimePicker from '~/components/common/DateTimePicker/DateTimePicker';
 import RadioGroup from '~/components/common/RadioGroup/RadioGroup';
-import { dateToInputValue } from '~/format/datetime';
-import orderDetailsSelector from '~/store/order/details/selectors';
+import { dateToInputValue } from '~/convert/date';
+import orderDetailsSelector from '~/store/ordering-details/selectors';
 import {
   setColor,
   setDate,
   setRate,
   toggleService,
-} from '~/store/order/details/slice';
+} from '~/store/ordering-details/slice';
 import { filterRates } from '~/store/rates/selectors';
 import { getRates } from '~/store/rates/thunk';
 import { AppDispatch } from '~/store/root';
@@ -24,7 +25,7 @@ import { IColor, IRate, IService } from '~/store/types';
 function AdditionallyStage() {
   const { car, color, date, rate, isFullTank, isNeedChildChair, isRightWheel } =
     useSelector(orderDetailsSelector);
-  const { data: rates, errorMessage: error } = useSelector(filterRates);
+  const { data: rates, errorMessage } = useSelector(filterRates);
   const [dateFrom, setDateFrom] = useState<Date | null>(
     date ? new Date(date.from) : null,
   );
@@ -53,12 +54,11 @@ function AdditionallyStage() {
   };
 
   useEffect(() => {
-    if (error === null) {
+    if (errorMessage === null) {
       return;
     }
-    const errorMessage: string = 'Ошибка сервера';
-    throw new Error(errorMessage);
-  }, [error]);
+    throw new ApiError(errorMessage);
+  }, [errorMessage]);
 
   function handleDateRangeChange(
     newDateFrom: Date | null,
@@ -68,16 +68,10 @@ function AdditionallyStage() {
       dispatch(setDate(null));
       return;
     }
-    let delta = Math.abs(newDateTo.getTime() - newDateFrom.getTime()) / 1000;
-    const days = Math.floor(delta / 86400);
-    delta -= days * 86400;
-    const hours = Math.ceil(delta / 3600) % 24;
     dispatch(
       setDate({
         from: newDateFrom.getTime(),
         to: newDateTo.getTime(),
-        days,
-        hours,
       }),
     );
   }

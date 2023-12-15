@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      <Menu />
+      <Menu isLimited={location.pathname === AppRoute.Main} />
       <main>
         <Header />
         <ErrorBoundary>

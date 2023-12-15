@@ -3,8 +3,8 @@ import './style.scss';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { dateToString } from '~/format/datetime';
-import orderDetailsSelector from '~/store/order/details/selectors';
+import { dateToString } from '~/convert/date';
+import orderDetailsSelector from '~/store/ordering-details/selectors';
 
 function FinalStage() {
   const { car, date, isFullTank } = useSelector(orderDetailsSelector);

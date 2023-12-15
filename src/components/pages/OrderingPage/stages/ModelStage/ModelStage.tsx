@@ -3,6 +3,7 @@ import './style.scss';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ApiError from '~/api/ApiError';
 import RadioGroup from '~/components/common/RadioGroup/RadioGroup';
 import Spinner from '~/components/common/Spinner/Spinner';
 import { filterCars } from '~/store/cars/selectors';
@@ -10,8 +11,8 @@ import { getCars } from '~/store/cars/thunk';
 import categoriesSelector from '~/store/categories/selectors';
 import { getCategories } from '~/store/categories/thunk';
 import { defaultCategory } from '~/store/constants';
-import orderDetailsSelector from '~/store/order/details/selectors';
-import { setCar, setCategory } from '~/store/order/details/slice';
+import orderDetailsSelector from '~/store/ordering-details/selectors';
+import { setCar, setCategory } from '~/store/ordering-details/slice';
 import { AppDispatch } from '~/store/root';
 import { ICar, ICategory } from '~/store/types';
 
@@ -35,11 +36,11 @@ function ModelStage() {
   }, []);
 
   useEffect(() => {
-    if (carsError === null && categoriesError === null) {
+    const errorMessage: string = carsError || categoriesError;
+    if (errorMessage === null) {
       return;
     }
-    const errorMessage: string = 'Ошибка сервера';
-    throw new Error(errorMessage);
+    throw new ApiError(errorMessage);
   }, [carsError, categoriesError]);
 
   function updateCategoryCars(newCategory: ICategory) {

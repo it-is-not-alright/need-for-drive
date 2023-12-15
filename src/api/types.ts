@@ -2,12 +2,16 @@ type PostResult<T> = {
   data: T;
 };
 
+type GetResult<T> = {
+  data: T;
+};
+
 type GetArrayResult<T> = {
   count: number;
   data: T[];
 };
 
-enum ApiRoute {
+enum ApiUrl {
   Base = 'https://frontend-study.simbirsoft.dev/api/',
   City = 'db/city',
   Point = 'db/point',
@@ -17,4 +21,4 @@ enum ApiRoute {
   Order = 'db/order',
 }
 
-export { ApiRoute, GetArrayResult, PostResult };
+export { ApiUrl, GetArrayResult, GetResult, PostResult };

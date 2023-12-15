@@ -3,12 +3,13 @@ import './style.scss';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import ApiError from '~/api/ApiError';
 import MapImage from '~/assets/images/map/img-0.png';
 import InputSelect from '~/components/common/InputSelect/InputSelect';
 import citiesSelector from '~/store/cities/selectors';
 import { getCities } from '~/store/cities/thunk';
-import orderDetailsSelector from '~/store/order/details/selectors';
-import { setCity, setPoint } from '~/store/order/details/slice';
+import orderDetailsSelector from '~/store/ordering-details/selectors';
+import { setCity, setPoint } from '~/store/ordering-details/slice';
 import pointsSelector from '~/store/points/selectors';
 import { getPoints } from '~/store/points/thunk';
 import { AppDispatch } from '~/store/root';
@@ -29,11 +30,11 @@ function LocationStage() {
   }, []);
 
   useEffect(() => {
-    if (citiesError === null && citiesError === null) {
+    const errorMessage: string = citiesError || pointsError;
+    if (errorMessage === null) {
       return;
     }
-    const errorMessage: string = 'Ошибка сервера';
-    throw new Error(errorMessage);
+    throw new ApiError(errorMessage);
   }, [citiesError, pointsError]);
 
   function updateCityPoints(newCity: ICity | null) {

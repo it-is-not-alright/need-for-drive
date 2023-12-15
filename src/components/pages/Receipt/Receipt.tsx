@@ -4,7 +4,8 @@ import classNames from 'classnames';
 import React from 'react';
 
 import Button from '~/components/common/Button/Button';
-import { formatPrice } from '~/format/price';
+import { toTimeInterval } from '~/convert/date';
+import { toCurrencyString } from '~/convert/price';
 import {
   childChairService,
   fullTankService,
@@ -22,13 +23,15 @@ function Receipt({
   buttonDisabled = false,
   buttonDanger = false,
 }: ReceiptProps) {
+  const interval = toTimeInterval(details.date);
+
   function getPrice(): string {
     if (details.rate !== null) {
-      return formatPrice(details.price, true);
+      return toCurrencyString(details.price, true);
     }
     if (details.car !== null) {
-      const min = formatPrice(details.car.priceMin);
-      const max = formatPrice(details.car.priceMax, true);
+      const min = toCurrencyString(details.car.priceMin);
+      const max = toCurrencyString(details.car.priceMax, true);
       return `от ${min} до ${max}`;
     }
     return placeholder;
@@ -57,14 +60,13 @@ function Receipt({
               name="Длительность аренды"
               value={
                 details.date
-                  ? `${details.date.days}д ${details.date.hours}ч`
+                  ? `${interval.days}д ${interval.hours}ч`
                   : placeholder
               }
             />
-            <ReceiptItem
-              name="Тариф"
-              value={details.rate?.rateTypeId.name || placeholder}
-            />
+            {details.rate?.rateTypeId && (
+              <ReceiptItem name="Тариф" value={details.rate.rateTypeId.name} />
+            )}
             {details.isFullTank && (
               <ReceiptItem name={fullTankService.name} value="Да" />
             )}
@@ -79,7 +81,7 @@ function Receipt({
       </div>
       <p className="dark-text fs-3">
         <span className="fw-500">Цена: </span>
-        <span>{details.car ? getPrice() : placeholder}</span>
+        <span>{getPrice()}</span>
       </p>
       <Button
         text={buttonLabel}

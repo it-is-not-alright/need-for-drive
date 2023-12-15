@@ -4,13 +4,18 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
+import ApiError from '~/api/ApiError';
 import { AppRoute } from '~/components/App/types';
 import PopUp from '~/components/common/PopUp/PopUp';
-import orderDetailsSelector from '~/store/order/details/selectors';
-import { setCurrentStage, setReachedStage } from '~/store/order/details/slice';
-import newOrderSelector from '~/store/order/new/selectors';
-import { resetNewOrder } from '~/store/order/new/slice';
-import { postOrder } from '~/store/order/new/thunk';
+import newOrderSelector from '~/store/new-order/selectors';
+import { resetNewOrder } from '~/store/new-order/slice';
+import { postOrder } from '~/store/new-order/thunk';
+import orderDetailsSelector from '~/store/ordering-details/selectors';
+import {
+  resetOrderDetails,
+  setCurrentStage,
+  setReachedStage,
+} from '~/store/ordering-details/slice';
 import { AppDispatch } from '~/store/root';
 
 import Breadcrumbs from '../../common/Breadcrumbs/Breadcrumbs';
@@ -27,7 +32,7 @@ function OrderingPage() {
   const {
     data: newOrder,
     isLoading,
-    errorMessage: error,
+    errorMessage,
   } = useSelector(newOrderSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
@@ -39,19 +44,18 @@ function OrderingPage() {
   ];
 
   useEffect(() => {
-    if (error === null) {
-      return;
+    if (errorMessage !== null) {
+      throw new ApiError(errorMessage);
     }
-    const errorMessage: string = 'Ошибка сервера';
-    throw new Error(errorMessage);
-  }, [error]);
+  }, [errorMessage]);
 
   useEffect(() => {
-    if (newOrder.id === 0) {
+    if (newOrder === null) {
       return;
     }
     dispatch(resetNewOrder());
-    navigate(AppRoute.Order);
+    dispatch(resetOrderDetails());
+    navigate(AppRoute.Order.replace(':id', newOrder.id.toString()));
   }, [newOrder]);
 
   function receiptButtonIsDisabled(): boolean {

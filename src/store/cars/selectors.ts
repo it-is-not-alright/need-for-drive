@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { ICar, RequestState, RootState } from '../types';
+import { RootState } from '../root';
+import { ICar, RequestState } from '../types';
 
 const carsSelector = (state: RootState): RequestState<ICar[]> => state.cars;
 

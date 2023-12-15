@@ -12,7 +12,7 @@
       "~/api/*": ["src/api/*"],
       "~/assets/*": ["src/assets/*"],
       "~/hooks/*": ["src/hooks/*"],
-      "~/format/*": ["src/format/*"],
+      "~/convert/*": ["src/convert/*"],
       "~/store/*": ["src/store/*"],
       "~/components/*": ["src/components/*"]
     }

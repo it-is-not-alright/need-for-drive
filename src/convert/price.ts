@@ -1,6 +1,9 @@
 import { currencySign, placeholder } from './constants';
 
-function formatPrice(price: number, addCurrencySign: boolean = false): string {
+function toCurrencyString(
+  price: number,
+  addCurrencySign: boolean = false,
+): string {
   if (!price) {
     return placeholder;
   }
@@ -9,4 +12,4 @@ function formatPrice(price: number, addCurrencySign: boolean = false): string {
   return addCurrencySign ? `${formattedPrice} ${currencySign}` : formattedPrice;
 }
 
-export { formatPrice };
+export { toCurrencyString };

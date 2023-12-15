@@ -3,7 +3,8 @@ import './style.scss';
 import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { dateToString, numTo2CharString } from '~/format/datetime';
+import { dateToString } from '~/convert/date';
+import { numTo2CharString } from '~/convert/string';
 
 import Icon from '../Icon/Icon';
 import { months, spinnerHours, spinnerMinutes, weekdays } from './constants';

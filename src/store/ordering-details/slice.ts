@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { toTimeInterval } from '~/convert/date';
+import { DateRange } from '~/convert/types';
 import {
   childChairService,
   fullTankService,
   rightWheelService,
 } from '~/store/services/constants';
 
-import { defaultCategory } from '../../constants';
+import { defaultCategory, emptyOrderDetails } from '../constants';
 import {
-  DateRange,
   ICar,
   ICategory,
   ICity,
@@ -17,27 +18,14 @@ import {
   IRate,
   IService,
   OrderDetails,
-} from '../../types';
+} from '../types';
 
-const initialState: OrderDetails = {
-  currentStage: 0,
-  reachedStage: 0,
-  city: null,
-  point: null,
-  category: defaultCategory,
-  car: null,
-  color: null,
-  date: null,
-  rate: null,
-  price: 0,
-  isFullTank: false,
-  isNeedChildChair: false,
-  isRightWheel: false,
-};
+const initialState: OrderDetails = emptyOrderDetails;
 
 function calculatePrice(details: OrderDetails): number {
   let price: number = details.car.priceMin;
-  const days = details.date.days + (details.date.hours === 0 ? 0 : 1);
+  const interval = toTimeInterval(details.date);
+  const days = interval.days + (interval.hours === 0 ? 0 : 1);
   price += Math.ceil(days / details.rate.days) * details.rate.price;
   price += details.isFullTank ? fullTankService.price : 0;
   price += details.isNeedChildChair ? childChairService.price : 0;

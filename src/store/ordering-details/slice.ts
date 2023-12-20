@@ -97,7 +97,9 @@ export const orderDetailsSlice = createSlice({
           break;
         default:
       }
-      state.price = calculatePrice(state);
+      if (state.rate !== null) {
+        state.price = calculatePrice(state);
+      }
     },
     resetOrderDetails: () => initialState,
   },

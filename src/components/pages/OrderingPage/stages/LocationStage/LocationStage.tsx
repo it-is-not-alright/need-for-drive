@@ -70,7 +70,7 @@ function LocationStage() {
           selectedItem={city}
           onSelect={handleCityChange}
         />
-        <p className="dark-text fw-300 ta-right">Пун кт выдачи</p>
+        <p className="dark-text fw-300 ta-right">Пункт выдачи</p>
         <InputSelect
           maxLength={150}
           placeholder="Начните вводить пункт ..."

@@ -21,19 +21,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.(js|ts|tsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
       {
-        test: /\.(s(a|c)ss)$/,
-        exclude: /node_modules/,
+        test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        use: ['ts-loader'],
       },
       {
         test: /\.(svg|png)$/,

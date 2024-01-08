@@ -66,7 +66,7 @@ function InputSelect({
     const { target } = event;
     if (
       wrapper.current === null ||
-      !(target instanceof Element || target instanceof SVGElement) ||
+      !(target instanceof Node) ||
       !wrapper.current.contains(target)
     ) {
       setFocused(false);

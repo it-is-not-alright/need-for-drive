@@ -1,19 +1,21 @@
 import './style.scss';
 import '~/assets/fonts/styles/roboto.scss';
 
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import Header from '~/components/App/Header/Header';
-import MainPage from '~/components/pages/MainPage/MainPage';
-import NotFoundPage from '~/components/pages/NotFoundPage/NotFoundPage';
-import OrderingPage from '~/components/pages/OrderingPage/OrderingPage';
 
-import OrderPage from '../pages/OrderPage/OrderPage';
+import Spinner from '../common/Spinner/Spinner';
+import MainPage from '../pages/MainPage/MainPage';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Menu from './Menu/Menu';
 import Slider from './Slider/Slider';
 import { AppRoute } from './types';
+
+const OrderingPage = lazy(() => import('../pages/OrderingPage/OrderingPage'));
+const OrderPage = lazy(() => import('../pages/OrderPage/OrderPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
 
 function App() {
   const location = useLocation();
@@ -24,12 +26,14 @@ function App() {
       <main>
         <Header />
         <ErrorBoundary>
-          <Routes>
-            <Route path={AppRoute.Main} element={<MainPage />} />
-            <Route path={AppRoute.Ordering} element={<OrderingPage />} />
-            <Route path={AppRoute.Order} element={<OrderPage />} />
-            <Route path={AppRoute.Any} element={<NotFoundPage />} />
-          </Routes>
+          <Suspense fallback={<Spinner />}>
+            <Routes>
+              <Route path={AppRoute.Main} element={<MainPage />} />
+              <Route path={AppRoute.Ordering} element={<OrderingPage />} />
+              <Route path={AppRoute.Order} element={<OrderPage />} />
+              <Route path={AppRoute.Any} element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
         </ErrorBoundary>
       </main>
       <Slider isDisplay={location.pathname === AppRoute.Main} />

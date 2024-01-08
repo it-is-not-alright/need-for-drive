@@ -1,7 +1,7 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 
 import { dateToString } from '~/convert/date';
 import { numTo2CharString } from '~/convert/string';
@@ -25,7 +25,6 @@ function DateTimePicker({
 }: DateTimePickerProps) {
   const wrapper = useRef<HTMLDivElement>();
   const [focused, setFocused] = useState<boolean>(false);
-  const [calendarDays, setCalendarDays] = useState<CalendarDay[]>([]);
   const date: Date = value ? new Date(value) : getDefaultDate();
   const [month, setMonth] = useState<number>(date.getMonth());
   const [year, setYear] = useState<number>(date.getFullYear());
@@ -63,9 +62,15 @@ function DateTimePicker({
     return days;
   }
 
-  useEffect(() => {
-    setCalendarDays(getCalendarDays());
-  }, [month, year, minValue]);
+  const calendarDays: CalendarDay[] = useMemo(() => {
+    return getCalendarDays();
+  }, [
+    month,
+    year,
+    minValue.getFullYear(),
+    minValue.getMonth(),
+    minValue.getDate(),
+  ]);
 
   function handleMonthChange(isIncrease: boolean) {
     const newDate = new Date(year, month);
@@ -107,7 +112,7 @@ function DateTimePicker({
     const { target } = event;
     if (
       wrapper.current === null ||
-      !(target instanceof Element || target instanceof SVGElement) ||
+      !(target instanceof Node) ||
       !wrapper.current.contains(target)
     ) {
       setFocused(false);
